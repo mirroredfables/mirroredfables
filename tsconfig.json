@@ -1,0 +1,7 @@
+{
+  "exclude": ["functions/**/*"],
+  "compilerOptions": {
+    "jsx": "react"
+  },
+  "extends": "expo/tsconfig.base"
+}
