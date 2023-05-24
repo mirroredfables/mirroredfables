@@ -169,7 +169,7 @@ Source: [https://github.com/mirroredfables/mirroredfables](https://github.com/mi
 - [react95 by arturbien](https://github.com/react95-io/react95)
 - [openai.com](https://www.openai.com)
 - [elevenlabs.io](https://www.elevenlabs.io)
-- [lexica](https://lexica.art/)
+- [lexica.art](https://lexica.art/)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->

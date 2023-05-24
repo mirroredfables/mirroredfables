@@ -564,7 +564,7 @@ export default function HomeScreen() {
       <WelcomeWizard
         buttons={[
           {
-            name: "create your own story (openAI key required)",
+            name: "create your own story (openai key required)",
             onPress: () => {
               AsyncStorage.setItem("welcomed", "true");
               launchAiSettings();
