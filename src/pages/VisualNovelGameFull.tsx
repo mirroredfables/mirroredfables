@@ -140,7 +140,7 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
 
   const generateMoreScript = () => {
     const nextSceneId = latestTurn ? latestTurn.sceneId + 1 : 0;
-    console.log("generating scripts for scene " + nextSceneId);
+    // console.log("generating scripts for scene " + nextSceneId);
     dispatch({
       type: "GENERATE_FULL_SCENE",
       payload: {

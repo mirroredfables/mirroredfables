@@ -16,11 +16,15 @@ import {
   addToStorySoFar,
   convertSceneToTurns,
   fixBrokenJson,
+  generateInitialScenesResponseDataTemplate,
   generateInitialWorld,
+  generateInitialWorldResponseDataTemplate,
   generateScenes,
   generateScript,
   generateScriptFromPrevious,
+  generateScriptResponseDataTemplate,
   generateVoices,
+  generateVoicesResponseDataTemplate,
   resetGameMakerGameState,
   searchYoutubeForMusic,
   setCompleted,
@@ -63,14 +67,70 @@ function* sagaRepairJson(action: {
     jsonTemplate?: string;
   };
 }) {
+  yield put({
+    type: "ADD_SYSTEM_MESSAGE",
+    payload: {
+      message: "Attempting to repair JSON...",
+    },
+  });
   try {
     yield put(fixBrokenJson(action.payload));
     const result = yield take(fixBrokenJson.fulfilled);
     const resultContent = result.payload.choices[0].message.content;
     yield put({ type: "REPAIR_JSON_SUCCEEDED", payload: resultContent });
+    yield put({
+      type: "ADD_SYSTEM_MESSAGE",
+      payload: {
+        message: "Repair JSON succeeded.",
+      },
+    });
     return resultContent;
   } catch (e) {
     yield put({ type: "REPAIR_JSON_FAILED", payload: { message: e.message } });
+    yield put({
+      type: "ADD_SYSTEM_MESSAGE",
+      payload: {
+        message: "Repair JSON failed.",
+      },
+    });
+  }
+}
+
+function* sagaParseJson(action: {
+  payload: {
+    contentRaw: string;
+    jsonTemplate?: string;
+  };
+}) {
+  yield put({
+    type: "ADD_SYSTEM_MESSAGE",
+    payload: { message: "Parsing response..." },
+  });
+  try {
+    const content = JSON.parse(action.payload.contentRaw);
+    yield put({
+      type: "ADD_SYSTEM_MESSAGE",
+      payload: { message: "Parsing succeeded." },
+    });
+    return content;
+  } catch (e) {
+    yield put({
+      type: "ADD_SYSTEM_MESSAGE",
+      payload: { message: "Parsing failed..." },
+    });
+    // repair json
+    const repairedRawContent = yield call(sagaRepairJson, {
+      payload: {
+        jsonString: action.payload.contentRaw,
+        jsonTemplate: action.payload.jsonTemplate,
+      },
+    });
+    const repairedContent = JSON.parse(repairedRawContent);
+    yield put({
+      type: "ADD_SYSTEM_MESSAGE",
+      payload: { message: "Parsing succeeded." },
+    });
+    return repairedContent;
   }
 }
 
@@ -134,7 +194,6 @@ function* sagaGenerateWorld(action: {
     type: "ADD_SYSTEM_MESSAGE",
     payload: { message: "Generating world..." },
   });
-  //   const state = yield select();
 
   const initialWorldResponse = yield call(subSagaGenerateInitialWorld, action);
 
@@ -156,10 +215,14 @@ function* sagaGenerateWorld(action: {
     image: worldImage,
   };
 
-  const characterWithVoices = yield call(subSagaGenerateVoices, {
-    payload: { characters: gameWorld.characters },
-  });
-  gameWorld.characters = characterWithVoices;
+  const state = yield select();
+  // TODO: change this when other voices are available
+  if (state.systemSettings.elevenKey) {
+    const characterWithVoices = yield call(subSagaGenerateVoices, {
+      payload: { characters: gameWorld.characters },
+    });
+    gameWorld.characters = characterWithVoices;
+  }
 
   for (const character of gameWorld.characters) {
     let characterImage = "";
@@ -201,43 +264,31 @@ function* subSagaGenerateInitialWorld(action: {
       payload: { message: "Generating initial world..." },
     });
     yield put(generateInitialWorld(action.payload));
+    // TODO: add in a retry here in case openAI is busy?
     const generateInitialWorldResponse = yield take(
       generateInitialWorld.fulfilled
     );
-    yield put({
-      type: "GENERATE_INITIAL_WORLD_REQUEST_SUCCEEDED",
-      response: generateInitialWorldResponse,
-    });
     const contentRaw =
       generateInitialWorldResponse.payload.choices[0].message.content;
+    const content = yield call(sagaParseJson, {
+      payload: {
+        contentRaw: contentRaw,
+        jsonTemplate: JSON.stringify(
+          generateInitialWorldResponseDataTemplate,
+          null,
+          1
+        ),
+      },
+    });
     yield put({
       type: "ADD_SYSTEM_MESSAGE",
       payload: { message: "Generating initial world succeeded." },
     });
-    try {
-      const content = JSON.parse(
-        contentRaw
-      ) as GenerateInitialWorldResponseData;
-      yield put({
-        type: "GENERATE_INITIAL_WORLD_SUCCEEDED",
-        payload: content,
-      });
-      yield put({
-        type: "ADD_SYSTEM_MESSAGE",
-        payload: { message: "Generating initial world parse succeeded." },
-      });
-      return content;
-    } catch (e) {
-      yield put({
-        type: "GENERATE_INITIAL_WORLD_PARSE_FAILED",
-        payload: { message: e.message },
-      });
-      yield put({
-        type: "ADD_SYSTEM_MESSAGE",
-        payload: { message: "Generating initial world parse failed..." },
-      });
-      // TODO - add repair json
-    }
+    yield put({
+      type: "GENERATE_INITIAL_WORLD_SUCCEEDED",
+      payload: content,
+    });
+    return content;
   } catch (e) {
     yield put({
       type: "GENERATE_INITIAL_WORLD_REQUEST_FAILED",
@@ -265,32 +316,30 @@ function* subSagaGenerateVoices(action: {
   });
   try {
     yield put(generateVoices(action.payload));
+    // TODO: add in a retry here in case openAI is busy?
     const generateVoicesResponse = yield take(generateVoices.fulfilled);
     const contentRaw =
       generateVoicesResponse.payload.choices[0].message.content;
-    const content = JSON.parse(contentRaw) as GenerateVoicesResponseData;
+    const content = yield call(sagaParseJson, {
+      payload: {
+        contentRaw: contentRaw,
+        jsonTemplate: JSON.stringify(
+          generateVoicesResponseDataTemplate,
+          null,
+          1
+        ),
+      },
+    });
     const characters = content.characters;
-    try {
-      yield put({
-        type: "GENERATE_VOICES_REQUEST_SUCCEEDED",
-        payload: characters,
-      });
-      yield put({
-        type: "ADD_SYSTEM_MESSAGE",
-        payload: { message: "Generating voices succeeded..." },
-      });
-      return characters;
-    } catch (e) {
-      yield put({
-        type: "GENERATE_VOICES_PARSE_FAILED",
-        payload: { message: e.message },
-      });
-      yield put({
-        type: "ADD_SYSTEM_MESSAGE",
-        payload: { message: "Generating voices parse failed..." },
-      });
-      // TODO - add repair json
-    }
+    yield put({
+      type: "GENERATE_VOICES_REQUEST_SUCCEEDED",
+      payload: characters,
+    });
+    yield put({
+      type: "ADD_SYSTEM_MESSAGE",
+      payload: { message: "Generating voices succeeded..." },
+    });
+    return characters;
   } catch (e) {
     yield put({
       type: "GENERATE_VOICES_REQUEST_FAILED",
@@ -345,30 +394,30 @@ function* subSagaGenerateMoreScenes(action: {
   });
   try {
     yield put(generateScenes(action.payload));
+    // TODO: add in a retry here in case openAI is busy?
     const generateScenesResponse = yield take(generateScenes.fulfilled);
-    const scenesRaw = generateScenesResponse.payload.choices[0].message.content;
+    const contentRaw =
+      generateScenesResponse.payload.choices[0].message.content;
     yield put({
       type: "ADD_SYSTEM_MESSAGE",
       payload: { message: "Generating scenes outline succeeded." },
     });
-    try {
-      const scenes = JSON.parse(scenesRaw) as GenerateInitialScenesResponseData;
-      yield put({ type: "GENERATE_SCENES_OUTLINE_SUCCEEDED", payload: scenes });
-      yield put({
-        type: "ADD_SYSTEM_MESSAGE",
-        payload: { message: "Generating script parse succeeded." },
-      });
-      return scenes;
-    } catch (e) {
-      yield put({
-        type: "GENERATE_SCENES_OUTLINE_PARSE_FAILED",
-        payload: { message: e.message },
-      });
-      yield put({
-        type: "ADD_SYSTEM_MESSAGE",
-        payload: { message: "Generating scenes outline parse failed." },
-      });
-    }
+    const content = yield call(sagaParseJson, {
+      payload: {
+        contentRaw: contentRaw,
+        jsonTemplate: JSON.stringify(
+          generateInitialScenesResponseDataTemplate,
+          null,
+          1
+        ),
+      },
+    });
+    yield put({ type: "GENERATE_SCENES_OUTLINE_SUCCEEDED", payload: content });
+    yield put({
+      type: "ADD_SYSTEM_MESSAGE",
+      payload: { message: "Generating script parse succeeded." },
+    });
+    return content;
   } catch (e) {
     yield put({
       type: "GENERATE_SCENES_OUTLINE_FAILED",
@@ -469,36 +518,36 @@ function* subSagaGenerateScript(action: {
     let generateScriptResponse;
     if (action.payload.targetSceneId && action.payload.targetSceneId > 0) {
       yield put(generateScriptFromPrevious(action.payload));
+      // TODO: add in a retry here in case openAI is busy?
       generateScriptResponse = yield take(generateScriptFromPrevious.fulfilled);
     } else {
       yield put(generateScript(action.payload));
+      // TODO: add in a retry here in case openAI is busy?
       generateScriptResponse = yield take(generateScript.fulfilled);
     }
-    const scriptRaw = generateScriptResponse.payload.choices[0].message.content;
+    const contentRaw =
+      generateScriptResponse.payload.choices[0].message.content;
     yield put({
       type: "ADD_SYSTEM_MESSAGE",
       payload: { message: "Generating script succeeded." },
     });
-    try {
-      const script = JSON.parse(scriptRaw) as GenerateScriptResponseData;
-      const scene = script.scene as VisualNovelGameScene;
-      yield put({ type: "GENERATE_INITIAL_SCRIPT_SUCCEEDED", payload: scene });
-      yield put({
-        type: "ADD_SYSTEM_MESSAGE",
-        payload: { message: "Generating script parse succeeded." },
-      });
-
-      return scene;
-    } catch (e) {
-      yield put({
-        type: "GENERATE_INITIAL_SCRIPT_PARSE_FAILED",
-        payload: { message: e.message },
-      });
-      yield put({
-        type: "ADD_SYSTEM_MESSAGE",
-        payload: { message: "Generating script parse failed." },
-      });
-    }
+    const content = yield call(sagaParseJson, {
+      payload: {
+        contentRaw: contentRaw,
+        jsonTemplate: JSON.stringify(
+          generateScriptResponseDataTemplate,
+          null,
+          1
+        ),
+      },
+    });
+    const scene = content.scene as VisualNovelGameScene;
+    yield put({ type: "GENERATE_INITIAL_SCRIPT_SUCCEEDED", payload: scene });
+    yield put({
+      type: "ADD_SYSTEM_MESSAGE",
+      payload: { message: "Generating script parse succeeded." },
+    });
+    return scene;
   } catch (e) {
     yield put({
       type: "GENERATE_INITIAL_SCRIPT_FAILED",

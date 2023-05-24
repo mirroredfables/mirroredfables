@@ -78,6 +78,16 @@ export interface GenerateInitialWorldResponseData {
   titleBackground?: VisualNovelGameBackground;
 }
 
+export const generateInitialWorldResponseDataTemplate = {
+  request: "string",
+  world: { setting: "string", artStyle: "string", writingStyle: "string" },
+  characters: {
+    id: "number",
+    name: "string",
+    description: "string",
+  },
+};
+
 export interface GenerateVoicesResponseData {
   characters: {
     id: number;
@@ -87,13 +97,49 @@ export interface GenerateVoicesResponseData {
   }[];
 }
 
+export const generateVoicesResponseDataTemplate = {
+  characters: [
+    {
+      id: "number",
+      name: "string",
+      description: "string",
+      voice: {
+        type: "string",
+        voiceId: "string",
+        name: "string",
+        gender: "string",
+      },
+    },
+  ],
+};
+
 export interface GenerateInitialScenesResponseData {
   scenes: VisualNovelGameSceneForGenerator[];
 }
 
+export const generateInitialScenesResponseDataTemplate = {
+  scenes: [
+    {
+      id: "number",
+      name: "string",
+    },
+  ],
+};
+
 export interface GenerateScriptResponseData {
   scene: VisualNovelGameSceneForGeneratorWithScript;
 }
+
+export const generateScriptResponseDataTemplate = {
+  scene: {
+    id: "number",
+    name: "string",
+    script: "string",
+    location: "string",
+    musicRecommendation: "string",
+    summary: "string",
+  },
+};
 
 const shortenCharacters = (characters: VisualNovelGameCharacter[]) => {
   const result = characters.map((character) => {
@@ -239,7 +285,9 @@ export const exportCompletedGameAsSave = (
     init: false,
     autoGenerate: true,
     autoNextTurn: false,
-    speech: true,
+    // TODO: this is a hacky way to figure out whether to use speech or not
+    speech: gameMakerGameState.characters[0].voice ? true : false,
+    // speech: true,
     // speech: false,
     music: true,
     // hideYoutube: true,
