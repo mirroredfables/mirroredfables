@@ -120,6 +120,7 @@ Note: there are two functions that are server based that are niced to have under
 
 # Roadmap
 
+- [ ] Add in support for retrying prompts when OpenAI is busy
 - [ ] Add in support to share games with a short URL
 - [ ] Add in support for on the fly story editing
 - [ ] Add choices to game engine
