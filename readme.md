@@ -120,8 +120,7 @@ Note: there are two functions that are server based that are niced to have under
 
 # Roadmap
 
-- [ ] Support text size changes
-- [ ] Improve generator prompts
+- [ ] Add in support to share games with a short URL
 - [ ] Add in support for on the fly story editing
 - [ ] Add choices to game engine
 - [ ] Add support for multiple sprites per character to game engine

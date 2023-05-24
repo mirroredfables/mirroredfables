@@ -16,11 +16,15 @@ import {
   addToStorySoFar,
   convertSceneToTurns,
   fixBrokenJson,
+  generateInitialScenesResponseDataTemplate,
   generateInitialWorld,
+  generateInitialWorldResponseDataTemplate,
   generateScenes,
   generateScript,
   generateScriptFromPrevious,
+  generateScriptResponseDataTemplate,
   generateVoices,
+  generateVoicesResponseDataTemplate,
   resetGameMakerGameState,
   searchYoutubeForMusic,
   setCompleted,
@@ -63,14 +67,32 @@ function* sagaRepairJson(action: {
     jsonTemplate?: string;
   };
 }) {
+  yield put({
+    type: "ADD_SYSTEM_MESSAGE",
+    payload: {
+      message: "Attempting to repair JSON...",
+    },
+  });
   try {
     yield put(fixBrokenJson(action.payload));
     const result = yield take(fixBrokenJson.fulfilled);
     const resultContent = result.payload.choices[0].message.content;
     yield put({ type: "REPAIR_JSON_SUCCEEDED", payload: resultContent });
+    yield put({
+      type: "ADD_SYSTEM_MESSAGE",
+      payload: {
+        message: "Repair JSON succeeded.",
+      },
+    });
     return resultContent;
   } catch (e) {
     yield put({ type: "REPAIR_JSON_FAILED", payload: { message: e.message } });
+    yield put({
+      type: "ADD_SYSTEM_MESSAGE",
+      payload: {
+        message: "Repair JSON failed.",
+      },
+    });
   }
 }
 
@@ -201,6 +223,7 @@ function* subSagaGenerateInitialWorld(action: {
       payload: { message: "Generating initial world..." },
     });
     yield put(generateInitialWorld(action.payload));
+    // TODO: add in a retry here in case openAI is busy?
     const generateInitialWorldResponse = yield take(
       generateInitialWorld.fulfilled
     );
@@ -236,7 +259,30 @@ function* subSagaGenerateInitialWorld(action: {
         type: "ADD_SYSTEM_MESSAGE",
         payload: { message: "Generating initial world parse failed..." },
       });
-      // TODO - add repair json
+      // repair json
+      const repairedRawContent = yield call(sagaRepairJson, {
+        payload: {
+          jsonString: contentRaw,
+          jsonTemplate: JSON.stringify(
+            generateInitialWorldResponseDataTemplate,
+            null,
+            1
+          ),
+        },
+      });
+      // TODO: should use finally?
+      const repairedContent = JSON.parse(
+        repairedRawContent
+      ) as GenerateInitialWorldResponseData;
+      yield put({
+        type: "GENERATE_INITIAL_WORLD_SUCCEEDED",
+        payload: repairedContent,
+      });
+      yield put({
+        type: "ADD_SYSTEM_MESSAGE",
+        payload: { message: "Generating initial world parse succeeded." },
+      });
+      return repairedContent;
     }
   } catch (e) {
     yield put({
@@ -265,12 +311,13 @@ function* subSagaGenerateVoices(action: {
   });
   try {
     yield put(generateVoices(action.payload));
+    // TODO: add in a retry here in case openAI is busy?
     const generateVoicesResponse = yield take(generateVoices.fulfilled);
     const contentRaw =
       generateVoicesResponse.payload.choices[0].message.content;
-    const content = JSON.parse(contentRaw) as GenerateVoicesResponseData;
-    const characters = content.characters;
     try {
+      const content = JSON.parse(contentRaw) as GenerateVoicesResponseData;
+      const characters = content.characters;
       yield put({
         type: "GENERATE_VOICES_REQUEST_SUCCEEDED",
         payload: characters,
@@ -289,7 +336,31 @@ function* subSagaGenerateVoices(action: {
         type: "ADD_SYSTEM_MESSAGE",
         payload: { message: "Generating voices parse failed..." },
       });
-      // TODO - add repair json
+      // repair json
+      const repairedRawContent = yield call(sagaRepairJson, {
+        payload: {
+          jsonString: contentRaw,
+          jsonTemplate: JSON.stringify(
+            generateVoicesResponseDataTemplate,
+            null,
+            1
+          ),
+        },
+      });
+      // TODO: should use finally?
+      const repairedContent = JSON.parse(
+        repairedRawContent
+      ) as GenerateVoicesResponseData;
+      const characters = repairedContent.characters;
+      yield put({
+        type: "GENERATE_VOICES_REQUEST_SUCCEEDED",
+        payload: characters,
+      });
+      yield put({
+        type: "ADD_SYSTEM_MESSAGE",
+        payload: { message: "Generating voices succeeded..." },
+      });
+      return characters;
     }
   } catch (e) {
     yield put({
@@ -345,6 +416,7 @@ function* subSagaGenerateMoreScenes(action: {
   });
   try {
     yield put(generateScenes(action.payload));
+    // TODO: add in a retry here in case openAI is busy?
     const generateScenesResponse = yield take(generateScenes.fulfilled);
     const scenesRaw = generateScenesResponse.payload.choices[0].message.content;
     yield put({
@@ -368,6 +440,27 @@ function* subSagaGenerateMoreScenes(action: {
         type: "ADD_SYSTEM_MESSAGE",
         payload: { message: "Generating scenes outline parse failed." },
       });
+      // repair json
+      const repairedRawContent = yield call(sagaRepairJson, {
+        payload: {
+          jsonString: scenesRaw,
+          jsonTemplate: JSON.stringify(
+            generateInitialScenesResponseDataTemplate,
+            null,
+            1
+          ),
+        },
+      });
+      // TODO: should use finally?
+      const scenes = JSON.parse(
+        repairedRawContent
+      ) as GenerateInitialScenesResponseData;
+      yield put({ type: "GENERATE_SCENES_OUTLINE_SUCCEEDED", payload: scenes });
+      yield put({
+        type: "ADD_SYSTEM_MESSAGE",
+        payload: { message: "Generating script parse succeeded." },
+      });
+      return scenes;
     }
   } catch (e) {
     yield put({
@@ -469,9 +562,11 @@ function* subSagaGenerateScript(action: {
     let generateScriptResponse;
     if (action.payload.targetSceneId && action.payload.targetSceneId > 0) {
       yield put(generateScriptFromPrevious(action.payload));
+      // TODO: add in a retry here in case openAI is busy?
       generateScriptResponse = yield take(generateScriptFromPrevious.fulfilled);
     } else {
       yield put(generateScript(action.payload));
+      // TODO: add in a retry here in case openAI is busy?
       generateScriptResponse = yield take(generateScript.fulfilled);
     }
     const scriptRaw = generateScriptResponse.payload.choices[0].message.content;
@@ -498,6 +593,31 @@ function* subSagaGenerateScript(action: {
         type: "ADD_SYSTEM_MESSAGE",
         payload: { message: "Generating script parse failed." },
       });
+      // repair json
+      const repairedRawContent = yield call(sagaRepairJson, {
+        payload: {
+          jsonString: scriptRaw,
+          jsonTemplate: JSON.stringify(
+            generateScriptResponseDataTemplate,
+            null,
+            1
+          ),
+        },
+      });
+      // TODO: should use finally?
+      const repairedContent = JSON.parse(
+        repairedRawContent
+      ) as GenerateScriptResponseData;
+      const scene = repairedContent.scene as VisualNovelGameScene;
+      yield put({
+        type: "GENERATE_INITIAL_SCRIPT_SUCCEEDED",
+        payload: scene,
+      });
+      yield put({
+        type: "ADD_SYSTEM_MESSAGE",
+        payload: { message: "Generating script parse succeeded." },
+      });
+      return scene;
     }
   } catch (e) {
     yield put({
