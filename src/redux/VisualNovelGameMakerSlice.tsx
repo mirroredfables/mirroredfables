@@ -285,7 +285,9 @@ export const exportCompletedGameAsSave = (
     init: false,
     autoGenerate: true,
     autoNextTurn: false,
-    speech: true,
+    // TODO: this is a hacky way to figure out whether to use speech or not
+    speech: gameMakerGameState.characters[0].voice ? true : false,
+    // speech: true,
     // speech: false,
     music: true,
     // hideYoutube: true,

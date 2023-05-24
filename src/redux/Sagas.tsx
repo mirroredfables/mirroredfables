@@ -194,7 +194,6 @@ function* sagaGenerateWorld(action: {
     type: "ADD_SYSTEM_MESSAGE",
     payload: { message: "Generating world..." },
   });
-  //   const state = yield select();
 
   const initialWorldResponse = yield call(subSagaGenerateInitialWorld, action);
 
@@ -216,10 +215,14 @@ function* sagaGenerateWorld(action: {
     image: worldImage,
   };
 
-  const characterWithVoices = yield call(subSagaGenerateVoices, {
-    payload: { characters: gameWorld.characters },
-  });
-  gameWorld.characters = characterWithVoices;
+  const state = yield select();
+  // TODO: change this when other voices are available
+  if (state.systemSettings.elevenKey) {
+    const characterWithVoices = yield call(subSagaGenerateVoices, {
+      payload: { characters: gameWorld.characters },
+    });
+    gameWorld.characters = characterWithVoices;
+  }
 
   for (const character of gameWorld.characters) {
     let characterImage = "";
