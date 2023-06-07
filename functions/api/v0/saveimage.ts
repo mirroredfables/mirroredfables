@@ -1,3 +1,8 @@
+// example request body
+// {
+//  "image": "https://example.com/example.jpg"
+//}
+
 interface Env {
   KV: KVNamespace;
 }

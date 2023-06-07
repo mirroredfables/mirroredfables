@@ -87,7 +87,9 @@ give it an input, and it will create a world with characters, images, and music.
 
 &nbsp;
 
-Note: there are two functions that are server based that are niced to have under `functions/`. (save generated image to cloudflare + search youtube for music) To run them with wrangler, do the following:
+Note: there are three functions that are cloudflare server based that are niced to have under `functions/`. (save games to r2, save generated image to cloudflare, search youtube for music).
+
+To run them with wrangler, do the following:
 
 2. (Optional) Rename `.dev.vars.example` to `.dev.vars` and fill in the API keys
 3. (Optional) Rename `functions/_middleware.ts.example` to `functions/_middleware.ts`
@@ -98,6 +100,10 @@ Note: there are two functions that are server based that are niced to have under
 5. (Optional) Run wrangler (default is http://localhost:8788, if you use a different port, do a find and replace in code, then re-export)
    ```sh
    npx wrangler pages dev dist
+   ```
+   (Optional) or if you want to use buckets for saving games
+   ```sh
+   npx wrangler pages dev dist --r2=<BUCKET_BINDING_NAME>
    ```
 6. (Optional) Once the app is running, either through expo or wrangler, open the app, then go to `"Desktop" -> "Turn on Debug" -> "Turn on Use Local Server"`
 
@@ -111,17 +117,17 @@ Note: there are two functions that are server based that are niced to have under
    | --- | --- |
    | Build output directory: | /dist |
    | Root directory: | / |
-   | Environment variables: | |
+   | Environment variables (remember to set both preview and prod): | |
    | CLOUDFLARE_ACCOUNT_ID | YOUR_CLOUDFLARE_ACCOUNT_ID |
    | CLOUDFLARE_API_TOKEN | YOUR_CLOUDFLARE_API_TOKEN |
    | YOUTUBE_API_KEY | YOUR_YOUTUBE_API_KEY |
+5. Add a R2 bucket bindings (remember to set both preview and prod)
 
 <!-- ROADMAP -->
 
 # Roadmap
 
 - [ ] Add in support for retrying prompts when OpenAI is busy
-- [ ] Add in support to share games with a short URL
 - [ ] Add in support for on the fly story editing
 - [ ] Add choices to game engine
 - [ ] Add support for multiple sprites per character to game engine

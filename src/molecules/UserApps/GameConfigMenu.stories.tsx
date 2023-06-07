@@ -42,6 +42,9 @@ export const defaultGameConfigMenu: GameConfigMenuProps = {
   onExportPressed: () => {
     console.log("export pressed");
   },
+  onExportToServerPressed: () => {
+    console.log("export to server pressed");
+  },
   onSavePressed: () => {
     console.log("save pressed");
   },
