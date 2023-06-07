@@ -3,11 +3,28 @@ interface Env {
 }
 
 export const onRequest: PagesFunction<Env> = async (context) => {
-  const generatedUuid = crypto.randomUUID();
+  try {
+    // Check if the request body is valid JSON
+    const requestBody = await context.request.json();
 
-  await context.env.BUCKET.put(
-    `json/${generatedUuid}.json`,
-    context.request.body
-  );
-  return new Response(`Put ${generatedUuid} successfully!`);
+    const generatedUuid = crypto.randomUUID();
+    const filePath = `json/${generatedUuid}.json`;
+
+    await context.env.BUCKET.put(filePath, JSON.stringify(requestBody));
+
+    const jsonResponse = {
+      uuid: generatedUuid,
+      path: filePath,
+      status: "success",
+    };
+
+    return new Response(JSON.stringify(jsonResponse), {
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (e) {
+    return new Response("Invalid JSON in request body", {
+      status: 400,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
 };
