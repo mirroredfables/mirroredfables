@@ -322,6 +322,7 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
       // should trigger stop first, to stop the previous text to speech
       if (this.current) {
         this.stop();
+        this.current.unloadAsync();
       }
       const newSound = new Audio.Sound();
       newSound.setOnPlaybackStatusUpdate((status) => {
