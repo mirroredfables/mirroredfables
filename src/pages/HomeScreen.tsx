@@ -897,7 +897,7 @@ export default function HomeScreen() {
       const gameUuid = urlParams.get("gameUuid");
       if (gameUuid) {
         launchGameFromUrl(
-          "https://usercontent.mirroredfables.com/game/" + gameUuid + ".json"
+          "https://usercontent.mirroredfables.com/json/" + gameUuid + ".json"
         );
       }
       const game = urlParams.get("game");
