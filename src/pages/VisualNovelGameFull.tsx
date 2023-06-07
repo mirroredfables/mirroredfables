@@ -45,6 +45,7 @@ import GameYoutubePlayer from "../molecules/UserApps/GameYoutubePlayer";
 import { setSnackbar } from "../redux/SystemSettingsSlice";
 import { usePostTextToSpeechMutation } from "../redux/ElevenLabsSlice";
 import { VisualNovelGameMusic } from "../redux/VisualNovelGameTypes";
+import { saveGameToServer } from "../redux/VisualNovelGameMakerSlice";
 
 export interface VisualNovelGameFullProps {
   task: Task;
@@ -152,8 +153,8 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
     });
   };
 
-  // export game
-  const exportGame = async () => {
+  //
+  const convertGameToJson = () => {
     const newExport: GameSaveFile = {
       id: 0,
       timestamp: Date.now(),
@@ -168,9 +169,13 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
         currentCharacters: [],
       },
     };
+    return newExport;
+  };
 
-    const exportJson = JSON.stringify(newExport);
-    Clipboard.setStringAsync(exportJson);
+  // export game
+  const exportGame = async () => {
+    const exportJsonString = JSON.stringify(convertGameToJson());
+    Clipboard.setStringAsync(exportJsonString);
     dispatch(
       setSnackbar({
         message: "game exported to clipboard",
@@ -178,6 +183,33 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
         duration: 10000,
       })
     );
+  };
+
+  // export game and upload to server
+  const exportGameToServer = async () => {
+    const exportJson = convertGameToJson();
+    dispatch(saveGameToServer({ game: exportJson })).then((result) => {
+      console.log(result);
+      if (result.meta.requestStatus === "fulfilled") {
+        const savedUuid = result.payload.uuid;
+        Clipboard.setStringAsync(savedUuid);
+        dispatch(
+          setSnackbar({
+            message: "game exported to clipboard and saved to server",
+            visible: true,
+            duration: 10000,
+          })
+        );
+      } else {
+        dispatch(
+          setSnackbar({
+            message: "game export failed to be saved to server",
+            visible: true,
+            duration: 10000,
+          })
+        );
+      }
+    });
   };
 
   // import game (it's just loading from save state from clipboard)
@@ -873,6 +905,7 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
             dispatch(setShowHistory({ showHistory: true }))
           }
           onExportPressed={exportGame}
+          onExportToServerPressed={exportGameToServer}
           onSavePressed={saveGame}
           onLoadPressed={() =>
             dispatch(setShowLoadSave({ showLoadSave: true }))

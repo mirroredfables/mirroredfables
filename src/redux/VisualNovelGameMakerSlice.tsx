@@ -653,6 +653,29 @@ export const searchYoutubeForMusic = createAsyncThunk(
   }
 );
 
+// technically this also doesn't belong here
+export const saveGameToServer = createAsyncThunk(
+  "visualNovelGameMaker/saveGameToServer",
+  async (payload: { game: GameSaveFile }, { getState, rejectWithValue }) => {
+    try {
+      const state = getState() as RootState;
+      const rootUrl = state.systemSettings.localServer
+        ? "http://localhost:8788"
+        : "";
+      const url = `${rootUrl}/api/v0/savejson`;
+      const response = await client.post(url, payload.game, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return response;
+    } catch (err) {
+      console.log(err);
+      return rejectWithValue(err);
+    }
+  }
+);
+
 export const visualNovelGameMakerSlice = createSlice({
   name: "visualNovelGameMaker",
   initialState: initialState,

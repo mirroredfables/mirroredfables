@@ -28,6 +28,7 @@ export interface GameConfigMenuProps {
   onHideYoutubePressed: () => void;
   onHistoryPressed: () => void;
   onExportPressed: () => void;
+  onExportToServerPressed: () => void;
   onSavePressed: () => void;
   onLoadPressed: () => void;
   onCreditsPressed: () => void;
@@ -124,8 +125,12 @@ export default function GameConfigMenu(props: GameConfigMenuProps) {
                 onPress={props.onHistoryPressed}
               />
               <GameChoiceButton
-                text={"export"}
+                text={"export to clipboard"}
                 onPress={props.onExportPressed}
+              />
+              <GameChoiceButton
+                text={"export to server"}
+                onPress={props.onExportToServerPressed}
               />
               <GameChoiceButton
                 text={justSaved ? "saved!" : "save"}
