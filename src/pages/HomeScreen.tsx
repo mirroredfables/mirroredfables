@@ -770,27 +770,26 @@ export default function HomeScreen() {
   const [launcherGameSave, setLauncherGameSave] =
     React.useState<GameSaveFile | null>(null);
 
+  const launchGameFromUrl = (gameSaveUrl: string) => {
+    fetch(gameSaveUrl)
+      .then((response) => response.json())
+      .then((json) => {
+        const gameSaveFile: GameSaveFile = json;
+        setLauncherGameSave(gameSaveFile);
+        dispatch(
+          newTask({
+            name: "game_custom_from_url.exe",
+            icon: gameIcon,
+          })
+        );
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   const VisualNovelLauncherApp = () => {
-    const onLaunchGameFromUrl = (gameSaveUrl: string) => {
-      fetch(gameSaveUrl)
-        .then((response) => response.json())
-        .then((json) => {
-          const gameSaveFile: GameSaveFile = json;
-          setLauncherGameSave(gameSaveFile);
-          dispatch(
-            newTask({
-              name: "game_custom_from_url.exe",
-              icon: gameIcon,
-            })
-          );
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    };
-    return (
-      <VisualNovelGameLauncher onLaunchGameFromUrl={onLaunchGameFromUrl} />
-    );
+    return <VisualNovelGameLauncher onLaunchGameFromUrl={launchGameFromUrl} />;
   };
 
   const VisualNovelGameApp = (props: { task: Task; game: GameSaveFile }) => {
@@ -886,6 +885,26 @@ export default function HomeScreen() {
         launchWelcomeWizard();
       }
     });
+  }, []);
+
+  // launch game if game save is provided
+  // web only
+  // example:
+  // http://localhost:19000/?game=http://localhost:19000/scripts/ZeldaStory.json
+  React.useEffect(() => {
+    if (Platform.OS === "web") {
+      const urlParams = new URLSearchParams(window.location.search);
+      const gameUuid = urlParams.get("gameUuid");
+      if (gameUuid) {
+        launchGameFromUrl(
+          "https://storage.mirroredfables.com/game/" + gameUuid + ".json"
+        );
+      }
+      const game = urlParams.get("game");
+      if (game) {
+        launchGameFromUrl(game);
+      }
+    }
   }, []);
 
   if (!currentSystemSettings.restored) {
