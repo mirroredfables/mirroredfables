@@ -91,6 +91,7 @@ import { useGetTestApiKeyQuery } from "../redux/ElevenLabsSlice";
 import TextToImage from "../organisms/SystemApps/TextToImage";
 import { generateImage } from "../redux/ImagesSlice";
 import VisualNovelGameMakerFull from "./VisualNovelGameMakerFull";
+import VisualNovelGameLauncher from "../organisms/UserApps/VisualNovelGameLauncher";
 
 export default function HomeScreen() {
   const dispatch = useAppDispatch();
@@ -348,6 +349,20 @@ export default function HomeScreen() {
     },
   };
 
+  const gameLauncherShortcut = {
+    icon: gameMakerAppIcon,
+    name: "game_launcher.exe",
+    onPress: () => {
+      console.log("game_launcher.exe pressed");
+      dispatch(
+        newTask({
+          name: "game_launcher.exe",
+          icon: gameMakerAppIcon,
+        })
+      );
+    },
+  };
+
   const gameMakerGameSave = useAppSelector(
     (state) => state.gameMaker.gameState.completedGameSave
   );
@@ -515,6 +530,7 @@ export default function HomeScreen() {
       chatShortcut,
       textToImageShortcut,
       gameMakerShortcut,
+      gameLauncherShortcut,
       newVisualNovelGameShortShortcut,
       newVisualNovelGameLongShortcut,
       newVisualNovelGameNarutoShortcut,
@@ -751,6 +767,32 @@ export default function HomeScreen() {
     return <VisualNovelGameMakerFull debug={debugStatus} />;
   };
 
+  const [launcherGameSave, setLauncherGameSave] =
+    React.useState<GameSaveFile | null>(null);
+
+  const VisualNovelLauncherApp = () => {
+    const onLaunchGameFromUrl = (gameSaveUrl: string) => {
+      fetch(gameSaveUrl)
+        .then((response) => response.json())
+        .then((json) => {
+          const gameSaveFile: GameSaveFile = json;
+          setLauncherGameSave(gameSaveFile);
+          dispatch(
+            newTask({
+              name: "game_custom_from_url.exe",
+              icon: gameIcon,
+            })
+          );
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+    return (
+      <VisualNovelGameLauncher onLaunchGameFromUrl={onLaunchGameFromUrl} />
+    );
+  };
+
   const VisualNovelGameApp = (props: { task: Task; game: GameSaveFile }) => {
     return <VisualNovelGameFull task={props.task} game={props.game} />;
   };
@@ -773,8 +815,12 @@ export default function HomeScreen() {
         return TextToImageApp();
       } else if (task.name == "game_maker.exe") {
         return VisualNovelGameMakerApp();
+      } else if (task.name == "game_launcher.exe") {
+        return VisualNovelLauncherApp();
       } else if (task.name == "game_custom.exe") {
         return VisualNovelGameApp({ task: task, game: gameMakerGameSave });
+      } else if (task.name == "game_custom_from_url.exe") {
+        return VisualNovelGameApp({ task: task, game: launcherGameSave });
       } else if (task.name == "game_short.exe") {
         return VisualNovelGameApp({ task: task, game: VisualNovelShortStory });
       } else if (task.name == "game_long.exe") {
