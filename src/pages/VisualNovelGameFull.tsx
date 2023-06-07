@@ -322,18 +322,18 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
       // should trigger stop first, to stop the previous text to speech
       if (this.current) {
         this.stop();
-      } else {
-        const newSound = new Audio.Sound();
-        newSound.setOnPlaybackStatusUpdate((status) => {
-          if (status.didJustFinish) {
-            if (input.onDone) {
-              input.onDone();
-            }
-            this.currentInput = null;
-          }
-        });
-        this.current = newSound;
       }
+      const newSound = new Audio.Sound();
+      newSound.setOnPlaybackStatusUpdate((status) => {
+        if (status.didJustFinish) {
+          if (input.onDone) {
+            input.onDone();
+          }
+          this.currentInput = null;
+        }
+      });
+      this.current = newSound;
+
       this.currentInput = input;
       switch (input.type) {
         case "prerecorded":
