@@ -8,6 +8,7 @@ import FontAwesome from "../SystemApps/MyFontAwesome";
 
 export interface GameConfigButtonProps {
   onPress: () => void;
+  icon?: string;
   style?: {};
   color?: string;
 }
@@ -24,7 +25,11 @@ export default function GameConfigButton(props: GameConfigButtonProps) {
 
   return (
     <Pressable style={[styles.container, props.style]} onPress={props.onPress}>
-      <FontAwesome name={"gear"} size={16} color={props.color || "white"} />
+      <FontAwesome
+        name={props.icon ?? "gear"}
+        size={16}
+        color={props.color || "white"}
+      />
     </Pressable>
   );
 }

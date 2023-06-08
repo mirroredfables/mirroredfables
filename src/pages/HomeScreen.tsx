@@ -61,7 +61,10 @@ import { defaultStartMenu } from "../molecules/Taskbar/StartMenu.stories";
 import Chat from "../organisms/SystemApps/Chat";
 import AiSettings from "../organisms/SystemApps/AiSettings";
 import WelcomeWizard from "../organisms/SystemApps/WelcomeWizard";
-import { GameSaveFile } from "../redux/VisualNovelGameTurnsSlice";
+import {
+  GameSaveFile,
+  resetGamePlayerState,
+} from "../redux/VisualNovelGameTurnsSlice";
 import {
   addHumanMessage,
   askChatgpt,
@@ -337,12 +340,12 @@ export default function HomeScreen() {
 
   const gameMakerShortcut = {
     icon: gameMakerAppIcon,
-    name: "game_maker.exe",
+    name: "gamemaker.exe",
     onPress: () => {
-      console.log("game_maker.exe pressed");
+      console.log("gamemaker.exe pressed");
       dispatch(
         newTask({
-          name: "game_maker.exe",
+          name: "gamemaker.exe",
           icon: gameMakerAppIcon,
         })
       );
@@ -351,12 +354,12 @@ export default function HomeScreen() {
 
   const gameLauncherShortcut = {
     icon: gameMakerAppIcon,
-    name: "game_launcher.exe",
+    name: "gamelauncher.exe",
     onPress: () => {
-      console.log("game_launcher.exe pressed");
+      console.log("gamelauncher.exe pressed");
       dispatch(
         newTask({
-          name: "game_launcher.exe",
+          name: "gamelauncher.exe",
           icon: gameMakerAppIcon,
         })
       );
@@ -674,7 +677,7 @@ export default function HomeScreen() {
         lauchGameMaker={() => {
           dispatch(
             newTask({
-              name: "game_maker.exe",
+              name: "gamemaker.exe",
               icon: gameMakerAppIcon,
             })
           );
@@ -812,9 +815,9 @@ export default function HomeScreen() {
         return ChatApp();
       } else if (task.name == "text_to_image.exe") {
         return TextToImageApp();
-      } else if (task.name == "game_maker.exe") {
+      } else if (task.name == "gamemaker.exe") {
         return VisualNovelGameMakerApp();
-      } else if (task.name == "game_launcher.exe") {
+      } else if (task.name == "gamelauncher.exe") {
         return VisualNovelLauncherApp();
       } else if (task.name == "game_custom.exe") {
         return VisualNovelGameApp({ task: task, game: gameMakerGameSave });
@@ -853,11 +856,14 @@ export default function HomeScreen() {
         exitFullscreen: () => {
           dispatch(exitFullscreenTask({ id: task.id }));
         },
-        hideExistFullScreenButton: task.name.startsWith("game"),
+        hideExitFullScreenButton: task.name.startsWith("game_"),
         restore: () => {
           dispatch(restoreTask({ id: task.id }));
         },
         close: () => {
+          if (task.name.startsWith("game_")) {
+            dispatch(resetGamePlayerState({}));
+          }
           dispatch(closeTask({ id: task.id }));
         },
         resize: (width: number, height: number) => {

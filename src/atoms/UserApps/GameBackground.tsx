@@ -7,6 +7,7 @@ import { View, StyleSheet, ImageBackground } from "react-native";
 export interface GameBackgroundProps {
   image: string;
   name: string;
+  fullscreen?: boolean;
   style?: {};
   resizeMode?: "cover" | "contain" | "stretch" | "repeat" | "center";
   children?: React.ReactNode;
@@ -16,6 +17,7 @@ export default function GameBackground(props: GameBackgroundProps) {
   const styles = StyleSheet.create({
     container: {
       position: "absolute",
+      margin: props.fullscreen ? 0 : 4,
       top: 0,
       left: 0,
       right: 0,

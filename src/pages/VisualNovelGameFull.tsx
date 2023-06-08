@@ -7,7 +7,6 @@ import * as Speech from "expo-speech";
 import { Audio } from "expo-av";
 import * as Clipboard from "expo-clipboard";
 import Constants from "expo-constants";
-import { defaultGameBackground } from "../atoms/UserApps/GameBackground.stories";
 import GameConfigMenu from "../molecules/UserApps/GameConfigMenu";
 import GameScriptHistory from "../molecules/UserApps/GameScriptHistory";
 import GameLoadMenu from "../molecules/UserApps/GameLoadMenu";
@@ -46,6 +45,7 @@ import { setSnackbar } from "../redux/SystemSettingsSlice";
 import { usePostTextToSpeechMutation } from "../redux/ElevenLabsSlice";
 import { VisualNovelGameMusic } from "../redux/VisualNovelGameTypes";
 import { saveGameToServer } from "../redux/VisualNovelGameMakerSlice";
+import GameEditMenu from "../molecules/UserApps/GameEditMenu";
 
 export interface VisualNovelGameFullProps {
   task: Task;
@@ -89,8 +89,11 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
   const currentMusic = currentScene ? currentScene.music : null;
 
   const currentBackground = currentScene
-    ? currentScene.background
-    : defaultGameBackground;
+    ? { ...currentScene.background, fullscreen: props.task.fullscreened }
+    : {
+        ...props.game.data.titleBackground,
+        fullscreen: props.task.fullscreened,
+      };
 
   const currentPortraits = currentTurn
     ? currentGameState.currentCharacters
@@ -236,8 +239,10 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
   // save game
   const saveGame = async () => {
     if (!initialized) {
+      console.log("game not initialized, not saving");
       return;
     }
+    console.log("saving game");
 
     // https://react-native-async-storage.github.io/async-storage/docs/limits
     // on Android it's limited to 2MB per save, 6MB total
@@ -779,11 +784,17 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
   // end debug menu
 
   // onClose stuff
+  // TODO: there is a bug when toggling the fullscreen / exit full screen
+  // React considers the window fully closed, and open a new one
+  // hence the saveGame() here is a hack to resume
   const onClose = () => {
+    console.log("onClose");
+    // saveGame();
+    currentTextToSpeech.stop();
     currentTextToSpeech.unload();
     // background music is self unloading
     // TODO? Fully reset???
-    dispatch(resetGamePlayerState({}));
+    // dispatch(resetGamePlayerState({}));
   };
 
   React.useEffect(() => {
@@ -829,6 +840,31 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
   //
 
   const textSize = currentGameState.textSize ?? 16;
+
+  const [editing, setEditing] = React.useState(false);
+  const GameEditOverlay = () => {
+    if (editing) {
+      const regexSpeaker = new RegExp("\\[(.*?)\\]");
+      const matchesSpeaker = currentTurnText.match(regexSpeaker);
+      const speaker = matchesSpeaker ? matchesSpeaker[1] : "Narrator";
+      const regexText = new RegExp("\\] (.*)");
+      const matchesText = currentTurnText.match(regexText);
+      const defaultValue = matchesText ? matchesText[1] : "";
+      const gameEditMenu = (
+        <GameEditMenu
+          speaker={`[${speaker}]`}
+          defaultValue={defaultValue}
+          onCancelPressed={() => setEditing(false)}
+          onSavePressed={(value) => {
+            console.log("GameEditMenu onSavePressed", value);
+            setEditing(false);
+          }}
+        />
+      );
+      return gameEditMenu;
+    }
+    return <></>;
+  };
 
   const MenuOverlay = () => {
     if (currentGameState.showLoadSave) {
@@ -917,6 +953,7 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
             // do a quick save
             saveGame();
             currentTextToSpeech.stop();
+            currentTextToSpeech.unload();
             dispatch(resetGamePlayerState({}));
             dispatch(loadGameFromSave({ state: props.game.data }));
           }}
@@ -949,7 +986,10 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
     if (!initialized) {
       return (
         <GameStartMenu
-          background={props.game.data.titleBackground}
+          background={{
+            ...props.game.data.titleBackground,
+            fullscreen: props.task.fullscreened,
+          }}
           onResumePressed={() => {
             loadGameSave(currentSavedGames[0]);
           }}
@@ -990,16 +1030,16 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
         activePortraitName={currentActivePortraitName}
         textBox={{ text: currentTurnText, textStyle: { fontSize: textSize } }}
         choiceButtons={[]}
-        configButton={{
-          onPress: () => {
-            dispatch(setConfig({ showConfig: true }));
-          },
+        onEdit={() => {
+          setEditing(true);
         }}
+        onConfig={() => dispatch(setConfig({ showConfig: true }))}
         onContinue={onContinue}
         debug={debugStatus}
         debugMenu={debugMenu}
       />
       {youtubeMusicOverlay}
+      <GameEditOverlay />
       <MenuOverlay />
     </>
   );
