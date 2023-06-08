@@ -24,7 +24,7 @@ export interface WindowStateManager {
   maximize: () => void;
   fullscreen: () => void;
   exitFullscreen: () => void;
-  hideExistFullScreenButton?: boolean;
+  hideExitFullScreenButton?: boolean;
   restore: () => void;
   close: () => void;
   resize: (width: number, height: number) => void;
@@ -233,7 +233,7 @@ export default function Window(props: WindowProps) {
     return (
       <View style={styles.windowFullscreened}>
         <View style={styles.windowContentFullscreened}>{props.children}</View>
-        {!props.manager.hideExistFullScreenButton ? (
+        {!props.manager.hideExitFullScreenButton ? (
           <View style={styles.exitFullscreenButton}>
             <WindowTitleButton
               name={"exitFullscreen"}

@@ -28,8 +28,9 @@ export interface VisualNovelGameProps {
   portraits: GamePortraitProps[];
   activePortraitName?: string;
   textBox: GameTextBoxProps;
-  configButton: GameConfigButtonProps;
   choiceButtons: GameChoiceButtonProps[];
+  onEdit: () => void;
+  onConfig: () => void;
   onContinue: () => void;
   debug?: boolean;
   debugMenu?: GameDebugMenuProps;
@@ -55,6 +56,8 @@ export default function VisualNovelGame(props: VisualNovelGameProps) {
     },
     configButtonContainer: {
       position: "absolute",
+      flex: 1,
+      flexDirection: "row",
       right: 6,
       bottom: 6,
     },
@@ -84,7 +87,8 @@ export default function VisualNovelGame(props: VisualNovelGameProps) {
         <View style={styles.textBoxContainer}>
           <GameTextBox {...props.textBox} />
           <View style={styles.configButtonContainer}>
-            <GameConfigButton {...props.configButton} />
+            {/* <GameConfigButton onPress={props.onEdit} icon={"edit"} /> */}
+            <GameConfigButton onPress={props.onConfig} />
           </View>
         </View>
         <View style={styles.choiceButtonsContainer}>

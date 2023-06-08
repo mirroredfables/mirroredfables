@@ -12,10 +12,11 @@ export const defaultVisualNovelGame: VisualNovelGameProps = {
   portraits: [defaultGamePortrait, { ...defaultGamePortrait, active: false }],
   textBox: defaultGameTextBox,
   choiceButtons: [],
-  configButton: {
-    onPress: () => {
-      console.log("config button pressed");
-    },
+  onConfig: () => {
+    console.log("config button pressed");
+  },
+  onEdit: () => {
+    console.log("edit button pressed");
   },
   onContinue: () => {
     console.log("continue button pressed");

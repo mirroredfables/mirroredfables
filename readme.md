@@ -103,7 +103,7 @@ To run them with wrangler, do the following:
    ```
    (Optional) or if you want to use buckets for saving games
    ```sh
-   npx wrangler pages dev dist --r2=<BUCKET_BINDING_NAME>
+   npx wrangler pages dev dist --r2=BUCKET
    ```
 6. (Optional) Once the app is running, either through expo or wrangler, open the app, then go to `"Desktop" -> "Turn on Debug" -> "Turn on Use Local Server"`
 
@@ -128,7 +128,6 @@ To run them with wrangler, do the following:
 # Roadmap
 
 - [ ] Add in support for retrying prompts when OpenAI is busy
-- [ ] Add in support for on the fly story editing
 - [ ] Add choices to game engine
 - [ ] Add support for multiple sprites per character to game engine
 - [ ] Add competibility support for renpy scripts (\*maybe)
