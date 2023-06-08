@@ -87,7 +87,7 @@ export default function VisualNovelGame(props: VisualNovelGameProps) {
         <View style={styles.textBoxContainer}>
           <GameTextBox {...props.textBox} />
           <View style={styles.configButtonContainer}>
-            <GameConfigButton onPress={props.onEdit} icon={"edit"} />
+            {/* <GameConfigButton onPress={props.onEdit} icon={"edit"} /> */}
             <GameConfigButton onPress={props.onConfig} />
           </View>
         </View>
