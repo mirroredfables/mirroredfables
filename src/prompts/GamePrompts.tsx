@@ -42,8 +42,8 @@ Output:
   };
 };
 
-export const gameSystemPromptTemplate = `You are a dating simulator game writer. Generate the output required AS VALID JSON.
-Use tropes and plot devices from soap operas, and use plenty of purple prose. 
+export const gameSystemPromptTemplate = `You are a visual novel game writer. Generate the output required AS VALID JSON.
+Use tropes and plot devices from soap operas, and use plenty of purple prose and wordplay.
 Be creative, funny, literary, exciting, WEIRD AND SURPRISING.
 Pay close attention to the writingStyle, and try to match it.
 Each character you create should have their own distinct personality.
@@ -295,6 +295,34 @@ const exampleScriptsGenOutput = {
     summary:
       "Reona and Yumi goes to an orientation party at the dorm, they meet Chen, Reona's online friend, and they hear a rumor that the dorm is haunted",
   },
+};
+
+// GPT for script update
+export const generateGameScriptsUpdatePromptTemplate = (input: {
+  request?: string;
+  scene: string;
+  oldLine: string;
+  newLine: string;
+}) => {
+  return {
+    prompt: `
+Update the script for the scene according below, by replacing the line:
+"${input.oldLine}"
+with:
+"${input.newLine}".
+${input.request ? input.request : ""}
+Do not change any lines before the change request, but do update the scene's name, summary, and the lines that follows the change request to make the script flow naturally.
+Be creative. And emphasize the change since it's very important to the plot.
+The script should have between 30 to 50 lines.
+The scene should start and end with the narrator.
+Return only the full updated script in the same JSON format.
+
+Input:
+${input.scene}
+
+Output:
+`,
+  };
 };
 
 // GPT for story summary

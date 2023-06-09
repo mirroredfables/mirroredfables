@@ -30,7 +30,11 @@ import {
   setCompleted,
   setGeneratorBusy,
   setInitialWorld,
+  generateSceneWithNewLine,
+  updateScriptResponseDataTemplate,
   upsertScenes,
+  removeScenes,
+  removeFromStorySoFar,
 } from "./VisualNovelGameMakerSlice";
 import {
   generateImage,
@@ -47,6 +51,10 @@ import {
   resetGamePlayerState,
   upsertScenes as upsertPlayerScenes,
   addManyTurns as addManyPlayerTurns,
+  removePlayerScenes,
+  removePlayerTurns,
+  upsertTurns,
+  setTurnText,
 } from "./VisualNovelGameTurnsSlice";
 
 function* sagaTest(action) {
@@ -365,6 +373,7 @@ function* sagaGenerateMoreScenes(action: {
     type: "ADD_SYSTEM_MESSAGE",
     payload: { message: "Generating scenes..." },
   });
+  yield put(setGeneratorBusy({ busy: true }));
   const scenes = yield call(subSagaGenerateMoreScenes, action);
   // set it in the game maker
   yield put(upsertScenes(scenes));
@@ -379,7 +388,7 @@ function* sagaGenerateMoreScenes(action: {
     type: "ADD_SYSTEM_MESSAGE",
     payload: { message: "Generating scenes succeeded." },
   });
-
+  yield put(setGeneratorBusy({ busy: false }));
   return scenes;
 }
 
@@ -497,6 +506,7 @@ function* sagaGenerateFullScene(action: {
       type: "ADD_SYSTEM_MESSAGE",
       payload: { message: "Generating full scene failed." },
     });
+    yield put(setGeneratorBusy({ busy: false }));
     // TODO: handle errors here
   }
 }
@@ -558,6 +568,127 @@ function* subSagaGenerateScript(action: {
       payload: { message: "Generating script failed." },
     });
     // TODO: handle errors here
+  }
+}
+
+function* sagaUpdateSceneWithNewLine(action: {
+  payload: {
+    request?: string;
+    targetSceneId: number;
+    targetSceneStartingTurnId: number;
+    targetTurnId: number;
+    oldLine: string;
+    newLine: string;
+  };
+}) {
+  yield put({
+    type: "ADD_SYSTEM_MESSAGE",
+    payload: {
+      message: `Updating scene ${action.payload.targetSceneId} with new line...`,
+    },
+  });
+  yield put(setGeneratorBusy({ busy: true }));
+  // remove scenes after this one (player)
+  yield put(
+    removePlayerScenes({ greaterThanId: action.payload.targetSceneId })
+  );
+
+  // remove turns after this one (player)
+  yield put(removePlayerTurns({ greaterThanId: action.payload.targetTurnId }));
+
+  // update the turn (player)
+  yield put(
+    setTurnText({
+      turnId: action.payload.targetTurnId,
+      text: action.payload.newLine,
+    })
+  );
+
+  const scene = yield call(subSagaGenerateSceneWithNewLine, action);
+
+  // remove scenes after this one (maker)
+  yield put(removeScenes({ greaterThanId: action.payload.targetSceneId }));
+
+  // remove story so far, including this one (maker)
+  yield put(
+    removeFromStorySoFar({
+      greaterThanId: action.payload.targetSceneId - 1,
+    })
+  );
+
+  // upsert (replace) new scene (maker)
+  yield put(upsertScenes({ scenes: [scene] }));
+
+  // insert new story so far (maker)
+  yield put(addToStorySoFar({ summary: scene.summary }));
+
+  // upsert the new turns from scene (player)
+  const resultTurns = convertSceneToTurns({
+    scene: scene,
+    latestTurn: action.payload.targetSceneStartingTurnId - 1,
+  });
+  yield put(upsertTurns({ turns: resultTurns }));
+
+  yield put(setGeneratorBusy({ busy: false }));
+}
+
+function* subSagaGenerateSceneWithNewLine(action: {
+  payload: {
+    request?: string;
+    targetSceneId: number;
+    oldLine: string;
+    newLine: string;
+  };
+}) {
+  yield put({
+    type: "ADD_SYSTEM_MESSAGE",
+    payload: {
+      message: `Generating scene ${action.payload.targetSceneId} with new line...`,
+    },
+  });
+  try {
+    yield put(generateSceneWithNewLine(action.payload));
+    const generateSceneWithNewLineResponse = yield take(
+      generateSceneWithNewLine.fulfilled
+    );
+    const contentRaw =
+      generateSceneWithNewLineResponse.payload.choices[0].message.content;
+    yield put({
+      type: "ADD_SYSTEM_MESSAGE",
+      payload: {
+        message: `Generating scene ${action.payload.targetSceneId} with new line succeeded.`,
+      },
+    });
+    const content = yield call(sagaParseJson, {
+      payload: {
+        contentRaw: contentRaw,
+        jsonTemplate: JSON.stringify(updateScriptResponseDataTemplate, null, 1),
+      },
+    });
+    const scene = content as VisualNovelGameScene;
+    yield put({
+      type: "GENERATE_SCENE_WITH_NEW_LINE_SUCCEEDED",
+      payload: scene,
+    });
+    yield put({
+      type: "ADD_SYSTEM_MESSAGE",
+      payload: {
+        message: `Generating scene ${action.payload.targetSceneId} with new line succeeded.`,
+      },
+    });
+
+    return scene;
+  } catch (e) {
+    yield put({
+      type: "GENERATE_SCENE_WITH_NEW_LINE_FAILED",
+      payload: { message: e.message },
+    });
+    yield put({
+      type: "ADD_SYSTEM_MESSAGE",
+      payload: {
+        message: `Generating scene ${action.payload.targetSceneId} with new line failed.`,
+      },
+    });
   }
 }
 
@@ -794,6 +925,10 @@ function* watchGenerateFullScene() {
   yield takeEvery("GENERATE_FULL_SCENE", sagaGenerateFullScene);
 }
 
+function* watchUpdateSceneWithNewLine() {
+  yield takeEvery("UPDATE_SCENE_WITH_NEW_LINE", sagaUpdateSceneWithNewLine);
+}
+
 function* watchAddCharacters() {
   // TODO
   //   yield takeEvery("ADD_CHARACTERS", sagaAddCharacter)
@@ -842,6 +977,7 @@ function* rootSaga() {
   yield fork(watchGenerateMoreScenes);
   yield fork(watchGenerateFullScene);
   // secondaries
+  yield fork(watchUpdateSceneWithNewLine);
   //   yield fork(watchAddCharacters);
   //   yield fork(watchUpdateGameWorld);
   // helpers

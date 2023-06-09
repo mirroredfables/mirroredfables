@@ -107,18 +107,6 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
   const allTurns = useAppSelector((state) => selectAllTurns(state));
   const latestTurn = allTurns[allTurns.length - 1];
 
-  interface GenerateScenesResponseData {
-    scenes: {
-      id: number;
-      name: string;
-      location: string;
-      background?: {
-        image: string;
-        name: string;
-      };
-    }[];
-  }
-
   const generateMoreScenes = () => {
     dispatch({
       type: "GENERATE_MORE_SCENES",
@@ -127,20 +115,6 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
       },
     });
   };
-
-  interface GenerateScriptResponseData {
-    script: { id: number; line: string }[];
-    scene: {
-      id: number;
-      name: string;
-      location: string;
-      summary?: string;
-      background?: {
-        image: string;
-        name: string;
-      };
-    };
-  }
 
   const generateMoreScript = () => {
     const nextSceneId = latestTurn ? latestTurn.sceneId + 1 : 0;
@@ -688,6 +662,22 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
     }
   }, [currentTurnId, autoGenerate, generatorBusy]);
 
+  // textbox
+  const [gameTextBoxText, setGameTextBoxText] = React.useState("");
+  React.useEffect(() => {
+    let status = "";
+    // if it's on the last turn, show status
+    if (currentGameState.ids.length - 1 == currentTurnId) {
+      if (generatorBusy) {
+        status =
+          " [Generating... please wait... this might take a few minutes...]";
+      } else {
+        status = " [END]";
+      }
+    }
+    setGameTextBoxText(`${currentTurnText}${status}`);
+  }, [currentTurnText, generatorBusy, currentTurnId]);
+
   // debug menu
 
   const [voiceTestMenu, setVoiceTestMenu] = React.useState(false);
@@ -841,6 +831,23 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
 
   const textSize = currentGameState.textSize ?? 16;
 
+  const handleUpdateSceneWithNewLine = (newLine: string) => {
+    const currentSceneStartingTurnId = allTurns
+      .filter((turn) => turn.sceneId === currentSceneId)
+      .sort((a, b) => a.id - b.id)[0].id;
+
+    dispatch({
+      type: "UPDATE_SCENE_WITH_NEW_LINE",
+      payload: {
+        targetSceneId: currentSceneId,
+        targetSceneStartingTurnId: currentSceneStartingTurnId,
+        targetTurnId: currentTurnId,
+        oldLine: currentTurnText,
+        newLine: newLine,
+      },
+    });
+  };
+
   const [editing, setEditing] = React.useState(false);
   const GameEditOverlay = () => {
     if (editing) {
@@ -857,6 +864,7 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
           onCancelPressed={() => setEditing(false)}
           onSavePressed={(value) => {
             console.log("GameEditMenu onSavePressed", value);
+            handleUpdateSceneWithNewLine(value);
             setEditing(false);
           }}
         />
@@ -1028,7 +1036,7 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
         background={currentBackground}
         portraits={currentPortraits}
         activePortraitName={currentActivePortraitName}
-        textBox={{ text: currentTurnText, textStyle: { fontSize: textSize } }}
+        textBox={{ text: gameTextBoxText, textStyle: { fontSize: textSize } }}
         choiceButtons={[]}
         onEdit={() => {
           setEditing(true);

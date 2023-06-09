@@ -10,6 +10,7 @@ import {
   generateFixJsonPromptTemplate,
   generateGameScenesGenPromptTemplate,
   generateGameScriptsGenPromptTemplate,
+  generateGameScriptsUpdatePromptTemplate,
   generateGameWorldGenPromptTemplate,
 } from "../prompts/GamePrompts";
 import { ChatgptRequestData } from "./ChatgptSlice";
@@ -138,6 +139,26 @@ export const generateScriptResponseDataTemplate = {
     location: "string",
     musicRecommendation: "string",
     summary: "string",
+  },
+};
+
+export const updateScriptResponseDataTemplate = {
+  id: "number",
+  name: "string",
+  script: "string",
+  location: "string",
+  musicRecommendation: "string",
+  summary: "string",
+  music: {
+    type: "string",
+    name: "string",
+    info: "string",
+    uri: "string",
+    loop: "boolean",
+  },
+  background: {
+    name: "string",
+    image: "string",
   },
 };
 
@@ -634,6 +655,58 @@ export const generateScriptFromPrevious = createAsyncThunk(
   }
 );
 
+export const generateSceneWithNewLine = createAsyncThunk(
+  "visualNovelGameMaker/generateSceneWithNewLine",
+  async (
+    input: {
+      request?: string;
+      targetSceneId: number;
+      oldLine: string;
+      newLine: string;
+    },
+    { getState, rejectWithValue }
+  ) => {
+    try {
+      const state = getState() as RootState;
+      const authToken = state.systemSettings.openAiKey;
+      const url = `https://api.openai.com/v1/chat/completions`;
+      const requestData: ChatgptRequestData = {
+        messages: [
+          {
+            role: "system",
+            content: gameSystemPromptTemplate,
+          },
+          {
+            role: "user",
+            content: generateGameScriptsUpdatePromptTemplate({
+              request: input.request,
+              scene: JSON.stringify(
+                state.gameMaker.gameState.scenes[input.targetSceneId],
+                null,
+                1
+              ),
+              oldLine: input.oldLine,
+              newLine: input.newLine,
+            }).prompt,
+          },
+        ],
+        model: state.systemSettings.openAiGptModel,
+      };
+      console.log(requestData);
+      const response = await client.post(url, requestData, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+          "Content-Type": "application/json",
+        },
+      });
+      return response;
+    } catch (err) {
+      console.log(err);
+      return rejectWithValue(err);
+    }
+  }
+);
+
 // technically this doesn't belong here
 export const searchYoutubeForMusic = createAsyncThunk(
   "visualNovelGameMaker/searchYoutubeForMusic",
@@ -747,11 +820,26 @@ export const visualNovelGameMakerSlice = createSlice({
       );
       return state;
     },
+    removeScenes: (state, action: PayloadAction<{ greaterThanId: number }>) => {
+      state.gameState.scenes = state.gameState.scenes.filter(
+        (scene) => scene.id <= action.payload.greaterThanId
+      );
+      return state;
+    },
     addToStorySoFar: (state, action: PayloadAction<{ summary: string }>) => {
       state.gameState.storySoFar = [
         ...state.gameState.storySoFar,
         action.payload.summary,
       ];
+      return state;
+    },
+    removeFromStorySoFar: (
+      state,
+      action: PayloadAction<{ greaterThanId: number }>
+    ) => {
+      state.gameState.storySoFar = state.gameState.storySoFar.filter(
+        (summary, index) => index <= action.payload.greaterThanId
+      );
       return state;
     },
     setCompletedGameSave: (
@@ -782,7 +870,9 @@ export const {
   setWritingStyle, // not used
   setInitialWorld,
   upsertScenes,
+  removeScenes,
   addToStorySoFar,
+  removeFromStorySoFar,
   setCompletedGameSave,
   setCompleted,
   setGeneratorBusy,

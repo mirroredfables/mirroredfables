@@ -209,6 +209,25 @@ export const visualNovelGameTurnsSlice = createSlice({
       state.scenes = newScenes;
       return state;
     },
+    removePlayerScenes: (
+      state,
+      action: PayloadAction<{ greaterThanId: number }>
+    ) => {
+      state.scenes = state.scenes.filter(
+        (scene) => scene.id <= action.payload.greaterThanId
+      );
+      return state;
+    },
+    setTurnText: (
+      state,
+      action: PayloadAction<{ turnId: number; text: string }>
+    ) => {
+      const turn = state.entities[action.payload.turnId];
+      if (turn) {
+        turn.text = action.payload.text;
+      }
+      return state;
+    },
     upsertTurns: (
       state,
       action: PayloadAction<{ turns: VisualNovelGameTurn[] }>
@@ -232,6 +251,16 @@ export const visualNovelGameTurnsSlice = createSlice({
       }
 
       visualNovelGameTurnsAdapter.addMany(state, turnsCopy);
+      return state;
+    },
+    removePlayerTurns: (
+      state,
+      action: PayloadAction<{ greaterThanId: number }>
+    ) => {
+      visualNovelGameTurnsAdapter.removeMany(
+        state,
+        state.ids.filter((id) => id > action.payload.greaterThanId)
+      );
       return state;
     },
     setCharacters: (
@@ -334,8 +363,11 @@ export const {
   setWorld, // not used
   setScenes, // not used
   upsertScenes,
-  upsertTurns, // not used
+  removePlayerScenes, // should replace with maker
+  setTurnText,
+  upsertTurns,
   addManyTurns,
+  removePlayerTurns,
   setCharacters, // not used
   addToWorldHistory, // not used
   setPreviousSceneScripts, // not used

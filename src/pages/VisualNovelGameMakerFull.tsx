@@ -14,6 +14,7 @@ import {
   exportCompletedGameAsSave,
   loadGameMakerGameState,
   setCompletedGameSave,
+  generateSceneWithNewLine,
 } from "../redux/VisualNovelGameMakerSlice";
 import { newTask } from "../redux/TasksSlice";
 
@@ -87,6 +88,21 @@ export default function VisualNovelGameMakerFull(
         icon: gameIcon,
       })
     );
+  };
+
+  const handleUpdateScript = () => {
+    dispatch({
+      type: "UPDATE_SCENE_WITH_NEW_LINE",
+      payload: {
+        targetSceneId: 1,
+        targetSceneStartingTurnId: 18,
+        targetTurnId: 27,
+        oldLine:
+          "[Narrator] In the moonlight, their eyes meet – a silent exchange fraught with unspoken emotion.",
+        newLine:
+          "[Narrator] In the moonlight, their lips meet – a silent exchange fraught with heated passion.",
+      },
+    });
   };
 
   const handleDispatchTest = () => {
@@ -172,6 +188,10 @@ export default function VisualNovelGameMakerFull(
   const debugMenu = {
     text: `debug`,
     buttons: [
+      {
+        name: "test update script",
+        onPress: handleUpdateScript,
+      },
       {
         name: "dispatch test",
         onPress: handleDispatchTest,
