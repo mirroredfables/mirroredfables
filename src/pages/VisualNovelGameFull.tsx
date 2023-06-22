@@ -19,24 +19,14 @@ import {
   Task,
 } from "../redux/TasksSlice";
 import {
-  setAutoNextTurn,
-  nextTurn,
-  selectTurnById,
-  setConfig,
-  setInit,
-  selectAllTurns,
-  setShowHistory,
   GameSaveFile,
-  setShowLoadSave,
-  loadGameFromSave,
-  setSpeech,
-  setShowCredits,
-  resetGamePlayerState,
-  setMusic,
-  setHideYoutube,
-  setAutoGenerate,
-  setTextSize,
-} from "../redux/VisualNovelGameTurnsSlice";
+  selectTurnById,
+  selectAllTurns,
+  loadGameFromFile,
+  setPlayerSettings,
+  resetGamePlayer,
+  nextTurn,
+} from "../redux/GameSlice";
 import GameCredits from "../molecules/UserApps/GameCredits";
 import GameStartMenu from "../molecules/UserApps/GameStartMenu";
 import GameDebugVoiceTestMenu from "../molecules/UserApps/GameDebugVoiceTestMenu";
@@ -62,7 +52,7 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
   >([]);
 
   const initialized = useAppSelector(
-    (state) => state.visualNovelGameTurns.init
+    (state) => state.game.gamePlayerSettings.init
   );
 
   React.useEffect(() => {
@@ -70,11 +60,9 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
     // dispatch(loadGameFromSave({ state: props.game.data }));
   }, []);
 
-  const currentGameState = useAppSelector(
-    (state) => state.visualNovelGameTurns
-  );
+  const currentGameState = useAppSelector((state) => state.game);
 
-  const currentTurnId = currentGameState.currentTurnId;
+  const currentTurnId = currentGameState.currentTurnData.currentTurnId;
 
   const currentTurn = useAppSelector((state) =>
     selectTurnById(state, currentTurnId)
@@ -84,19 +72,19 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
 
   const currentSceneId = currentTurn ? currentTurn.sceneId : 0;
 
-  const currentScene = currentGameState.scenes[currentSceneId];
+  const currentScene = currentGameState.gameData.scenes[currentSceneId];
 
   const currentMusic = currentScene ? currentScene.music : null;
 
   const currentBackground = currentScene
     ? { ...currentScene.background, fullscreen: props.task.fullscreened }
     : {
-        ...props.game.data.titleBackground,
+        ...props.game.data.gameData.titleBackground,
         fullscreen: props.task.fullscreened,
       };
 
   const currentPortraits = currentTurn
-    ? currentGameState.currentCharacters
+    ? currentGameState.currentTurnData.currentCharacters
     : [];
 
   const currentActivePortraitName = currentTurn
@@ -123,27 +111,34 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
       type: "GENERATE_FULL_SCENE",
       payload: {
         request: "generate scripts for the target scene.",
-        writingStyle: currentGameState.world.writingStyle,
-        artStyle: currentGameState.world.artStyle,
+        writingStyle: currentGameState.gameData.world.writingStyle,
+        artStyle: currentGameState.gameData.world.artStyle,
         targetSceneId: nextSceneId,
       },
     });
   };
 
-  //
   const convertGameToJson = () => {
     const newExport: GameSaveFile = {
-      id: 0,
+      id: 0, // TODO: should generate a new id?
+      name: currentGameState.gameData.world.setting,
       timestamp: Date.now(),
       previewText: currentTurn.text,
-      gameEngineVersion: "0",
+      gameEngineVersion: "1",
+      newGame: true,
       data: {
-        ...currentGameState,
-        init: false,
-        showConfig: false,
-        currentSceneId: 0,
-        currentTurnId: 0,
-        currentCharacters: [],
+        gameGenerator: currentGameState.gameGenerator,
+        gameData: currentGameState.gameData,
+        gamePlayerSettings: {
+          ...currentGameState.gamePlayerSettings,
+          init: false,
+          showConfig: false,
+        },
+        currentTurnData: {
+          currentSceneId: 0,
+          currentTurnId: 0,
+          currentCharacters: [],
+        },
       },
     };
     return newExport;
@@ -195,9 +190,9 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
     const importedGame = await Clipboard.getStringAsync();
     try {
       const importJson = JSON.parse(importedGame) as GameSaveFile;
-      dispatch(loadGameFromSave({ state: importJson.data }));
+      dispatch(loadGameFromFile(importJson));
       // this starts the game immediately
-      dispatch(setInit({ init: true }));
+      dispatch(setPlayerSettings({ init: true }));
     } catch (err) {
       dispatch(
         setSnackbar({
@@ -236,10 +231,21 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
 
       const newSave: GameSaveFile = {
         id: gameSaveNextId,
+        name: currentGameState.gameData.world.setting,
         timestamp: Date.now(),
         previewText: currentTurn.text,
-        gameEngineVersion: "0",
-        data: { ...currentGameState, showConfig: false },
+        gameEngineVersion: "1",
+        newGame: false,
+        data: {
+          gameGenerator: currentGameState.gameGenerator,
+          gameData: currentGameState.gameData,
+          gamePlayerSettings: {
+            ...currentGameState.gamePlayerSettings,
+            init: false,
+            showConfig: false,
+          },
+          currentTurnData: currentGameState.currentTurnData,
+        },
       };
       const newSaveJson = JSON.stringify([...savesJson, newSave]);
       AsyncStorage.setItem("gameSaves", newSaveJson);
@@ -251,7 +257,7 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
   };
 
   const loadGameSave = (save: GameSaveFile) => {
-    dispatch(loadGameFromSave({ state: save.data }));
+    dispatch(loadGameFromFile(save));
   };
 
   const deleteGameSave = async (save: GameSaveFile) => {
@@ -271,24 +277,11 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
     }
   };
 
-  // this is more for debug
-  const convertSavefileToScriptText = () => {
-    const result = [];
-    for (const scene of currentGameState.scenes) {
-      const turns = allTurns.filter((t) => t.sceneId === scene.id);
-      const scripts = turns.map((turn) => turn.text);
-      result.push({ scene: scene, scripts: scripts });
-    }
-    // return result;
-    const resultJson = JSON.stringify(result);
-    AsyncStorage.setItem("scriptText", resultJson);
-  };
-
   // speech stuff
-  const shouldSpeak = currentGameState.speech;
-  const shouldPlayMusic = currentGameState.music;
-  const shouldHideYoutube = currentGameState.hideYoutube;
-  const shouldAuto = currentGameState.autoNextTurn;
+  const shouldSpeak = currentGameState.gamePlayerSettings.speech;
+  const shouldPlayMusic = currentGameState.gamePlayerSettings.music;
+  const shouldHideYoutube = currentGameState.gamePlayerSettings.hideYoutube;
+  const shouldAuto = currentGameState.gamePlayerSettings.autoNextTurn;
 
   // ios
   React.useEffect(() => {
@@ -455,7 +448,7 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
   );
 
   const onContinue = () => {
-    if (!currentGameState.showConfig) {
+    if (!currentGameState.gamePlayerSettings.showConfig) {
       currentTextToSpeech.stop();
       dispatch(nextTurn({}));
     }
@@ -472,13 +465,13 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
   React.useEffect(() => {
     if (shouldSpeak) {
       if (currentTurn) {
-        if (currentGameState.speechPrerecorded) {
+        if (currentGameState.gameData.speechPrerecorded) {
           // check if there is prerecorded speech
           currentTextToSpeech.start({
             type: "prerecorded",
             onDone: onDoneSpeech,
             prerecordedType: "remote",
-            prerecordedUri: `${currentGameState.speechPrerecordedUrl}/${currentTurnId}.mp3`,
+            prerecordedUri: `${currentGameState.gameData.speechPrerecordedUrl}/${currentTurnId}.mp3`,
           });
         } else {
           // removes everything in brackets for speech
@@ -493,7 +486,7 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
           }
           const speakerName = currentTurn.activePortrait;
           if (speakerName) {
-            const character = currentGameState.characters.find(
+            const character = currentGameState.gameData.characters.find(
               (c) => c.name === speakerName
             );
             if (character) {
@@ -524,8 +517,8 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
         shouldAuto +
         ", shouldSpeak: " +
         shouldSpeak +
-        ", currentGameState.showConfig: " +
-        currentGameState.showConfig
+        ", currentGameState.gamePlayerSettings.showConfig: " +
+        currentGameState.gamePlayerSettings.showConfig
     );
     if (shouldAuto) {
       if (!shouldSpeak) {
@@ -569,7 +562,7 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
       clearInterval(autoAdvanceTimer);
     }
     return () => clearInterval(autoAdvanceTimer);
-  }, [shouldSpeak, shouldAuto, currentGameState.showConfig]);
+  }, [shouldSpeak, shouldAuto, currentGameState.gamePlayerSettings.showConfig]);
 
   // background music
 
@@ -637,7 +630,7 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
 
   // automatically generate more scripts and scenes
 
-  const autoGenerate = currentGameState.autoGenerate;
+  const autoGenerate = currentGameState.gamePlayerSettings.autoGenerate;
 
   const generatorBusy = useAppSelector(
     (state) => state.gameMaker.generatorBusy
@@ -648,13 +641,16 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
     const sceneBuffer = 6;
     if (autoGenerate) {
       if (!generatorBusy) {
-        if (currentGameState.scenes.length - 1 > currentSceneId + 1) {
+        if (currentGameState.gameData.scenes.length - 1 > currentSceneId + 1) {
           if (allTurns.length - 1 - currentTurnId < turnBuffer) {
             console.log("auto generating more script");
             generateMoreScript();
           }
         }
-        if (currentGameState.scenes.length - 1 - currentSceneId < sceneBuffer) {
+        if (
+          currentGameState.gameData.scenes.length - 1 - currentSceneId <
+          sceneBuffer
+        ) {
           console.log("auto generating more scenes");
           generateMoreScenes();
         }
@@ -692,7 +688,9 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
   const debugMenu = {
     text: `Turn: ${currentTurnId}/${
       allTurns.length - 1
-    } | Scene: ${currentSceneId}/${currentGameState.scenes.length - 1}`,
+    } | Scene: ${currentSceneId}/${
+      currentGameState.gameData.scenes.length - 1
+    }`,
     buttons: [
       {
         name: "Test Text to Speech (prerecorded, remote)",
@@ -758,14 +756,8 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
       {
         name: "Reset",
         onPress: () => {
-          dispatch(resetGamePlayerState({}));
-          dispatch(loadGameFromSave({ state: props.game.data }));
-        },
-      },
-      {
-        name: "Get Script Text",
-        onPress: () => {
-          convertSavefileToScriptText();
+          dispatch(resetGamePlayer({}));
+          dispatch(loadGameFromFile(props.game));
         },
       },
     ],
@@ -784,7 +776,7 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
     currentTextToSpeech.unload();
     // background music is self unloading
     // TODO? Fully reset???
-    // dispatch(resetGamePlayerState({}));
+    // dispatch(resetGamePlayer({}));
   };
 
   React.useEffect(() => {
@@ -808,11 +800,11 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
   };
 
   React.useEffect(() => {
-    if (currentGameState.showLoadSave || refreshSaves) {
+    if (currentGameState.gamePlayerSettings.showLoadSave || refreshSaves) {
       reloadSaveFiles();
       setRefreshSaves(false);
     }
-  }, [currentGameState.showLoadSave, refreshSaves]);
+  }, [currentGameState.gamePlayerSettings.showLoadSave, refreshSaves]);
 
   // Disable auto on iOS web due to safari limitations
   const [shouldShowAuto, setShouldShowAuto] = React.useState(true);
@@ -829,7 +821,7 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
 
   //
 
-  const textSize = currentGameState.textSize ?? 16;
+  const textSize = currentGameState.gamePlayerSettings.textSize ?? 16;
 
   const handleUpdateSceneWithNewLine = (newLine: string) => {
     const currentSceneStartingTurnId = allTurns
@@ -875,7 +867,7 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
   };
 
   const MenuOverlay = () => {
-    if (currentGameState.showLoadSave) {
+    if (currentGameState.gamePlayerSettings.showLoadSave) {
       const gameLoadSaveMenu = (
         <GameLoadMenu
           background={currentBackground}
@@ -883,36 +875,40 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
           onLoadPressed={(save) => loadGameSave(save)}
           onDeletePressed={(save) => deleteGameSave(save)}
           onBackPressed={() =>
-            dispatch(setShowLoadSave({ showLoadSave: false }))
+            dispatch(setPlayerSettings({ showLoadSave: false }))
           }
         />
       );
       return gameLoadSaveMenu;
     }
 
-    if (currentGameState.showHistory) {
+    if (currentGameState.gamePlayerSettings.showHistory) {
       const gameScriptHistory = (
         <GameScriptHistory
           background={currentBackground}
           turns={allTurns.filter((turn) => turn.id <= currentTurnId)}
-          onBackPressed={() => dispatch(setShowHistory({ showHistory: false }))}
+          onBackPressed={() =>
+            dispatch(setPlayerSettings({ showHistory: false }))
+          }
         />
       );
       return gameScriptHistory;
     }
 
-    if (currentGameState.showCredits) {
+    if (currentGameState.gamePlayerSettings.showCredits) {
       const gameCredits = (
         <GameCredits
           background={currentBackground}
-          onBackPressed={() => dispatch(setShowCredits({ showCredits: false }))}
+          onBackPressed={() =>
+            dispatch(setPlayerSettings({ showCredits: false }))
+          }
           creditTexts={[{ text: "i haven't gotten around to the credits yet" }]}
         />
       );
       return gameCredits;
     }
 
-    if (currentGameState.showConfig) {
+    if (currentGameState.gamePlayerSettings.showConfig) {
       const gameConfigMenu = (
         <GameConfigMenu
           background={currentBackground}
@@ -924,48 +920,54 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
           }
           autoGengerate={autoGenerate}
           onAutoGeneratePressed={() =>
-            dispatch(setAutoGenerate({ autoGenerate: !autoGenerate }))
+            dispatch(setPlayerSettings({ autoGenerate: !autoGenerate }))
           }
           shouldShowAuto={shouldShowAuto}
           auto={shouldAuto}
           onAutoPressed={() =>
-            dispatch(setAutoNextTurn({ autoNextTurn: !shouldAuto }))
+            dispatch(setPlayerSettings({ autoNextTurn: !shouldAuto }))
           }
           onTextBiggerPressed={() =>
-            dispatch(setTextSize({ textSize: textSize + 2 }))
+            dispatch(setPlayerSettings({ textSize: textSize + 2 }))
           }
           onTextSmallerPressed={() =>
-            dispatch(setTextSize({ textSize: textSize - 2 }))
+            dispatch(setPlayerSettings({ textSize: textSize - 2 }))
           }
           speech={shouldSpeak}
-          onSpeechPressed={() => dispatch(setSpeech({ speech: !shouldSpeak }))}
+          onSpeechPressed={() =>
+            dispatch(setPlayerSettings({ speech: !shouldSpeak }))
+          }
           music={shouldPlayMusic}
-          onMusicPressed={() => dispatch(setMusic({ music: !shouldPlayMusic }))}
+          onMusicPressed={() =>
+            dispatch(setPlayerSettings({ music: !shouldPlayMusic }))
+          }
           hideYoutube={shouldHideYoutube}
           onHideYoutubePressed={() =>
-            dispatch(setHideYoutube({ hideYoutube: !shouldHideYoutube }))
+            dispatch(setPlayerSettings({ hideYoutube: !shouldHideYoutube }))
           }
           onHistoryPressed={() =>
-            dispatch(setShowHistory({ showHistory: true }))
+            dispatch(setPlayerSettings({ showHistory: true }))
           }
           onExportPressed={exportGame}
           onExportToServerPressed={exportGameToServer}
           onSavePressed={saveGame}
           onLoadPressed={() =>
-            dispatch(setShowLoadSave({ showLoadSave: true }))
+            dispatch(setPlayerSettings({ showLoadSave: true }))
           }
           onCreditsPressed={() =>
-            dispatch(setShowCredits({ showCredits: true }))
+            dispatch(setPlayerSettings({ showCredits: true }))
           }
           onReturnToTitlePressed={() => {
             // do a quick save
             saveGame();
             currentTextToSpeech.stop();
             currentTextToSpeech.unload();
-            dispatch(resetGamePlayerState({}));
-            dispatch(loadGameFromSave({ state: props.game.data }));
+            dispatch(resetGamePlayer({}));
+            dispatch(loadGameFromFile(props.game));
           }}
-          onBackPressed={() => dispatch(setConfig({ showConfig: false }))}
+          onBackPressed={() =>
+            dispatch(setPlayerSettings({ showConfig: false }))
+          }
           showShortMenu={!initialized}
           textSize={textSize}
         />
@@ -995,7 +997,7 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
       return (
         <GameStartMenu
           background={{
-            ...props.game.data.titleBackground,
+            ...props.game.data.gameData.titleBackground,
             fullscreen: props.task.fullscreened,
           }}
           onResumePressed={() => {
@@ -1003,16 +1005,18 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
           }}
           onStartPressed={() => {
             // BUG: first turn has an empty currentCharacters
-            dispatch(loadGameFromSave({ state: props.game.data }));
-            dispatch(setInit({ init: true }));
+            dispatch(loadGameFromFile(props.game));
+            dispatch(setPlayerSettings({ init: true }));
           }}
           onLoadPressed={() =>
-            dispatch(setShowLoadSave({ showLoadSave: true }))
+            dispatch(setPlayerSettings({ showLoadSave: true }))
           }
           onImportPressed={importGame}
-          onSettingsPressed={() => dispatch(setConfig({ showConfig: true }))}
+          onSettingsPressed={() =>
+            dispatch(setPlayerSettings({ showConfig: true }))
+          }
           onCreditsPressed={() =>
-            dispatch(setShowCredits({ showCredits: true }))
+            dispatch(setPlayerSettings({ showCredits: true }))
           }
           onExitPressed={() => {
             if (props.task.fullscreened) {
@@ -1041,7 +1045,7 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
         onEdit={() => {
           setEditing(true);
         }}
-        onConfig={() => dispatch(setConfig({ showConfig: true }))}
+        onConfig={() => dispatch(setPlayerSettings({ showConfig: true }))}
         onContinue={onContinue}
         debug={debugStatus}
         debugMenu={debugMenu}

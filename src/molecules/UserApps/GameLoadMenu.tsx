@@ -12,7 +12,7 @@ import GameBackground, {
   GameBackgroundProps,
 } from "../../atoms/UserApps/GameBackground";
 import GameChoiceButton from "../../atoms/UserApps/GameChoiceButton";
-import { GameSaveFile } from "../../redux/VisualNovelGameTurnsSlice";
+import { GameSaveFile } from "../../redux/GameSlice";
 
 export interface GameLoadMenuProps {
   background: GameBackgroundProps;
@@ -73,8 +73,9 @@ export default function GameLoadMenu(props: GameLoadMenuProps) {
     },
   });
 
-  const [deleteTarget, setDeleteTarget] =
-    React.useState<GameSaveFile | null>(null);
+  const [deleteTarget, setDeleteTarget] = React.useState<GameSaveFile | null>(
+    null
+  );
 
   const formateDate = (date: number) => {
     const timestamp = new Date(date);

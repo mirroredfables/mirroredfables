@@ -29,7 +29,7 @@ import {
   VisualNovelGameTurn,
 } from "./VisualNovelGameTypes";
 
-import { GameSaveFile } from "./VisualNovelGameTurnsSlice";
+import { GameSaveFile } from "./GameSlice";
 
 export interface VisualNovelGameMakerGameState {
   init: boolean;
@@ -339,13 +339,22 @@ export const exportCompletedGameAsSave = (
 
   return {
     id: 0,
+    name: gameMakerGameState.world.setting,
     timestamp: Date.now(),
     previewText: gameMakerGameState.world.setting,
     gameEngineVersion: "0",
     newGame: true,
+    // data: {
+    //   ...initialGame,
+    //   ...initialScenesToTurnsEntities,
+    // },
+    // TODO: fix GameSaveFile
+    // IMPORTANT
     data: {
-      ...initialGame,
-      ...initialScenesToTurnsEntities,
+      // gameGenerator: GameGenerator;
+      // gamePlayerSettings: GamePlayerSettings;
+      // gameData: GameData;
+      // currentTurnData: CurrentTurnData;
     },
   } as GameSaveFile;
 };
