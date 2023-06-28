@@ -20,7 +20,7 @@ export default function DesktopShortcut(props: DesktopShortcutProps) {
   const styles = StyleSheet.create({
     shortcut: {
       width: 80,
-      height: 80,
+      height: 88,
       margin: 4,
       backgroundColor: selected ? theme.hoverBackground : "transparent",
     },

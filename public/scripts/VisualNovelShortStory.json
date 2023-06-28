@@ -2,211 +2,140 @@
   "id": 0,
   "timestamp": 1680653657262,
   "previewText": "[Narrator] In that city, in the midst of a dreamy and indistinct ocean, there existed a library. It was said that the library concealed within its walls a single, secret volume that held the key to an extraordinary enigma. The book was bound in worn leather, its title imprinted in gold letters: \"The Aleph.\"",
-  "gameEngineVersion": "0",
+  "gameEngineVersion": "1",
   "data": {
-    "ids": [
-      0,
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      12
-    ],
-    "entities": {
-      "0": {
-        "id": 0,
-        "sceneId": 0,
-        "type": "text",
-        "text": "[Narrator] In that city, in the midst of a dreamy and indistinct ocean, there existed a library. It was said that the library concealed within its walls a single, secret volume that held the key to an extraordinary enigma. The book was bound in worn leather, its title imprinted in gold letters: \"The Aleph.\""
-      },
-      "1": {
-        "id": 1,
-        "sceneId": 1,
-        "type": "text",
-        "text": "[Narrator] I had heard of this mysterious volume from a learned man named Carlos Argentino Daneri. Upon investigating his assertions further, I found myself face to face with the manuscript."
-      },
-      "2": {
-        "id": 2,
-        "sceneId": 1,
-        "type": "text",
-        "text": "[Narrator] As I opened it, the letters on the pages danced before my eyes like constellations, forming words and dissolving again into stars. There were unfamiliar symbols and images interwoven among them: a labyrinth of time, an endless thread spiraling into the abyss."
-      },
-      "3": {
-        "id": 3,
-        "sceneId": 2,
-        "type": "text",
-        "text": "[Narrator] The words began to take shape; they told me of an ancient civilization submerged beneath our own world's surface. A multi-dimensional race of beings who manipulated reality itself through their mastery of language - for they believed that naming something could bring it into existence."
-      },
-      "4": {
-        "id": 4,
-        "sceneId": 2,
-        "type": "text",
-        "text": "[Narrator] To protect this knowledge from those who would wield it irresponsibly, they locked away their secrets within \"The Aleph.\" Over time, countless scholars sought out these secrets but failed to unlock them due to one simple fact: they were reading it as if it were written in ordinary human language."
-      },
-      "5": {
-        "id": 5,
-        "sceneId": 2,
-        "type": "text",
-        "text": "[Narrator] As I turned each page - more slowly now - I began to understand that there was no plot twist or grand revelation waiting for me at the end of this narrative. Instead, each line served as an element in a complex formula designed to alter my own perception."
-      },
-      "6": {
-        "id": 6,
-        "sceneId": 2,
-        "type": "text",
-        "text": "[Narrator] I became aware of a presence watching me from behind; as if sensing my fear, it whispered:"
-      },
-      "7": {
-        "id": 7,
-        "sceneId": 2,
-        "type": "speech",
-        "text": "[Presence] \"You have discovered what others have sought for centuries by reading not with your mind but with your very essence. Now you must choose: become one with the knowledge you seek or remain trapped within these pages.\"",
-        "activePortrait": "Presence"
-      },
-      "8": {
-        "id": 8,
-        "sceneId": 3,
-        "type": "text",
-        "text": "[Narrator] A strange sensation overcame me - I felt as if I was being drawn into the pages of \"The Aleph\" itself. My vision blurred, and I found myself within a labyrinth that mirrored the one described in the book."
-      },
-      "9": {
-        "id": 9,
-        "sceneId": 3,
-        "type": "text",
-        "text": "[Narrator] Lost within its confines, I began to question my own existence. Was I ever truly alive or merely a character written into existence by some cosmic author?"
-      },
-      "10": {
-        "id": 10,
-        "sceneId": 3,
-        "type": "text",
-        "text": "[Narrator] As my mind unraveled, so too did the walls of the labyrinth dissolve. Suddenly, I was standing back in the library, holding \"The Aleph\" in my trembling hands."
-      },
-      "11": {
-        "id": 11,
-        "sceneId": 4,
-        "type": "text",
-        "text": "[Narrator] But just as I was about to close it and place it back on its shelf, a chilling thought occurred to me: what if those who had sought this knowledge before me hadn't failed? What if they had all chosen to become one with \"The Aleph,\" merging their essence with its pages?"
-      },
-      "12": {
-        "id": 12,
-        "sceneId": 4,
-        "type": "text",
-        "text": "[Narrator] What if every person who had ever read this book now resided within its ancient leather binding - their souls trapped between its words for eternity? [END]"
-      }
+    "gameGenerator": {
+      "init": false,
+      "generatorBusy": false,
+      "completed": false,
+      "messages": []
     },
-    "init": false,
-    "autoGenerate": false,
-    "autoNextTurn": false,
-    "speech": true,
-    "music": true,
-    "hideYoutube": false,
-    "showConfig": false,
-    "showHistory": false,
-    "showCredits": false,
-    "showLoadSave": false,
-    "maxConcurrentCharacters": 2,
-    "titleBackground": {
-      "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/14feacec-087d-498d-afa7-afb04127d700/public",
-      "name": "borge's library"
+    "gamePlayerSettings": {
+      "init": false,
+      "autoGenerate": false,
+      "autoNextTurn": false,
+      "textSize": 16,
+      "speech": true,
+      "music": true,
+      "hideYoutube": false,
+      "showConfig": false,
+      "showHistory": false,
+      "showCredits": false,
+      "showLoadSave": false,
+      "maxConcurrentCharacters": 2
     },
-    "scenes": [
-      {
-        "id": 0,
-        "name": "Scene 0 - Introduction to the mysterious library",
-        "description": "Narrator introduces the mysterious library",
-        "location": "mysterious library",
-        "background": {
-          "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/5c988960-6045-48af-ddce-7954680f9700/public",
-          "name": "mysterious library"
-        },
-        "music": {
-          "type": "youtube",
-          "name": "Mihaly Vig - Rain",
-          "info": "Mihaly Vig - Rain",
-          "uri": "jWo9vXi1CNw"
-        }
+    "gameData": {
+      "creator": "mirroredfables v1",
+      "canModify": false,
+      "name": "borges' fictions",
+      "speechPrerecorded": true,
+      "speechPrerecordedUrl": "https://www.mirroredfables.com/voices/short",
+      "world": {
+        "setting": "borges' fictions",
+        "artStyle": "",
+        "writingStyle": "borges",        
+        "history": []
       },
-      {
-        "id": 1,
-        "name": "Scene 1 - Discovering 'The Aleph'",
-        "description": "Narrator discovers 'The Aleph'",
-        "location": "mysterious book",
-        "background": {
-          "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/cbdd7d38-7c47-4e98-8baa-80942f0d0900/public",
-          "name": "mysterious book"
-        },
-        "music": {
-          "type": "youtube",
-          "name": "Mihaly Vig - Rain",
-          "info": "Mihaly Vig - Rain",
-          "uri": "jWo9vXi1CNw"
-        }
+      "titleBackground": {
+        "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/14feacec-087d-498d-afa7-afb04127d700/public",
+        "name": "borges' library"
       },
-      {
-        "id": 2,
-        "name": "Scene 2 - The history and secrets of 'The Aleph'",
-        "description": "Narrator learns about the history and secrets of 'The Aleph'",
-        "location": "mysterious space",
-        "background": {
-          "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/ea54e8a7-aea2-470b-0bda-af2f6b552300/public",
-          "name": "mysterious space"
+      "storySoFar": [],
+      "characters": [],
+      "scenes": [
+        {
+          "id": 0,
+          "name": "Scene 0 - Introduction to the mysterious library",
+          "description": "Narrator introduces the mysterious library",
+          "location": "mysterious library",
+          "background": {
+            "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/5c988960-6045-48af-ddce-7954680f9700/public",
+            "name": "mysterious library"
+          },
+          "music": {
+            "type": "youtube",
+            "name": "Mihaly Vig - Rain",
+            "info": "Mihaly Vig - Rain",
+            "uri": "jWo9vXi1CNw"
+          },
+          "script": "[Narrator] In that city, in the midst of a dreamy and indistinct ocean, there existed a library. It was said that the library concealed within its walls a single, secret volume that held the key to an extraordinary enigma. The book was bound in worn leather, its title imprinted in gold letters: \"The Aleph.\""
         },
-        "music": {
-          "type": "youtube",
-          "name": "Mihaly Vig - Rain",
-          "info": "Mihaly Vig - Rain",
-          "uri": "jWo9vXi1CNw"
-        }
-      },
-      {
-        "id": 3,
-        "name": "Scene 3 - Entering the labyrinth",
-        "description": "Narrator enters the labyrinth inside 'The Aleph'",
-        "location": "labyrinth",
-        "background": {
-          "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/3a5ff849-ed81-4df9-f0eb-c4331ea41900/public",
-          "name": "mysterious labyrinth"
+        {
+          "id": 1,
+          "name": "Scene 1 - Discovering 'The Aleph'",
+          "description": "Narrator discovers 'The Aleph'",
+          "location": "mysterious book",
+          "background": {
+            "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/cbdd7d38-7c47-4e98-8baa-80942f0d0900/public",
+            "name": "mysterious book"
+          },
+          "music": {
+            "type": "youtube",
+            "name": "Mihaly Vig - Rain",
+            "info": "Mihaly Vig - Rain",
+            "uri": "jWo9vXi1CNw"
+          },
+          "script": "[Narrator] I had heard of this mysterious volume from a learned man named Carlos Argentino Daneri. Upon investigating his assertions further, I found myself face to face with the manuscript.\n[Narrator] As I opened it, the letters on the pages danced before my eyes like constellations, forming words and dissolving again into stars. There were unfamiliar symbols and images interwoven among them: a labyrinth of time, an endless thread spiraling into the abyss."
         },
-        "music": {
-          "type": "youtube",
-          "name": "Mihaly Vig - Rain",
-          "info": "Mihaly Vig - Rain",
-          "uri": "jWo9vXi1CNw"
-        }
-      },
-      {
-        "id": 4,
-        "name": "Scene 4 - The chilling realization",
-        "description": "Narrator contemplates the fates of previous readers of 'The Aleph'",
-        "location": "mysterious book",
-        "background": {
-          "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/1398f687-9582-4db8-dca9-4f0f67351100/public",
-          "name": "mysterious book"
+        {
+          "id": 2,
+          "name": "Scene 2 - The history and secrets of 'The Aleph'",
+          "description": "Narrator learns about the history and secrets of 'The Aleph'",
+          "location": "mysterious space",
+          "background": {
+            "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/ea54e8a7-aea2-470b-0bda-af2f6b552300/public",
+            "name": "mysterious space"
+          },
+          "music": {
+            "type": "youtube",
+            "name": "Mihaly Vig - Rain",
+            "info": "Mihaly Vig - Rain",
+            "uri": "jWo9vXi1CNw"
+          },
+          "script": "[Narrator] The words began to take shape; they told me of an ancient civilization submerged beneath our own world's surface. A multi-dimensional race of beings who manipulated reality itself through their mastery of language - for they believed that naming something could bring it into existence.\n[Narrator] To protect this knowledge from those who would wield it irresponsibly, they locked away their secrets within \"The Aleph.\" Over time, countless scholars sought out these secrets but failed to unlock them due to one simple fact: they were reading it as if it were written in ordinary human language.\n[Narrator] As I turned each page - more slowly now - I began to understand that there was no plot twist or grand revelation waiting for me at the end of this narrative. Instead, each line served as an element in a complex formula designed to alter my own perception.\n[Narrator] I became aware of a presence watching me from behind; as if sensing my fear, it whispered:\n[Presence] \"You have discovered what others have sought for centuries by reading not with your mind but with your very essence. Now you must choose: become one with the knowledge you seek or remain trapped within these pages.\""
         },
-        "music": {
-          "type": "youtube",
-          "name": "Mihaly Vig - Rain",
-          "info": "Mihaly Vig - Rain",
-          "uri": "jWo9vXi1CNw"
+        {
+          "id": 3,
+          "name": "Scene 3 - Entering the labyrinth",
+          "description": "Narrator enters the labyrinth inside 'The Aleph'",
+          "location": "labyrinth",
+          "background": {
+            "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/3a5ff849-ed81-4df9-f0eb-c4331ea41900/public",
+            "name": "mysterious labyrinth"
+          },
+          "music": {
+            "type": "youtube",
+            "name": "Mihaly Vig - Rain",
+            "info": "Mihaly Vig - Rain",
+            "uri": "jWo9vXi1CNw"
+          },
+          "script": "[Narrator] A strange sensation overcame me - I felt as if I was being drawn into the pages of \"The Aleph\" itself. My vision blurred, and I found myself within a labyrinth that mirrored the one described in the book.\n[Narrator] Lost within its confines, I began to question my own existence. Was I ever truly alive or merely a character written into existence by some cosmic author?\n[Narrator] As my mind unraveled, so too did the walls of the labyrinth dissolve. Suddenly, I was standing back in the library, holding \"The Aleph\" in my trembling hands."
+        },
+        {
+          "id": 4,
+          "name": "Scene 4 - The chilling realization",
+          "description": "Narrator contemplates the fates of previous readers of 'The Aleph'",
+          "location": "mysterious book",
+          "background": {
+            "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/1398f687-9582-4db8-dca9-4f0f67351100/public",
+            "name": "mysterious book"
+          },
+          "music": {
+            "type": "youtube",
+            "name": "Mihaly Vig - Rain",
+            "info": "Mihaly Vig - Rain",
+            "uri": "jWo9vXi1CNw"
+          },
+          "script": "[Narrator] But just as I was about to close it and place it back on its shelf, a chilling thought occurred to me: what if those who had sought this knowledge before me hadn't failed? What if they had all chosen to become one with \"The Aleph,\" merging their essence with its pages?\n[Narrator] What if every person who had ever read this book now resided within its ancient leather binding - their souls trapped between its words for eternity?"
         }
-      }
-    ],
-    "characters": [],
-    "currentSceneId": 0,
-    "currentTurnId": 0,
-    "currentCharacters": [],
-    "previousSceneScripts": [],
-    "world": {
-      "setting": "borge's fictions",
-      "history": []
+      ]
     },
-    "speechPrerecorded": true,
-    "speechPrerecordedUrl": "https://www.mirroredfables.com/voices/short"
-  }
+    "currentTurnData": {
+      "currentSceneId": 0,
+      "currentTurnId": 0,
+      "currentCharacters": []
+    }
+  },
+  "name": "borges' fictions",
+  "newGame": true
 }

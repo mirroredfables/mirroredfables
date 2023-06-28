@@ -2,9 +2,8 @@ import * as React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react-native";
 import GameLoadMenu, { GameLoadMenuProps } from "./GameLoadMenu";
 import { defaultGameBackground } from "../../atoms/UserApps/GameBackground.stories";
-import { GameSaveFile } from "../../redux/VisualNovelGameTurnsSlice";
 
-const sampleSave: GameSaveFile = {
+const sampleSave = {
   id: 0,
   timestamp: 0,
   previewText: "Sample save",

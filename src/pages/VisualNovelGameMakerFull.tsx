@@ -8,13 +8,7 @@ import GameIcon from "../../public/icons/game.png";
 
 import VisualNovelGameMaker from "../organisms/UserApps/VisualNovelGameMaker";
 import { useAppDispatch, useAppSelector } from "../redux/Hooks";
-import {
-  addGameMakerMessage,
-  convertScenesToTurnsEntities,
-  exportCompletedGameAsSave,
-  loadGameMakerGameState,
-  setCompletedGameSave,
-} from "../redux/VisualNovelGameMakerSlice";
+import { addGameMakerMessage, loadGameFromState } from "../redux/GameSlice";
 import { newTask } from "../redux/TasksSlice";
 
 export interface VisualNovelGameMakerFullProps {
@@ -26,11 +20,18 @@ export default function VisualNovelGameMakerFull(
 ) {
   const dispatch = useAppDispatch();
 
-  const gameMakerGameState = useAppSelector(
-    (state) => state.gameMaker.gameState
-  );
+  const gameState = useAppSelector((state) => state.game);
 
-  const gameMakerMessages = useAppSelector((state) => state.gameMaker.messages);
+  const gameStateWithoutEntities = {
+    gameGenerator: gameState.gameGenerator,
+    gamePlayerSettings: gameState.gamePlayerSettings,
+    gameData: gameState.gameData,
+    currentTurnData: gameState.currentTurnData,
+  };
+
+  const gameMakerGameState = gameState.gameData;
+
+  const gameGeneratorState = gameState.gameGenerator;
 
   const sendSystemMessage = (message: string) => {
     dispatch(addGameMakerMessage({ message: `[system] ${message}` }));
@@ -61,21 +62,7 @@ export default function VisualNovelGameMakerFull(
     });
   };
 
-  const handleDebugConvertSceneToTurns = () => {
-    const scene = gameMakerGameState.scenes[0];
-    const turns = convertScenesToTurnsEntities({ scenes: [scene] });
-    console.log(turns);
-  };
-
-  const handleDebugExportGameAsSave = () => {
-    const gameSaveFile = exportCompletedGameAsSave(gameMakerGameState);
-    dispatch(setCompletedGameSave({ gameSave: gameSaveFile }));
-  };
-
   const handleStartGame = () => {
-    const gameSaveFile = exportCompletedGameAsSave(gameMakerGameState);
-    dispatch(setCompletedGameSave({ gameSave: gameSaveFile }));
-
     const gameIcon =
       Platform.OS === "web"
         ? "icons/game.png"
@@ -89,42 +76,22 @@ export default function VisualNovelGameMakerFull(
     );
   };
 
-  const handleDispatchTest = () => {
-    // dispatch({ type: "TEST", payload: { message: "test" } });
-    // dispatch({
-    //   type: "GENERATE_GAME",
-    //   payload: {
-    //     setting:
-    //       "war and peace, but set in the modern day LA. I am Natasha. Generate only 2 other characters.",
-    //   },
-    // });
-    // dispatch({
-    //   type: "SEARCH_YOUTUBE_FOR_MUSIC",
-    //   payload: {
-    //     scene: {
-    //       musicRecommendation: "Nils Frahm - All Melody (Instrumental)",
-    //     },
-    //   },
-    // });
-    // dispatch({
-    //   type: "GENERATE_IMAGE",
-    //   payload: {
-    //     object:
-    //       "potential love interest, female, human, 27, lesbian, an internationally renowned fashion designer and an underworld leader, Italian, seductive, ambitious, calculating, passionate. Likes high fashion, power, art, expensive things; dislikes betrayal, vulnerability, losing control, imperfections., character portrait, Realistic, vivid with modern print",
-    //     type: "portrait",
-    //     style: "",
-    //   },
-    // });
-    // dispatch({
-    //   type: "GENERATE_FULL_SCENE",
-    //   payload: {
-    //     request: "generate scripts for the initial scene.",
-    //     artStyle: "realistic",
-    //     writingStyle: "Leo Tolstoy, grand, literary, poetic, soap opera",
-    //     targetSceneId: 0,
-    //   },
-    // });
+  const handleDebugUpdateScript = () => {
+    dispatch({
+      type: "UPDATE_SCENE_WITH_NEW_LINE",
+      payload: {
+        targetSceneId: 1,
+        targetSceneStartingTurnId: 18,
+        targetTurnId: 27,
+        oldLine:
+          "[Narrator] In the moonlight, their eyes meet – a silent exchange fraught with unspoken emotion.",
+        newLine:
+          "[Narrator] In the moonlight, their lips meet – a silent exchange fraught with heated passion.",
+      },
+    });
+  };
 
+  const handleDispatchTest = () => {
     const getNextSceneId = () => {
       for (const scene of gameMakerGameState.scenes) {
         if (!scene.script) {
@@ -173,20 +140,16 @@ export default function VisualNovelGameMakerFull(
     text: `debug`,
     buttons: [
       {
+        name: "test update script",
+        onPress: handleDebugUpdateScript,
+      },
+      {
         name: "dispatch test",
         onPress: handleDispatchTest,
       },
       {
         name: "force start",
         onPress: handleStartGame,
-      },
-      {
-        name: "convert scene to turns",
-        onPress: handleDebugConvertSceneToTurns,
-      },
-      {
-        name: "export game as save",
-        onPress: handleDebugExportGameAsSave,
       },
       {
         name: "generate next scene",
@@ -197,14 +160,14 @@ export default function VisualNovelGameMakerFull(
 
   return (
     <VisualNovelGameMaker
-      messages={gameMakerMessages}
+      messages={gameGeneratorState.messages}
       sendMessage={sendUserMessage}
-      makeGameState={gameMakerGameState}
+      makeGameState={gameStateWithoutEntities}
       saveChangedMakeGameState={(gameState) => {
-        dispatch(loadGameMakerGameState(gameState));
+        dispatch(loadGameFromState(gameState));
       }}
       startGame={handleStartGame}
-      readyToStartGame={gameMakerGameState.completed}
+      readyToStartGame={gameGeneratorState.completed}
       debug={props.debug}
       debugMenu={debugMenu}
     />

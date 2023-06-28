@@ -1,1531 +1,345 @@
 {
-    "id": 0,
-    "timestamp": 1684841083295,
-    "previewText": "[Narrator] The hallowed sun ascends o'er Hyrule, a dawning day embarks.",
-    "gameEngineVersion": "0",
-    "data": {
-        "init": false,
-        "autoGenerate": false,
-        "autoNextTurn": false,
-        "speech": true,
-        "music": true,
-        "hideYoutube": false,
-        "showConfig": false,
-        "showHistory": false,
-        "showCredits": false,
-        "showLoadSave": false,
-        "maxConcurrentCharacters": 2,
-        "titleBackground": {
-            "name": "Alternate dimension, vibrant colors, mystical forests, enchanting temples, a fusion of medieval and futuristic landscapes",
-            "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/9d5e0473-86a5-4883-82e3-6b93d8932a00/public"
+  "id": 0,
+  "timestamp": 1684841083295,
+  "previewText": "[Narrator] The hallowed sun ascends o'er Hyrule, a dawning day embarks.",
+  "gameEngineVersion": "1",
+  "data": {
+    "gameGenerator": {
+      "init": false,
+      "generatorBusy": false,
+      "completed": false,
+      "messages": []
+    },
+    "gamePlayerSettings": {
+      "init": false,
+      "autoGenerate": false,
+      "autoNextTurn": false,
+      "textSize": 16,
+      "speech": true,
+      "music": true,
+      "hideYoutube": false,
+      "showConfig": false,
+      "showHistory": false,
+      "showCredits": false,
+      "showLoadSave": false,
+      "maxConcurrentCharacters": 2
+    },
+    "gameData": {
+      "creator": "mirroredfables v1",
+      "canModify": false,
+      "name": "Alternate dimension, vibrant colors, mystical forests, enchanting temples, a fusion of medieval and futuristic landscapes",
+      "speechPrerecorded": true,
+      "speechPrerecordedUrl": "https://www.mirroredfables.com/voices/zelda",
+      "world": {
+        "setting": "Alternate dimension, vibrant colors, mystical forests, enchanting temples, a fusion of medieval and futuristic landscapes",
+        "artStyle": "Akira Himekawa, watercolor, glowing, anime-esque, detailed, manga",
+        "writingStyle": "Shakespearean, dramatic, poetic, purple prose, soap opera, tragicomic",
+        "history": []
+      },
+      "titleBackground": {
+        "name": "Alternate dimension, vibrant colors, mystical forests, enchanting temples, a fusion of medieval and futuristic landscapes",
+        "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/9d5e0473-86a5-4883-82e3-6b93d8932a00/public"
+      },
+      "storySoFar": [],
+      "characters": [
+        {
+          "id": 0,
+          "name": "Link",
+          "description": "player character, male, human, 19, bisexual, hero of Hyrule, pure-hearted, courageous, loyal. Likes adventure, Epona, solving puzzles, helping others; dislikes evil, injustice, being called naive.",
+          "voice": {
+            "type": "elevenAI",
+            "voiceId": "mRuylNvuDk76y09dCO5o",
+            "name": "Link",
+            "gender": "male"
+          },
+          "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/31ea5045-877b-4c13-834c-002ea97b8700/public"
         },
-        "scenes": [
-            {
-                "id": 0,
-                "name": "Link embarks on his fateful journey",
-                "summary": "As the sun rises, Link initiates his fateful journey by entering the portal. Zelda comforts him, and they express their love and duty. Upon arriving, Link is exposed to a new world filled with enchanting flora and fauna. The future unfolds as he must now choose between love and duty.",
-                "location": "Cosmic Nexus, a bridge between dimensions, veiled by the surreal hues of an ethereal dawn.",
-                "background": {
-                    "name": "Cosmic Nexus, a bridge between dimensions, veiled by the surreal hues of an ethereal dawn.",
-                    "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/b8c143ce-562d-4d5b-298e-04ed77639300/public"
-                },
-                "music": {
-                    "type": "youtube",
-                    "name": "Hans Zimmer - Time (Inception Soundtrack) (Instrumental)",
-                    "info": "",
-                    "uri": "LqRZ2_w56U0",
-                    "loop": true
-                }
-            },
-            {
-                "id": 1,
-                "name": "Link encounters the enchanting flora and fauna of this alternate dimension",
-                "summary": "Link marvels at the beauty of the alternate dimension's flora and fauna. The mesmerizing array of colors and encounters with enchanting creatures leave him awestruck, though he knows he must continue to follow his path.",
-                "location": "Ethereal Twilight Grove, verdant and lush, brimming with vibrant foliage and creatures unseen, bathed in a dreamy twilight haze.",
-                "background": {
-                    "name": "Ethereal Twilight Grove, verdant and lush, brimming with vibrant foliage and creatures unseen, bathed in a dreamy twilight haze.",
-                    "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/6e58a51e-52ec-422c-79b9-1bbd84359300/public"
-                },
-                "music": {
-                    "type": "youtube",
-                    "name": "Ludovico Einaudi - Night (Instrumental)",
-                    "info": "",
-                    "uri": "Tu96yevGMEA",
-                    "loop": true
-                }
-            },
-            {
-                "id": 2,
-                "name": "Link meets the regal Erela, a testament to passion and strength",
-                "summary": "Link encounters Erela, the fierce warrior-princess. Their passions for defending their realms and loved ones unite them, forging a powerful alliance and a bond of trust. Together, they vow to protect their worlds and face the ever-looming threats.",
-                "location": "The Radiant Palace Courtyard, ethereal and majestic, adorned with cascading waterfalls, intricate yet timeless architecture, statues of legendary warriors, and lush, sovereign gardens.",
-                "background": {
-                    "name": "The Radiant Palace Courtyard, ethereal and majestic, adorned with cascading waterfalls, intricate yet timeless architecture, statues of legendary warriors, and lush, sovereign gardens.",
-                    "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/622e89cc-6c88-467a-e1cb-25d576e54200/public"
-                },
-                "music": {
-                    "type": "youtube",
-                    "name": "Hans Zimmer - Time (Instrumental)",
-                    "info": "",
-                    "uri": "8-wAvbxB7D8",
-                    "loop": true
-                }
-            },
-            {
-                "id": 3,
-                "name": "Link discovers the mystical secrets of the enigmatic Drakiel, a sorcerer with a fiery demeanor",
-                "summary": "The enigmatic sorcerer, Drakiel, appears before Link and Erela, presenting unfathomable knowledge and ancient secrets. Intrigued by his mystical aura, they follow him to the Twilight Tower's Library. United in a newfound bond of friendship and arcane wisdom, they prepare to face the darkness together.",
-                "location": "The Twilight Tower's Library, a grand and ancient chamber, walls adorned with countless tomes, scrolls and artifacts, an air of mystery and power lingering within, ceiling gleaming with celestial constellations.",
-                "background": {
-                    "name": "The Twilight Tower's Library, a grand and ancient chamber, walls adorned with countless tomes, scrolls and artifacts, an air of mystery and power lingering within, ceiling gleaming with celestial constellations.",
-                    "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/ec30419b-8af5-4b06-360a-185c9dd40500/public"
-                },
-                "music": {
-                    "type": "youtube",
-                    "name": "Ludovico Einaudi - Nuvole Bianche (Instrumental)",
-                    "info": "",
-                    "uri": "VUCI-1vIbUo",
-                    "loop": true
-                }
-            },
-            {
-                "id": 4,
-                "name": "Link enters the healing grove of Solana, a sanctuary for the gentle spirit",
-                "summary": "The heroes stumble upon the soothing embrace of the Healing Grove, where they meet the gentle and nurturing Solana. As their emotional tides converge, they find sanctuary and respite amidst the tranquil sanctuary, renewing their spirits, and forging forward, united in their determination to face the darkness.",
-                "location": "The Healing Grove, a tranquil sanctuary nestled within the heart of the forest, imbued with light and nature's essence, soothing effulgence illuminating the gentle flora, roots entwine to create a warm and harmonious haven.",
-                "background": {
-                    "name": "The Healing Grove, a tranquil sanctuary nestled within the heart of the forest, imbued with light and nature's essence, soothing effulgence illuminating the gentle flora, roots entwine to create a warm and harmonious haven.",
-                    "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/9843f223-ea26-4a0f-ac4f-3e116d32aa00/public"
-                },
-                "music": {
-                    "type": "youtube",
-                    "name": "Yiruma - River Flows In You (Instrumental)",
-                    "info": "",
-                    "uri": "NPBCbTZWnq0",
-                    "loop": true
-                }
-            },
-            {
-                "id": 5,
-                "name": "Link stumbles upon Valdor's nefarious scheme to exploit the fate of two worlds",
-                "summary": "The heroes discover Valdor's villainous plan to exploit the power of the portal to control both kingdoms. Undaunted, they stand against him, their bonds of love and friendship shining like beacons in the darkness. They must navigate the treacherous labyrinth of Valdor's malice and unite to defend their worlds against the looming specter of tyranny.",
-                "location": "Dark Chamber, gothic throne room, where creeping shadows seep through cold stone walls, stained glass windows billow with darkness, and Valdor plots to exploit the vulnerable realms with sinister delight.",
-                "background": {
-                    "name": "Dark Chamber, gothic throne room, where creeping shadows seep through cold stone walls, stained glass windows billow with darkness, and Valdor plots to exploit the vulnerable realms with sinister delight.",
-                    "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/60f9b926-8fc0-4dc1-95fa-ffdb9592ca00/public"
-                },
-                "music": {
-                    "type": "youtube",
-                    "name": "Mozart - Requiem: Lacrimosa (Instrumental)",
-                    "info": "",
-                    "uri": "k1-TrAvp_xs",
-                    "loop": true
-                }
-            },
-            {
-                "id": 6,
-                "name": "Link reunites with Zelda, who faces a test of her wisdom and resolve",
-                "summary": "Link is finally reunited with Zelda, and they join forces with the other heroes. Together, they face a test of Zelda's wisdom and resolve. This scene showcases the power of love and friendship in the face of adversity, as the characters prepare to confront even greater challenges ahead.",
-                "location": "Twilight Glade, a magical realm caught between daylight and nighttime, where glowing, dark violet petals scatter upon the mystical path, and golden rays of sunlight shimmer through trees that stretch towards the heavens.",
-                "background": {
-                    "name": "Twilight Glade, a magical realm caught between daylight and nighttime, where glowing, dark violet petals scatter upon the mystical path, and golden rays of sunlight shimmer through trees that stretch towards the heavens.",
-                    "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/49b6afcf-6874-48c0-6ec3-c5847de8e500/public"
-                },
-                "music": {
-                    "type": "youtube",
-                    "name": "Beethoven - Moonlight Sonata (Instrumental)",
-                    "info": "",
-                    "uri": "4591dCHe_sE",
-                    "loop": true
-                }
-            },
-            {
-                "id": 7,
-                "name": "A tangled web of emotion weaves the hearts of the heroes, binding them in desire and duty",
-                "summary": "In this scene, the heroes confront the tangled web of emotions, entwining their hearts in both desire and duty. As each character faces their own inner turmoil, they must seek to find truth and balance amidst the captivating allure of both love and obligation, preparing for the trials ahead.",
-                "location": "Lover's Cove, a secluded, romantic grotto surrounded by glittering, moonlit waters, adorned with shimmering gemstones embedded within the walls, casting a gentle glow on the tender entanglements of love and duty that unfolds in this sacred space.",
-                "background": {
-                    "name": "Lover's Cove, a secluded, romantic grotto surrounded by glittering, moonlit waters, adorned with shimmering gemstones embedded within the walls, casting a gentle glow on the tender entanglements of love and duty that unfolds in this sacred space.",
-                    "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/47508992-0098-456e-61d0-a306d1f05900/public"
-                },
-                "music": {
-                    "type": "youtube",
-                    "name": "Tchaikovsky - Serenade for Strings in C Major (Instrumental)",
-                    "info": "",
-                    "uri": "phBThlPTBEg",
-                    "loop": true
-                }
-            },
-            {
-                "id": 8,
-                "name": "Link and his companions confront Valdor in a clash of love, betrayal, and vengeance",
-                "summary": "In this scene, the heroes confront Valdor in a fierce battle, where the stakes are not only their worlds but their very hearts. Bound together by love, friendship, and duty, they bravely face the darkness and the treacherous, poisoned web of Valdor's desires. As love and betrayal clash, they seek to restore balance and light to both realms.",
-                "location": "The Heart of Desolation, a stark, desolate realm at the magical nexus between worlds, where the ripples of love and betrayal course through the very air. Jagged, obsidian-like rock formations suspend against a swirling abyss of violet and black, battered by whirling winds and crackling lightning.",
-                "background": {
-                    "name": "The Heart of Desolation, a stark, desolate realm at the magical nexus between worlds, where the ripples of love and betrayal course through the very air. Jagged, obsidian-like rock formations suspend against a swirling abyss of violet and black, battered by whirling winds and crackling lightning.",
-                    "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/b3e2e10a-bb11-4ff4-2fdf-d5bfe5a31200/public"
-                },
-                "music": {
-                    "type": "youtube",
-                    "name": "Mozart - Requiem Mass in D minor, Lacrimosa (Instrumental)",
-                    "info": "",
-                    "uri": "pYQa4XLwtGM",
-                    "loop": true
-                }
-            },
-            {
-                "id": 9,
-                "name": "The true magic of the portal unveils a gateway to infinite romantic possibilities",
-                "summary": "In this scene, the heroes discover that the portal holds the key to unlock their romantic destinies, offering them the possibility to explore infinite connections to their truest desires. As they stand before the portal's mesmerizing beauty, they contemplate the way their hearts will be guided through this cosmic journey, seeking to traverse the vast expanse of love's infinite possibilities.",
-                "location": "The Starlit Atrium, a stunning, celestial chamber bathed in shimmering, constellated light, where the portal radiates with a magical iridescence, as if a cosmic tapestry spun from the silken strands of loves infinite. A nexus of passion, destiny, and emotion, suspended amidst the vast heavens.",
-                "background": {
-                    "name": "The Starlit Atrium, a stunning, celestial chamber bathed in shimmering, constellated light, where the portal radiates with a magical iridescence, as if a cosmic tapestry spun from the silken strands of loves infinite. A nexus of passion, destiny, and emotion, suspended amidst the vast heavens.",
-                    "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/4093dd4e-0a27-4147-9ad9-ecf5e4a8c200/public"
-                },
-                "music": {
-                    "type": "youtube",
-                    "name": "Debussy - Clair de Lune (Instrumental)",
-                    "info": "",
-                    "uri": "WNcsUNKlAKw",
-                    "loop": true
-                }
-            },
-            {
-                "id": 10,
-                "name": "Link chooses the love that shall set his heart ablaze, truest passion won against all odds",
-                "summary": "In this scene, amidst the ethereal radiance of the Luminous Chamber, Link finally chooses the love that shall set his heart ablaze. Having faced the unknown and discovered the myriad of possibilities within his own heart, he courageously casts his destiny with the one who ignites the truest passion within him, as they forge an everlasting bond of love that transcends mortal boundaries and unites their souls for eternity.",
-                "location": "Beneath the cascading streams of silver stardust, every celestial body a serenade to passion, the heroes gather in the Luminous Chamber, the grand hall bedecked in celestial adornments that shimmer with the glow of a thousand ardent suns. Here shall Link choose the love that shall set his heart ablaze, in this realm where hearts converge.",
-                "background": {
-                    "name": "Beneath the cascading streams of silver stardust, every celestial body a serenade to passion, the heroes gather in the Luminous Chamber, the grand hall bedecked in celestial adornments that shimmer with the glow of a thousand ardent suns. Here shall Link choose the love that shall set his heart ablaze, in this realm where hearts converge.",
-                    "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/41622c27-35b5-4143-9d23-79ad7de34f00/public"
-                },
-                "music": {
-                    "type": "youtube",
-                    "name": "Tchaikovsky - Romeo and Juliet (Fantasy Overture)",
-                    "info": "",
-                    "uri": "_Od7gx3Dc-U",
-                    "loop": true
-                }
-            },
-            {
-                "id": 11,
-                "name": "In triumphant reunion of souls, the chosen love conquers all and the world thrives anew",
-                "summary": "In this scene, the heroes, forever bound by love, stand united in the face of a radiant new dawn. With the triumphant reunion of souls and the chosen love conquering all, the two worlds now thrive, bathed in the warm embrace of unity and prosperity. Together, the heroes embark upon a brilliant future, luminous and vibrant, as the echoes of their ardent passion reverberate across the cosmos.",
-                "location": "Upon the sacred plains of time's uncharted shores, the heroes gather under a sky ablaze with celestial colors, a brilliant pageant of luminous auroras that herald the triumphant dawning of a revitalized world. Waves of blossoming flowers dance gaily beneath the soft caress of the winds, their petals strewn like a fragrant tapestry heralding the blossoming love that has forged a new age of harmony and unity.",
-                "background": {
-                    "name": "Upon the sacred plains of time's uncharted shores, the heroes gather under a sky ablaze with celestial colors, a brilliant pageant of luminous auroras that herald the triumphant dawning of a revitalized world. Waves of blossoming flowers dance gaily beneath the soft caress of the winds, their petals strewn like a fragrant tapestry heralding the blossoming love that has forged a new age of harmony and unity.",
-                    "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/d19030b2-7d36-4f4e-61ca-71168b280900/public"
-                },
-                "music": {
-                    "type": "youtube",
-                    "name": "Vivaldi - The Four Seasons (Spring - First Movement Allegro)",
-                    "info": "",
-                    "uri": "DLDvbnK_Sqk",
-                    "loop": true
-                }
-            }
-        ],
-        "characters": [
-            {
-                "id": 0,
-                "name": "Link",
-                "description": "player character, male, human, 19, bisexual, hero of Hyrule, pure-hearted, courageous, loyal. Likes adventure, Epona, solving puzzles, helping others; dislikes evil, injustice, being called naive.",
-                "voice": {
-                    "type": "elevenAI",
-                    "voiceId": "mRuylNvuDk76y09dCO5o",
-                    "name": "Link",
-                    "gender": "male"
-                },
-                "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/31ea5045-877b-4c13-834c-002ea97b8700/public"
-            },
-            {
-                "id": 1,
-                "name": "Zelda",
-                "description": "non-player character, female, human, 19, straight, wise, determined, compassionate. Likes her kingdom, magic, music, honesty; dislikes evil, betrayal, lies.",
-                "voice": {
-                    "type": "elevenAI",
-                    "voiceId": "KL1gw3Urt0Ml4z3UPkTZ",
-                    "name": "Zelda",
-                    "gender": "female"
-                },
-                "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/c62afc2c-8e38-4141-9eb8-2520e660cb00/public"
-            },
-            {
-                "id": 2,
-                "name": "Erela",
-                "description": "potential love interest, female, Zora-Elf hybrid, 21, bisexual, warrior-princess, regal, fierce, confident. Likes swimming, training, music, sunsets; dislikes dishonesty, cruelty, arrogance. Seeks to protect her realm from dark forces.",
-                "voice": {
-                    "type": "elevenAI",
-                    "voiceId": "AZnzlk1XvdvUeBnXmlld",
-                    "name": "Domi",
-                    "gender": "female"
-                },
-                "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/9590bfdc-e6dd-466f-79a9-e190e577dd00/public"
-            },
-            {
-                "id": 3,
-                "name": "Drakiel",
-                "description": "potential love interest, male, half-dragon, 24, gay, enigmatic sorcerer, witty, suave, smoldering. Likes magic, literature, riddles, collecting artifacts; dislikes gossip, ignorance, small-mindedness. Has a deep connection to a powerful artifact.",
-                "voice": {
-                    "type": "elevenAI",
-                    "voiceId": "VR6AewLTigWG4xSOukaG",
-                    "name": "Arnold",
-                    "gender": "male"
-                },
-                "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/2eb7a2de-b253-4cdb-9ecc-0e35b41e0600/public"
-            },
-            {
-                "id": 4,
-                "name": "Solana",
-                "description": "potential love interest, genderfluid, human-flower hybrid, 18, pansexual, ethereal, empathic, gentle, nurturing. Likes sunlight, nature, art, harmony; dislikes darkness, conflict, cruelty. Healer with the power to soothe the souls of others.",
-                "voice": {
-                    "type": "elevenAI",
-                    "voiceId": "bKUYZHcT0xhZ9jYzeF1U",
-                    "name": "Solana",
-                    "gender": "female"
-                },
-                "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/fe6a04f5-ef2e-4c45-7dad-d87c91172000/public"
-            },
-            {
-                "id": 5,
-                "name": "Valdor",
-                "description": "antagonist, male, human, 37, straight, power-hungry, cunning, manipulative. Likes power, fame, luxury, himself; dislikes failure, humility, unity. Seeks to exploit the portal for his personal gain.",
-                "voice": {
-                    "type": "elevenAI",
-                    "voiceId": "tN2IM1I5T32AbT8RQpEI",
-                    "name": "Valdor",
-                    "gender": "male"
-                },
-                "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/1e06d04f-c0db-4fdd-c8cc-af6dd4c7a300/public"
-            }
-        ],
-        "currentSceneId": 0,
-        "currentTurnId": 0,
-        "currentCharacters": [],
-        "previousSceneScripts": [],
-        "world": {
-            "setting": "Alternate dimension, vibrant colors, mystical forests, enchanting temples, a fusion of medieval and futuristic landscapes",
-            "artStyle": "Akira Himekawa, watercolor, glowing, anime-esque, detailed, manga",
-            "writingStyle": "Shakespearean, dramatic, poetic, purple prose, soap opera, tragicomic",
-            "history": []
+        {
+          "id": 1,
+          "name": "Zelda",
+          "description": "non-player character, female, human, 19, straight, wise, determined, compassionate. Likes her kingdom, magic, music, honesty; dislikes evil, betrayal, lies.",
+          "voice": {
+            "type": "elevenAI",
+            "voiceId": "KL1gw3Urt0Ml4z3UPkTZ",
+            "name": "Zelda",
+            "gender": "female"
+          },
+          "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/c62afc2c-8e38-4141-9eb8-2520e660cb00/public"
         },
-        "speechPrerecorded": true,
-        "speechPrerecordedUrl": "https://www.mirroredfables.com/voices/zelda",
-        "ids": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24,
-            25,
-            26,
-            27,
-            28,
-            29,
-            30,
-            31,
-            32,
-            33,
-            34,
-            35,
-            36,
-            37,
-            38,
-            39,
-            40,
-            41,
-            42,
-            43,
-            44,
-            45,
-            46,
-            47,
-            48,
-            49,
-            50,
-            51,
-            52,
-            53,
-            54,
-            55,
-            56,
-            57,
-            58,
-            59,
-            60,
-            61,
-            62,
-            63,
-            64,
-            65,
-            66,
-            67,
-            68,
-            69,
-            70,
-            71,
-            72,
-            73,
-            74,
-            75,
-            76,
-            77,
-            78,
-            79,
-            80,
-            81,
-            82,
-            83,
-            84,
-            85,
-            86,
-            87,
-            88,
-            89,
-            90,
-            91,
-            92,
-            93,
-            94,
-            95,
-            96,
-            97,
-            98,
-            99,
-            100,
-            101,
-            102,
-            103,
-            104,
-            105,
-            106,
-            107,
-            108,
-            109,
-            110,
-            111,
-            112,
-            113,
-            114,
-            115,
-            116,
-            117,
-            118,
-            119,
-            120,
-            121,
-            122,
-            123,
-            124,
-            125,
-            126,
-            127,
-            128,
-            129,
-            130,
-            131,
-            132,
-            133,
-            134,
-            135,
-            136,
-            137,
-            138,
-            139,
-            140,
-            141,
-            142,
-            143,
-            144,
-            145,
-            146,
-            147,
-            148,
-            149,
-            150,
-            151,
-            152,
-            153,
-            154,
-            155,
-            156,
-            157
-        ],
-        "entities": {
-            "0": {
-                "id": 0,
-                "sceneId": 0,
-                "type": "text",
-                "text": "[Narrator] The hallowed sun ascends o'er Hyrule, a dawning day embarks."
-            },
-            "1": {
-                "id": 1,
-                "sceneId": 0,
-                "type": "speech",
-                "text": "[Link] Wid'n eyes I gaze upon,'t sky, the vast unknowe awaiteth me.",
-                "activePortrait": "Link"
-            },
-            "2": {
-                "id": 2,
-                "sceneId": 0,
-                "type": "text",
-                "text": "[Narrator] Eager spirit hath consumed, int'r celestial portal Link steps forth."
-            },
-            "3": {
-                "id": 3,
-                "sceneId": 0,
-                "type": "speech",
-                "text": "[Link] Fretful not, f'r courage doth lead, whilst duty swift obeys.",
-                "activePortrait": "Link"
-            },
-            "4": {
-                "id": 4,
-                "sceneId": 0,
-                "type": "text",
-                "text": "[Narrator] The realm anew bestows sights unseen, a tapestry of myst'ry."
-            },
-            "5": {
-                "id": 5,
-                "sceneId": 0,
-                "type": "speech",
-                "text": "[Zelda] Link, val'rous hero, shed not woe; against the odds success is thine.",
-                "activePortrait": "Zelda"
-            },
-            "6": {
-                "id": 6,
-                "sceneId": 0,
-                "type": "speech",
-                "text": "[Link] Pray hold thy words, fair Zelda, upon my breast, a beacon bright.",
-                "activePortrait": "Link"
-            },
-            "7": {
-                "id": 7,
-                "sceneId": 0,
-                "type": "text",
-                "text": "[Narrator] Onward doth our hero strive, love and honor intertwined as one."
-            },
-            "8": {
-                "id": 8,
-                "sceneId": 0,
-                "type": "speech",
-                "text": "[Link] Wherefore might destin'e take its course, I shall not swerve anon.",
-                "activePortrait": "Link"
-            },
-            "9": {
-                "id": 9,
-                "sceneId": 0,
-                "type": "speech",
-                "text": "[Link] I, Link, pledge my strength and ardor true.",
-                "activePortrait": "Link"
-            },
-            "10": {
-                "id": 10,
-                "sceneId": 0,
-                "type": "text",
-                "text": "[Narrator] Thus spaketh hero to noble dame, by bond of warrior's oath conjoined."
-            },
-            "11": {
-                "id": 11,
-                "sceneId": 0,
-                "type": "speech",
-                "text": "[Link] What shall the future hold, forsooth, when love and duty weave as one?",
-                "activePortrait": "Link"
-            },
-            "12": {
-                "id": 12,
-                "sceneId": 0,
-                "type": "speech",
-                "text": "[Zelda] Be still thy beating heart, and know thy path is steadfast and secure.",
-                "activePortrait": "Zelda"
-            },
-            "13": {
-                "id": 13,
-                "sceneId": 0,
-                "type": "text",
-                "text": "[Narrator] In fervent vows and rising embers, they march as one toward the fray."
-            },
-            "14": {
-                "id": 14,
-                "sceneId": 0,
-                "type": "speech",
-                "text": "[Link] Soon shall I my fate entwine with shadow's curse or star-crossed love!",
-                "activePortrait": "Link"
-            },
-            "15": {
-                "id": 15,
-                "sceneId": 1,
-                "type": "text",
-                "text": "[Narrator] Into the realm Link ventures forth, basked in iridescent hues and myst'ries untold."
-            },
-            "16": {
-                "id": 16,
-                "sceneId": 1,
-                "type": "speech",
-                "text": "[Link] Upon unseen world I gaze, nature's splendors tru'ly do amaze.",
-                "activePortrait": "Link"
-            },
-            "17": {
-                "id": 17,
-                "sceneId": 1,
-                "type": "text",
-                "text": "[Narrator] Whis'ring wind and waters clear, saluteth hero, new-heart'd pioneer."
-            },
-            "18": {
-                "id": 18,
-                "sceneId": 1,
-                "type": "speech",
-                "text": "[Link] In puzzles shrouded, undisguised, be still th'heart of nature's child.",
-                "activePortrait": "Link"
-            },
-            "19": {
-                "id": 19,
-                "sceneId": 1,
-                "type": "text",
-                "text": "[Narrator] Auras vibrant hint at beings hid, array of flora fair'er than any dr'eaming spirit."
-            },
-            "20": {
-                "id": 20,
-                "sceneId": 1,
-                "type": "speech",
-                "text": "[Link] With what delight doth flesh meet beauty's form?",
-                "activePortrait": "Link"
-            },
-            "21": {
-                "id": 21,
-                "sceneId": 1,
-                "type": "text",
-                "text": "[Narrator] Celestial hues, untouched and wond'rous, call deep within the hero's breast."
-            },
-            "22": {
-                "id": 22,
-                "sceneId": 1,
-                "type": "speech",
-                "text": "[Link] Zelda's realm hath charms aplenty, yet truth in beauty's maw I find.",
-                "activePortrait": "Link"
-            },
-            "23": {
-                "id": 23,
-                "sceneId": 1,
-                "type": "text",
-                "text": "[Narrator] As fabled beasts do frolic gleefully, a hidden folk converse in song."
-            },
-            "24": {
-                "id": 24,
-                "sceneId": 1,
-                "type": "speech",
-                "text": "[Link] Their rhythm doth enthrall, the sounds of joy fill my very bowels.",
-                "activePortrait": "Link"
-            },
-            "25": {
-                "id": 25,
-                "sceneId": 1,
-                "type": "text",
-                "text": "[Narrator] Beest it flute or fiddle, nay - the cries of soulful creatures sway."
-            },
-            "26": {
-                "id": 26,
-                "sceneId": 1,
-                "type": "speech",
-                "text": "[Link] In raptured stance I listen, nature's melodic stories unfold.",
-                "activePortrait": "Link"
-            },
-            "27": {
-                "id": 27,
-                "sceneId": 1,
-                "type": "text",
-                "text": "[Narrator] Falling leaves dance harmon'ous, the boughs swaying to the will of the winds."
-            },
-            "28": {
-                "id": 28,
-                "sceneId": 1,
-                "type": "speech",
-                "text": "[Link] Beguile my soul, ye gentle company, yet I must embark anew.",
-                "activePortrait": "Link"
-            },
-            "29": {
-                "id": 29,
-                "sceneId": 1,
-                "type": "text",
-                "text": "[Narrator] As Link takes leave of Nature's ball, fair creatures, lamenting, bid adieu."
-            },
-            "30": {
-                "id": 30,
-                "sceneId": 1,
-                "type": "speech",
-                "text": "[Link] In parting sweet, I vow a journey's end, revisting the past within thy bosom.",
-                "activePortrait": "Link"
-            },
-            "31": {
-                "id": 31,
-                "sceneId": 2,
-                "type": "text",
-                "text": "[Narrator] As starsight flees and the sun doth rise upon yon horizon, a glorious vision doth appear."
-            },
-            "32": {
-                "id": 32,
-                "sceneId": 2,
-                "type": "speech",
-                "text": "[Link] What myst'ry lies before mine eyes, a goddess or a mortal fair?",
-                "activePortrait": "Link"
-            },
-            "33": {
-                "id": 33,
-                "sceneId": 2,
-                "type": "speech",
-                "text": "[Erela] I am Erela, warrior-princess bold, Zora-Elf descendent mine, protector of realms old.",
-                "activePortrait": "Erela"
-            },
-            "34": {
-                "id": 34,
-                "sceneId": 2,
-                "type": "text",
-                "text": "[Narrator] Her regal tone, as thunder's strong, tells tales of courage, fierce and long."
-            },
-            "35": {
-                "id": 35,
-                "sceneId": 2,
-                "type": "speech",
-                "text": "[Link] Thy visage speaks of honor wrought; mine ear awaits thy tale, unbought.",
-                "activePortrait": "Link"
-            },
-            "36": {
-                "id": 36,
-                "sceneId": 2,
-                "type": "speech",
-                "text": "[Erela] Our cities lie in danger's path, desiring aid to banish darkness from our lands.",
-                "activePortrait": "Erela"
-            },
-            "37": {
-                "id": 37,
-                "sceneId": 2,
-                "type": "text",
-                "text": "[Narrator] O noble hearts, entwined in peril's web, now engage in joust with unknown ends."
-            },
-            "38": {
-                "id": 38,
-                "sceneId": 2,
-                "type": "speech",
-                "text": "[Link] Swords I wield and courage find in deepest depths, to thee I declare: allies we bind.",
-                "activePortrait": "Link"
-            },
-            "39": {
-                "id": 39,
-                "sceneId": 2,
-                "type": "speech",
-                "text": "[Erela] Honor shows in boundless well, a light that drowns the darkest hell.",
-                "activePortrait": "Erela"
-            },
-            "40": {
-                "id": 40,
-                "sceneId": 2,
-                "type": "text",
-                "text": "[Narrator] A fiery bond, born of trust, forges 'twixt these dauntless ones."
-            },
-            "41": {
-                "id": 41,
-                "sceneId": 2,
-                "type": "speech",
-                "text": "[Link] In trepidation and desire, I set my journey's fire aflame.",
-                "activePortrait": "Link"
-            },
-            "42": {
-                "id": 42,
-                "sceneId": 2,
-                "type": "speech",
-                "text": "[Erela] And I, by kindling blaze, shall fight 'til evils fade away.",
-                "activePortrait": "Erela"
-            },
-            "43": {
-                "id": 43,
-                "sceneId": 2,
-                "type": "text",
-                "text": "[Narrator] Thus, as sun ascends on high, the fateful pair gaze into skies."
-            },
-            "44": {
-                "id": 44,
-                "sceneId": 2,
-                "type": "speech",
-                "text": "[Link] From Hyrule broad and Zora land, two destinies entwined now stand.",
-                "activePortrait": "Link"
-            },
-            "45": {
-                "id": 45,
-                "sceneId": 3,
-                "type": "text",
-                "text": "[Narrator] As emerald whispers of errant winds embrace yon heroes brave, a shadow dark beseechs their paths, a wily enigma vast."
-            },
-            "46": {
-                "id": 46,
-                "sceneId": 3,
-                "type": "speech",
-                "text": "[Drakiel] Hail, wanderers of realms untried, I welcome thee with secrets' tide.",
-                "activePortrait": "Drakiel"
-            },
-            "47": {
-                "id": 47,
-                "sceneId": 3,
-                "type": "speech",
-                "text": "[Link] Whence came'd this specter luring dim, entangled by his voice and whim?",
-                "activePortrait": "Link"
-            },
-            "48": {
-                "id": 48,
-                "sceneId": 3,
-                "type": "speech",
-                "text": "[Drakiel] I am Drakiel, sorcerer grand, a fiery spirit ruling o'er fair lands.",
-                "activePortrait": "Drakiel"
-            },
-            "49": {
-                "id": 49,
-                "sceneId": 3,
-                "type": "text",
-                "text": "[Narrator] His crimson gaze doth boil and seize, binding hearts with ardent ease."
-            },
-            "50": {
-                "id": 50,
-                "sceneId": 3,
-                "type": "text",
-                "text": "(Erela) Entrancing thou art, a tale of power; whispers tell of your magical tower."
-            },
-            "51": {
-                "id": 51,
-                "sceneId": 3,
-                "type": "speech",
-                "text": "[Drakiel] Enchanted spires, my refuge stands, an ode to knowledge forged by hands.",
-                "activePortrait": "Drakiel"
-            },
-            "52": {
-                "id": 52,
-                "sceneId": 3,
-                "type": "speech",
-                "text": "[Link] A kinship sought, our fates enmeshed; reveal thy heart and purpose, tests.",
-                "activePortrait": "Link"
-            },
-            "53": {
-                "id": 53,
-                "sceneId": 3,
-                "type": "speech",
-                "text": "[Drakiel] In ancient grimoires, hidden deep, a truth is held for those that seek.",
-                "activePortrait": "Drakiel"
-            },
-            "54": {
-                "id": 54,
-                "sceneId": 3,
-                "type": "text",
-                "text": "[Narrator] As entranced spirits, they follow the path to knowledge untold, immersed in mystique."
-            },
-            "55": {
-                "id": 55,
-                "sceneId": 3,
-                "type": "speech",
-                "text": "[Link] Unto this enigma I pledge my skill, a bond united in quest's will.",
-                "activePortrait": "Link"
-            },
-            "56": {
-                "id": 56,
-                "sceneId": 3,
-                "type": "speech",
-                "text": "[Drakiel] And I, the key to secret lore, shall share with thee forevermore.",
-                "activePortrait": "Drakiel"
-            },
-            "57": {
-                "id": 57,
-                "sceneId": 3,
-                "type": "text",
-                "text": "[Narrator] Intriguing threads of sorcery spin, entwining friendship born of kin."
-            },
-            "58": {
-                "id": 58,
-                "sceneId": 3,
-                "type": "speech",
-                "text": "[Erela] Together, blessed, our powers grow, we face the darkness in love's glow.",
-                "activePortrait": "Erela"
-            },
-            "59": {
-                "id": 59,
-                "sceneId": 4,
-                "type": "text",
-                "text": "[Narrator] Amidst this realm of hues divine, a grove of healing whispers kind. A refuge sought in nature's grace, serene and pure, a gentle embrace."
-            },
-            "60": {
-                "id": 60,
-                "sceneId": 4,
-                "type": "speech",
-                "text": "[Link] What manner of haven lies herein, our weary hearts to mend and win?",
-                "activePortrait": "Link"
-            },
-            "61": {
-                "id": 61,
-                "sceneId": 4,
-                "type": "speech",
-                "text": "[Erela] Behold the grove where Solana heals, a balm from nature's verdant fields.",
-                "activePortrait": "Erela"
-            },
-            "62": {
-                "id": 62,
-                "sceneId": 4,
-                "type": "speech",
-                "text": "[Solana] With leaves of jade and blossoms fair, I weave a symphony of care.",
-                "activePortrait": "Solana"
-            },
-            "63": {
-                "id": 63,
-                "sceneId": 4,
-                "type": "text",
-                "text": "[Narrator] A harmonious respite, the soul it calms, with iridescent petals and outstretched palm."
-            },
-            "64": {
-                "id": 64,
-                "sceneId": 4,
-                "type": "speech",
-                "text": "[Link] Dear Solana, spirit adorned in blooms, thy tender aura becomes a boon.",
-                "activePortrait": "Link"
-            },
-            "65": {
-                "id": 65,
-                "sceneId": 4,
-                "type": "speech",
-                "text": "[Solana] I sense within thy heart, tides converge, emotions wild and thoughts diverge.",
-                "activePortrait": "Solana"
-            },
-            "66": {
-                "id": 66,
-                "sceneId": 4,
-                "type": "speech",
-                "text": "[Drakiel] As shadows haunt this realm afar, shall light be forged by kindred stars.",
-                "activePortrait": "Drakiel"
-            },
-            "67": {
-                "id": 67,
-                "sceneId": 4,
-                "type": "text",
-                "text": "[Narrator] A call to peace, they intertwine, within the grove's embrace divine."
-            },
-            "68": {
-                "id": 68,
-                "sceneId": 4,
-                "type": "speech",
-                "text": "[Erela] By thy side, we journey true, to face the tempest, unyielding and stoic.",
-                "activePortrait": "Erela"
-            },
-            "69": {
-                "id": 69,
-                "sceneId": 4,
-                "type": "speech",
-                "text": "[Solana] Together enwreathed, thy spirits renewed, I share my gift, a love pursued.",
-                "activePortrait": "Solana"
-            },
-            "70": {
-                "id": 70,
-                "sceneId": 4,
-                "type": "text",
-                "text": "[Narrator] A gentle affirmation emerge, as in the grove's serene cathedral, souls unite in whispers of hope and unity."
-            },
-            "71": {
-                "id": 71,
-                "sceneId": 4,
-                "type": "speech",
-                "text": "[Link] Emboldened by this sacred space, we face the terrors that await.",
-                "activePortrait": "Link"
-            },
-            "72": {
-                "id": 72,
-                "sceneId": 5,
-                "type": "text",
-                "text": "[Narrator] From sanctuary to shadows vile, a nefarious plot did creep and coil."
-            },
-            "73": {
-                "id": 73,
-                "sceneId": 5,
-                "type": "speech",
-                "text": "[Link] What darkness born dost disrupt my journey, contriving fate two worlds to stray?",
-                "activePortrait": "Link"
-            },
-            "74": {
-                "id": 74,
-                "sceneId": 5,
-                "type": "speech",
-                "text": "[Valdor] Behold the grand architect of chaos, my mastery over the fates displayed!",
-                "activePortrait": "Valdor"
-            },
-            "75": {
-                "id": 75,
-                "sceneId": 5,
-                "type": "text",
-                "text": "[Narrator] As Valdor's nefarious scheme unfurls, its treachery seeks to ensnare the worlds."
-            },
-            "76": {
-                "id": 76,
-                "sceneId": 5,
-                "type": "speech",
-                "text": "[Drakiel] Thou fiend, with eyes affixed with greed, what task dost thou perform with evil's seed?",
-                "activePortrait": "Drakiel"
-            },
-            "77": {
-                "id": 77,
-                "sceneId": 5,
-                "type": "speech",
-                "text": "[Valdor] I wield the portal's magic, a bridge to build, for wealth and power o'er both worlds to wield.",
-                "activePortrait": "Valdor"
-            },
-            "78": {
-                "id": 78,
-                "sceneId": 5,
-                "type": "speech",
-                "text": "[Erela] Thine ambition hast, a serpent's strike, thou shalt ne'er exploit this mortal plights!",
-                "activePortrait": "Erela"
-            },
-            "79": {
-                "id": 79,
-                "sceneId": 5,
-                "type": "speech",
-                "text": "[Solana] O wretched foe, with heart of stone, face our love united, a force unknown.",
-                "activePortrait": "Solana"
-            },
-            "80": {
-                "id": 80,
-                "sceneId": 5,
-                "type": "text",
-                "text": "[Narrator] The heroes' spirits, aflame as one, stood against Valdor, corruption to be undone."
-            },
-            "81": {
-                "id": 81,
-                "sceneId": 5,
-                "type": "speech",
-                "text": "[Link] Thy machinations shalt surely fail, as righteous hearts prevail and darkness quail.",
-                "activePortrait": "Link"
-            },
-            "82": {
-                "id": 82,
-                "sceneId": 5,
-                "type": "speech",
-                "text": "[Valdor] Laughable at best, thy courage blind, yet see how the tempest's rage I bind.",
-                "activePortrait": "Valdor"
-            },
-            "83": {
-                "id": 83,
-                "sceneId": 5,
-                "type": "text",
-                "text": "[Narrator] All seemed lost, as chaos reigned, but these noble souls refuse to be chained."
-            },
-            "84": {
-                "id": 84,
-                "sceneId": 5,
-                "type": "speech",
-                "text": "[Zelda] As wisdom prevails so shall thine end, I summon my strength, my love defend.",
-                "activePortrait": "Zelda"
-            },
-            "85": {
-                "id": 85,
-                "sceneId": 5,
-                "type": "speech",
-                "text": "[Link] Together as one, our fate withstand, our worlds restored by protective hands.",
-                "activePortrait": "Link"
-            },
-            "86": {
-                "id": 86,
-                "sceneId": 5,
-                "type": "text",
-                "text": "[Narrator] In fierce defiance, these heroes bold, stared down a tyrant and fate untold."
-            },
-            "87": {
-                "id": 87,
-                "sceneId": 6,
-                "type": "text",
-                "text": "[Narrator] Upon a yonder path that Nature spawn, the hour of reunion to be dawned."
-            },
-            "88": {
-                "id": 88,
-                "sceneId": 6,
-                "type": "speech",
-                "text": "[Link] My heart dost dance in joy profound, as Zelda's visage now appears around.",
-                "activePortrait": "Link"
-            },
-            "89": {
-                "id": 89,
-                "sceneId": 6,
-                "type": "speech",
-                "text": "[Zelda] Link, thou brave with heart afire, my love is strengthened by trials dire.",
-                "activePortrait": "Zelda"
-            },
-            "90": {
-                "id": 90,
-                "sceneId": 6,
-                "type": "text",
-                "text": "[Narrator] Love's embrace cannot delay, for fickle fate from trials may not sway."
-            },
-            "91": {
-                "id": 91,
-                "sceneId": 6,
-                "type": "speech",
-                "text": "[Erela] Wise lady of fate, thy wisdom shines, thy trials to conquer by thy mind's designs.",
-                "activePortrait": "Erela"
-            },
-            "92": {
-                "id": 92,
-                "sceneId": 6,
-                "type": "speech",
-                "text": "[Zelda] Thine aid and friendship, Erela dear, now lights my resolve, dispels my fear.",
-                "activePortrait": "Zelda"
-            },
-            "93": {
-                "id": 93,
-                "sceneId": 6,
-                "type": "speech",
-                "text": "[Drakiel] Within the tapestry of life, Shakespearean strands entwined with love and strife.",
-                "activePortrait": "Drakiel"
-            },
-            "94": {
-                "id": 94,
-                "sceneId": 6,
-                "type": "text",
-                "text": "[Narrator] A test hath come where wisdom trials, truth or falsehood, danger's mires."
-            },
-            "95": {
-                "id": 95,
-                "sceneId": 6,
-                "type": "speech",
-                "text": "[Zelda] I seek the truth, with cautious grace, a perilous path, my mind embrace.",
-                "activePortrait": "Zelda"
-            },
-            "96": {
-                "id": 96,
-                "sceneId": 6,
-                "type": "text",
-                "text": "[Narrator] Zelda's wisdom, her solace found, sends light upon dark shadows' hallowed ground."
-            },
-            "97": {
-                "id": 97,
-                "sceneId": 6,
-                "type": "speech",
-                "text": "[Solana] A test of duty and of love, thy inner strength shall rise above.",
-                "activePortrait": "Solana"
-            },
-            "98": {
-                "id": 98,
-                "sceneId": 6,
-                "type": "speech",
-                "text": "[Link] Together, Zelda, we shall dare, to face this challenge, our burden share.",
-                "activePortrait": "Link"
-            },
-            "99": {
-                "id": 99,
-                "sceneId": 6,
-                "type": "text",
-                "text": "[Narrator] Reunited by a love that glows, the hero and the sage now face the shadows."
-            },
-            "100": {
-                "id": 100,
-                "sceneId": 7,
-                "type": "text",
-                "text": "[Narrator] As twilight descends, hearts dare entangled be; a web of passion, obligation, love and distress weave they."
-            },
-            "101": {
-                "id": 101,
-                "sceneId": 7,
-                "type": "speech",
-                "text": "[Link] Torn is my spirit betwixt a love divine, duty whispers, yet passions twine.",
-                "activePortrait": "Link"
-            },
-            "102": {
-                "id": 102,
-                "sceneId": 7,
-                "type": "speech",
-                "text": "[Erela] Thy bonds of friendship, true and strong, we share in this, our hearts' song.",
-                "activePortrait": "Erela"
-            },
-            "103": {
-                "id": 103,
-                "sceneId": 7,
-                "type": "speech",
-                "text": "[Drakiel] A heart that yearns for love's pure light, beware the shadows, ever out of sight.",
-                "activePortrait": "Drakiel"
-            },
-            "104": {
-                "id": 104,
-                "sceneId": 7,
-                "type": "speech",
-                "text": "[Zelda] The balance of desire, dare weigh in palm, seeking harmony of love's sweet balm.",
-                "activePortrait": "Zelda"
-            },
-            "105": {
-                "id": 105,
-                "sceneId": 7,
-                "type": "speech",
-                "text": "[Solana] Dear heroes, within each heart's refrain, a choice must live, in bliss or pain.",
-                "activePortrait": "Solana"
-            },
-            "106": {
-                "id": 106,
-                "sceneId": 7,
-                "type": "text",
-                "text": "[Narrator] 'cross time's expanse, tender threads entwine, each heart's refrain, now held in line."
-            },
-            "107": {
-                "id": 107,
-                "sceneId": 7,
-                "type": "speech",
-                "text": "[Link] To choose, to grasp for love's embrace or duty's path, my quest, my race?",
-                "activePortrait": "Link"
-            },
-            "108": {
-                "id": 108,
-                "sceneId": 7,
-                "type": "speech",
-                "text": "[Erela] Seek the truth that lies in thee, passion's fire, which sets thee free.",
-                "activePortrait": "Erela"
-            },
-            "109": {
-                "id": 109,
-                "sceneId": 7,
-                "type": "speech",
-                "text": "[Drakiel] Dark tempest howls through hearts entwined; heed the call of ancient rhyme.",
-                "activePortrait": "Drakiel"
-            },
-            "110": {
-                "id": 110,
-                "sceneId": 7,
-                "type": "speech",
-                "text": "[Zelda] Thine path thou choose, betwixt hearts storied, follow truth and claim thine glory.",
-                "activePortrait": "Zelda"
-            },
-            "111": {
-                "id": 111,
-                "sceneId": 7,
-                "type": "speech",
-                "text": "[Solana] Through twisted fates, a web of love, each heart doth strive to soar above.",
-                "activePortrait": "Solana"
-            },
-            "112": {
-                "id": 112,
-                "sceneId": 7,
-                "type": "text",
-                "text": "[Narrator] O, tangled threads in twilight's gleam, spinning ever toward truth unforeseen."
-            },
-            "113": {
-                "id": 113,
-                "sceneId": 8,
-                "type": "text",
-                "text": "[Narrator] Lo, a tempest brews, of love's betrayal; fierce vengeance awakes, sweet hearts assailed."
-            },
-            "114": {
-                "id": 114,
-                "sceneId": 8,
-                "type": "speech",
-                "text": "[Link] Valdor, thine schemes beset the night, I'll see thee vanquished, restore the light.",
-                "activePortrait": "Link"
-            },
-            "115": {
-                "id": 115,
-                "sceneId": 8,
-                "type": "speech",
-                "text": "[Zelda] Beseech the heavens, thy sinful plot, stand with courage, we falter not.",
-                "activePortrait": "Zelda"
-            },
-            "116": {
-                "id": 116,
-                "sceneId": 8,
-                "type": "speech",
-                "text": "[Erela] Sworn I have to protect my realm, thou shall perish, thine power quelled.",
-                "activePortrait": "Erela"
-            },
-            "117": {
-                "id": 117,
-                "sceneId": 8,
-                "type": "speech",
-                "text": "[Drakiel] The arcane powers that once ye sought, shall be the force by which ye're caught.",
-                "activePortrait": "Drakiel"
-            },
-            "118": {
-                "id": 118,
-                "sceneId": 8,
-                "type": "speech",
-                "text": "[Solana] Kindred spirits reclaim the skies; shine truth and light upon your lies.",
-                "activePortrait": "Solana"
-            },
-            "119": {
-                "id": 119,
-                "sceneId": 8,
-                "type": "text",
-                "text": "[Narrator] War the storm, love the lightning; fury, intertwined hearts igniting."
-            },
-            "120": {
-                "id": 120,
-                "sceneId": 8,
-                "type": "speech",
-                "text": "[Valdor] Deluded, ye heroes brave, thy fates in shadow, darkness I crave.",
-                "activePortrait": "Valdor"
-            },
-            "121": {
-                "id": 121,
-                "sceneId": 8,
-                "type": "speech",
-                "text": "[Link] Though sorrow hath ta'en us in its grasp, love's ember, too, shall brightly last.",
-                "activePortrait": "Link"
-            },
-            "122": {
-                "id": 122,
-                "sceneId": 8,
-                "type": "speech",
-                "text": "[Erela] In loyalty's name, we rise together; the tides may turn, but not our tether.",
-                "activePortrait": "Erela"
-            },
-            "123": {
-                "id": 123,
-                "sceneId": 8,
-                "type": "speech",
-                "text": "[Drakiel] Betrayal's bane shall be thy curse; the serpent's kiss, secrets perverse.",
-                "activePortrait": "Drakiel"
-            },
-            "124": {
-                "id": 124,
-                "sceneId": 8,
-                "type": "speech",
-                "text": "[Zelda] A love reborn in light's embrace, thy malice no longer our hearts to chase.",
-                "activePortrait": "Zelda"
-            },
-            "125": {
-                "id": 125,
-                "sceneId": 8,
-                "type": "speech",
-                "text": "[Solana] Hearts united, untangled, free; healing the bonds, a new decree.",
-                "activePortrait": "Solana"
-            },
-            "126": {
-                "id": 126,
-                "sceneId": 8,
-                "type": "text",
-                "text": "[Narrator] To fight the anguish, love's lament, o clash of hearts, divine torment."
-            },
-            "127": {
-                "id": 127,
-                "sceneId": 9,
-                "type": "text",
-                "text": "[Narrator] Mark, the pulsing portal, threshold of hearts unfathomed; whispers of loves eternal hugged by shadows."
-            },
-            "128": {
-                "id": 128,
-                "sceneId": 9,
-                "type": "speech",
-                "text": "[Link] Hark, beloved friends, these realms be now entwined; our hearts did set in motion love's celestial design.",
-                "activePortrait": "Link"
-            },
-            "129": {
-                "id": 129,
-                "sceneId": 9,
-                "type": "speech",
-                "text": "[Zelda] Aye, passions converge like stars, oh tender alignment; secrets of yon portal conjure destinies divine.",
-                "activePortrait": "Zelda"
-            },
-            "130": {
-                "id": 130,
-                "sceneId": 9,
-                "type": "speech",
-                "text": "[Erela] Boundless are our choices, through this enchanted doorway; connections forged in fire, the celestial firmament's decree.",
-                "activePortrait": "Erela"
-            },
-            "131": {
-                "id": 131,
-                "sceneId": 9,
-                "type": "speech",
-                "text": "[Drakiel] To each, our destiny awaits, the veil of light ascended; the mystic arts empower love's eternal prism.",
-                "activePortrait": "Drakiel"
-            },
-            "132": {
-                "id": 132,
-                "sceneId": 9,
-                "type": "speech",
-                "text": "[Solana] In blooming hues of passion, love's divine refracting; the gentle touch of fate does guide our hearts.",
-                "activePortrait": "Solana"
-            },
-            "133": {
-                "id": 133,
-                "sceneId": 9,
-                "type": "text",
-                "text": "[Narrator] Ensnared in choice, wherefore lies their truest ardor; traversing cosmic expanse, love's infinite corridor."
-            },
-            "134": {
-                "id": 134,
-                "sceneId": 9,
-                "type": "speech",
-                "text": "[Link] Must each heart now decide its path, in tangled tapestry? Fates, paint thine vision, guide me to love's certainty.",
-                "activePortrait": "Link"
-            },
-            "135": {
-                "id": 135,
-                "sceneId": 9,
-                "type": "speech",
-                "text": "[Zelda] Stand I with thee, in solemn trust, sweet promise unbroken; love's guiding star shall lead me through the unknown.",
-                "activePortrait": "Zelda"
-            },
-            "136": {
-                "id": 136,
-                "sceneId": 9,
-                "type": "speech",
-                "text": "[Erela] Brave the tempest's loving dance, in search for my heart's solace; the portal's brilliance beckons me forth, entranced.",
-                "activePortrait": "Erela"
-            },
-            "137": {
-                "id": 137,
-                "sceneId": 9,
-                "type": "speech",
-                "text": "[Drakiel] The path, enriched in magic's lore, shall draw me toward passion; entwined by fate's embrace, I yearn to find my truth.",
-                "activePortrait": "Drakiel"
-            },
-            "138": {
-                "id": 138,
-                "sceneId": 9,
-                "type": "speech",
-                "text": "[Solana] Flourish love's buds, within the souls of kindred heat; our choices shall converge as one, where destiny and love entreat.",
-                "activePortrait": "Solana"
-            },
-            "139": {
-                "id": 139,
-                "sceneId": 9,
-                "type": "text",
-                "text": "[Narrator] Each heart, a voyager, through this cosmic rendezvous; their ardor spans the vast, loves eternal carousel renewed."
-            },
-            "140": {
-                "id": 140,
-                "sceneId": 10,
-                "type": "text",
-                "text": "[Narrator] In this chamber of constellated dreams, the heroes, entwined in passion's cosmic embrace, stand upon love's precipice, poised to leap."
-            },
-            "141": {
-                "id": 141,
-                "sceneId": 10,
-                "type": "speech",
-                "text": "[Link] My heart doth soar as Gryphon wings, in quest of connection pure; the heavens shall bear witness as I choose, love's most ardent allure.",
-                "activePortrait": "Link"
-            },
-            "142": {
-                "id": 142,
-                "sceneId": 10,
-                "type": "speech",
-                "text": "[Zelda] Thou hast journeyed far, brave hero, both in body and spirit; let this choice serve as a guide, thy destiny's worthy merit.",
-                "activePortrait": "Zelda"
-            },
-            "143": {
-                "id": 143,
-                "sceneId": 10,
-                "type": "speech",
-                "text": "[Erela] Pray, take hold of thy heart, valiant warrior; embrace thy chosen passion, and let it illuminate thy soul's direction.",
-                "activePortrait": "Erela"
-            },
-            "144": {
-                "id": 144,
-                "sceneId": 10,
-                "type": "speech",
-                "text": "[Drakiel] Journey freely in love's eternal chambers, for yon cosmic map unveils now romance's truest rapture.",
-                "activePortrait": "Drakiel"
-            },
-            "145": {
-                "id": 145,
-                "sceneId": 10,
-                "type": "speech",
-                "text": "[Solana] Fortify thy heart, sweet traveler, and in the balm of love's embrace, find solace that doth transcend the chasm of time and space.",
-                "activePortrait": "Solana"
-            },
-            "146": {
-                "id": 146,
-                "sceneId": 10,
-                "type": "text",
-                "text": "[Narrator] And so, amidst the shimmering iridescence of that celestial tapestry, the decision doth descend, and love's warm fire ignites."
-            },
-            "147": {
-                "id": 147,
-                "sceneId": 10,
-                "type": "speech",
-                "text": "[Link] At last, my choice is made, the heavens shall rejoice; 'tis to ___, my heart doth call, the melody of a thousand angelic voices.",
-                "activePortrait": "Link"
-            },
-            "148": {
-                "id": 148,
-                "sceneId": 10,
-                "type": "text",
-                "text": "[Narrator] United in love's embrace, the chosen soul entwines with thine own; the cosmic dance of hearts doth sway in celestial harmony, and fortune's favor smiles upon their union."
-            },
-            "149": {
-                "id": 149,
-                "sceneId": 10,
-                "type": "speech",
-                "text": "[Zelda] Thy heart's divine chorus has called me, as a siren's song through the mists of eternity, and with love's ardent fire, we burn together as one.",
-                "activePortrait": "Zelda"
-            },
-            "150": {
-                "id": 150,
-                "sceneId": 11,
-                "type": "text",
-                "text": "[Narrator] And lo, as the fateful strands of Fate's web fall into their rightful place, the worlds intertwine in harmonious union, echoing the ardor within the hearts of our intrepid heroes."
-            },
-            "151": {
-                "id": 151,
-                "sceneId": 11,
-                "type": "speech",
-                "text": "[Link] Behold, as our love shines forth like the radiant sun, dispelling the shadows that once claimed the realms with a tyrant's grip.",
-                "activePortrait": "Link"
-            },
-            "152": {
-                "id": 152,
-                "sceneId": 11,
-                "type": "speech",
-                "text": "[Zelda] Thy love hast conquered the trials of darkness, and our souls now are intertwined; together, we shall kindle the fires of a glorious future, ever burning, never to wane.",
-                "activePortrait": "Zelda"
-            },
-            "153": {
-                "id": 153,
-                "sceneId": 11,
-                "type": "speech",
-                "text": "[Zelda] Through the strength of our love, and the bonds that have bound us as allies, may the two kingdoms rise anew, flourishing in the warm embrace of peace.",
-                "activePortrait": "Zelda"
-            },
-            "154": {
-                "id": 154,
-                "sceneId": 11,
-                "type": "speech",
-                "text": "[Erela] Thy valor and unwavering love hath ushered in a new dawn for our worlds; may a golden age of unity blossom, and span a thousand sunsets, bound in prosperity and joy.",
-                "activePortrait": "Erela"
-            },
-            "155": {
-                "id": 155,
-                "sceneId": 11,
-                "type": "speech",
-                "text": "[Drakiel] Love's tenacious spirit doth conquer wicked machinations, and our united vision beams brightly as a beacon of hope, guiding the kingdoms towards their shared destiny.",
-                "activePortrait": "Drakiel"
-            },
-            "156": {
-                "id": 156,
-                "sceneId": 11,
-                "type": "speech",
-                "text": "[Solana] Our hearts, now bound in triumphant unity, shall nourish the soil of our realms with new hope, as the elixir of love infuses every blooming leaf, tree, and flower with the tender touch of life.",
-                "activePortrait": "Solana"
-            },
-            "157": {
-                "id": 157,
-                "sceneId": 11,
-                "type": "text",
-                "text": "[Narrator] And thus, with love conquering all, the heroes usher forth a resplendent age of unity and prosperity; their tale of ardent passion and unyielding devotion, now eternally woven into the fabric of the cosmos. [END]"
-            }
+        {
+          "id": 2,
+          "name": "Erela",
+          "description": "potential love interest, female, Zora-Elf hybrid, 21, bisexual, warrior-princess, regal, fierce, confident. Likes swimming, training, music, sunsets; dislikes dishonesty, cruelty, arrogance. Seeks to protect her realm from dark forces.",
+          "voice": {
+            "type": "elevenAI",
+            "voiceId": "AZnzlk1XvdvUeBnXmlld",
+            "name": "Domi",
+            "gender": "female"
+          },
+          "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/9590bfdc-e6dd-466f-79a9-e190e577dd00/public"
+        },
+        {
+          "id": 3,
+          "name": "Drakiel",
+          "description": "potential love interest, male, half-dragon, 24, gay, enigmatic sorcerer, witty, suave, smoldering. Likes magic, literature, riddles, collecting artifacts; dislikes gossip, ignorance, small-mindedness. Has a deep connection to a powerful artifact.",
+          "voice": {
+            "type": "elevenAI",
+            "voiceId": "VR6AewLTigWG4xSOukaG",
+            "name": "Arnold",
+            "gender": "male"
+          },
+          "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/2eb7a2de-b253-4cdb-9ecc-0e35b41e0600/public"
+        },
+        {
+          "id": 4,
+          "name": "Solana",
+          "description": "potential love interest, genderfluid, human-flower hybrid, 18, pansexual, ethereal, empathic, gentle, nurturing. Likes sunlight, nature, art, harmony; dislikes darkness, conflict, cruelty. Healer with the power to soothe the souls of others.",
+          "voice": {
+            "type": "elevenAI",
+            "voiceId": "bKUYZHcT0xhZ9jYzeF1U",
+            "name": "Solana",
+            "gender": "female"
+          },
+          "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/fe6a04f5-ef2e-4c45-7dad-d87c91172000/public"
+        },
+        {
+          "id": 5,
+          "name": "Valdor",
+          "description": "antagonist, male, human, 37, straight, power-hungry, cunning, manipulative. Likes power, fame, luxury, himself; dislikes failure, humility, unity. Seeks to exploit the portal for his personal gain.",
+          "voice": {
+            "type": "elevenAI",
+            "voiceId": "tN2IM1I5T32AbT8RQpEI",
+            "name": "Valdor",
+            "gender": "male"
+          },
+          "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/1e06d04f-c0db-4fdd-c8cc-af6dd4c7a300/public"
         }
+      ],
+      "scenes": [
+        {
+          "id": 0,
+          "name": "Link embarks on his fateful journey",
+          "summary": "As the sun rises, Link initiates his fateful journey by entering the portal. Zelda comforts him, and they express their love and duty. Upon arriving, Link is exposed to a new world filled with enchanting flora and fauna. The future unfolds as he must now choose between love and duty.",
+          "location": "Cosmic Nexus, a bridge between dimensions, veiled by the surreal hues of an ethereal dawn.",
+          "background": {
+            "name": "Cosmic Nexus, a bridge between dimensions, veiled by the surreal hues of an ethereal dawn.",
+            "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/b8c143ce-562d-4d5b-298e-04ed77639300/public"
+          },
+          "music": {
+            "type": "youtube",
+            "name": "Hans Zimmer - Time (Inception Soundtrack) (Instrumental)",
+            "info": "",
+            "uri": "LqRZ2_w56U0",
+            "loop": true
+          },
+          "script": "[Narrator] The hallowed sun ascends o'er Hyrule, a dawning day embarks.\n[Link] Wid'n eyes I gaze upon,'t sky, the vast unknowe awaiteth me.\n[Narrator] Eager spirit hath consumed, int'r celestial portal Link steps forth.\n[Link] Fretful not, f'r courage doth lead, whilst duty swift obeys.\n[Narrator] The realm anew bestows sights unseen, a tapestry of myst'ry.\n[Zelda] Link, val'rous hero, shed not woe; against the odds success is thine.\n[Link] Pray hold thy words, fair Zelda, upon my breast, a beacon bright.\n[Narrator] Onward doth our hero strive, love and honor intertwined as one.\n[Link] Wherefore might destin'e take its course, I shall not swerve anon.\n[Link] I, Link, pledge my strength and ardor true.\n[Narrator] Thus spaketh hero to noble dame, by bond of warrior's oath conjoined.\n[Link] What shall the future hold, forsooth, when love and duty weave as one?\n[Zelda] Be still thy beating heart, and know thy path is steadfast and secure.\n[Narrator] In fervent vows and rising embers, they march as one toward the fray.\n[Link] Soon shall I my fate entwine with shadow's curse or star-crossed love!"
+        },
+        {
+          "id": 1,
+          "name": "Link encounters the enchanting flora and fauna of this alternate dimension",
+          "summary": "Link marvels at the beauty of the alternate dimension's flora and fauna. The mesmerizing array of colors and encounters with enchanting creatures leave him awestruck, though he knows he must continue to follow his path.",
+          "location": "Ethereal Twilight Grove, verdant and lush, brimming with vibrant foliage and creatures unseen, bathed in a dreamy twilight haze.",
+          "background": {
+            "name": "Ethereal Twilight Grove, verdant and lush, brimming with vibrant foliage and creatures unseen, bathed in a dreamy twilight haze.",
+            "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/6e58a51e-52ec-422c-79b9-1bbd84359300/public"
+          },
+          "music": {
+            "type": "youtube",
+            "name": "Ludovico Einaudi - Night (Instrumental)",
+            "info": "",
+            "uri": "Tu96yevGMEA",
+            "loop": true
+          },
+          "script": "[Narrator] Into the realm Link ventures forth, basked in iridescent hues and myst'ries untold.\n[Link] Upon unseen world I gaze, nature's splendors tru'ly do amaze.\n[Narrator] Whis'ring wind and waters clear, saluteth hero, new-heart'd pioneer.\n[Link] In puzzles shrouded, undisguised, be still th'heart of nature's child.\n[Narrator] Auras vibrant hint at beings hid, array of flora fair'er than any dr'eaming spirit.\n[Link] With what delight doth flesh meet beauty's form?\n[Narrator] Celestial hues, untouched and wond'rous, call deep within the hero's breast.\n[Link] Zelda's realm hath charms aplenty, yet truth in beauty's maw I find.\n[Narrator] As fabled beasts do frolic gleefully, a hidden folk converse in song.\n[Link] Their rhythm doth enthrall, the sounds of joy fill my very bowels.\n[Narrator] Beest it flute or fiddle, nay - the cries of soulful creatures sway.\n[Link] In raptured stance I listen, nature's melodic stories unfold.\n[Narrator] Falling leaves dance harmon'ous, the boughs swaying to the will of the winds.\n[Link] Beguile my soul, ye gentle company, yet I must embark anew.\n[Narrator] As Link takes leave of Nature's ball, fair creatures, lamenting, bid adieu.\n[Link] In parting sweet, I vow a journey's end, revisting the past within thy bosom."
+        },
+        {
+          "id": 2,
+          "name": "Link meets the regal Erela, a testament to passion and strength",
+          "summary": "Link encounters Erela, the fierce warrior-princess. Their passions for defending their realms and loved ones unite them, forging a powerful alliance and a bond of trust. Together, they vow to protect their worlds and face the ever-looming threats.",
+          "location": "The Radiant Palace Courtyard, ethereal and majestic, adorned with cascading waterfalls, intricate yet timeless architecture, statues of legendary warriors, and lush, sovereign gardens.",
+          "background": {
+            "name": "The Radiant Palace Courtyard, ethereal and majestic, adorned with cascading waterfalls, intricate yet timeless architecture, statues of legendary warriors, and lush, sovereign gardens.",
+            "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/622e89cc-6c88-467a-e1cb-25d576e54200/public"
+          },
+          "music": {
+            "type": "youtube",
+            "name": "Hans Zimmer - Time (Instrumental)",
+            "info": "",
+            "uri": "8-wAvbxB7D8",
+            "loop": true
+          },
+          "script": "[Narrator] As starsight flees and the sun doth rise upon yon horizon, a glorious vision doth appear.\n[Link] What myst'ry lies before mine eyes, a goddess or a mortal fair?\n[Erela] I am Erela, warrior-princess bold, Zora-Elf descendent mine, protector of realms old.\n[Narrator] Her regal tone, as thunder's strong, tells tales of courage, fierce and long.\n[Link] Thy visage speaks of honor wrought; mine ear awaits thy tale, unbought.\n[Erela] Our cities lie in danger's path, desiring aid to banish darkness from our lands.\n[Narrator] O noble hearts, entwined in peril's web, now engage in joust with unknown ends.\n[Link] Swords I wield and courage find in deepest depths, to thee I declare: allies we bind.\n[Erela] Honor shows in boundless well, a light that drowns the darkest hell.\n[Narrator] A fiery bond, born of trust, forges 'twixt these dauntless ones.\n[Link] In trepidation and desire, I set my journey's fire aflame.\n[Erela] And I, by kindling blaze, shall fight 'til evils fade away.\n[Narrator] Thus, as sun ascends on high, the fateful pair gaze into skies.\n[Link] From Hyrule broad and Zora land, two destinies entwined now stand."
+        },
+        {
+          "id": 3,
+          "name": "Link discovers the mystical secrets of the enigmatic Drakiel, a sorcerer with a fiery demeanor",
+          "summary": "The enigmatic sorcerer, Drakiel, appears before Link and Erela, presenting unfathomable knowledge and ancient secrets. Intrigued by his mystical aura, they follow him to the Twilight Tower's Library. United in a newfound bond of friendship and arcane wisdom, they prepare to face the darkness together.",
+          "location": "The Twilight Tower's Library, a grand and ancient chamber, walls adorned with countless tomes, scrolls and artifacts, an air of mystery and power lingering within, ceiling gleaming with celestial constellations.",
+          "background": {
+            "name": "The Twilight Tower's Library, a grand and ancient chamber, walls adorned with countless tomes, scrolls and artifacts, an air of mystery and power lingering within, ceiling gleaming with celestial constellations.",
+            "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/ec30419b-8af5-4b06-360a-185c9dd40500/public"
+          },
+          "music": {
+            "type": "youtube",
+            "name": "Ludovico Einaudi - Nuvole Bianche (Instrumental)",
+            "info": "",
+            "uri": "VUCI-1vIbUo",
+            "loop": true
+          },
+          "script": "[Narrator] As emerald whispers of errant winds embrace yon heroes brave, a shadow dark beseechs their paths, a wily enigma vast.\n[Drakiel] Hail, wanderers of realms untried, I welcome thee with secrets' tide.\n[Link] Whence came'd this specter luring dim, entangled by his voice and whim?\n[Drakiel] I am Drakiel, sorcerer grand, a fiery spirit ruling o'er fair lands.\n[Narrator] His crimson gaze doth boil and seize, binding hearts with ardent ease.\n(Erela) Entrancing thou art, a tale of power; whispers tell of your magical tower.\n[Drakiel] Enchanted spires, my refuge stands, an ode to knowledge forged by hands.\n[Link] A kinship sought, our fates enmeshed; reveal thy heart and purpose, tests.\n[Drakiel] In ancient grimoires, hidden deep, a truth is held for those that seek.\n[Narrator] As entranced spirits, they follow the path to knowledge untold, immersed in mystique.\n[Link] Unto this enigma I pledge my skill, a bond united in quest's will.\n[Drakiel] And I, the key to secret lore, shall share with thee forevermore.\n[Narrator] Intriguing threads of sorcery spin, entwining friendship born of kin.\n[Erela] Together, blessed, our powers grow, we face the darkness in love's glow."
+        },
+        {
+          "id": 4,
+          "name": "Link enters the healing grove of Solana, a sanctuary for the gentle spirit",
+          "summary": "The heroes stumble upon the soothing embrace of the Healing Grove, where they meet the gentle and nurturing Solana. As their emotional tides converge, they find sanctuary and respite amidst the tranquil sanctuary, renewing their spirits, and forging forward, united in their determination to face the darkness.",
+          "location": "The Healing Grove, a tranquil sanctuary nestled within the heart of the forest, imbued with light and nature's essence, soothing effulgence illuminating the gentle flora, roots entwine to create a warm and harmonious haven.",
+          "background": {
+            "name": "The Healing Grove, a tranquil sanctuary nestled within the heart of the forest, imbued with light and nature's essence, soothing effulgence illuminating the gentle flora, roots entwine to create a warm and harmonious haven.",
+            "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/9843f223-ea26-4a0f-ac4f-3e116d32aa00/public"
+          },
+          "music": {
+            "type": "youtube",
+            "name": "Yiruma - River Flows In You (Instrumental)",
+            "info": "",
+            "uri": "NPBCbTZWnq0",
+            "loop": true
+          },
+          "script": "[Narrator] Amidst this realm of hues divine, a grove of healing whispers kind. A refuge sought in nature's grace, serene and pure, a gentle embrace.\n[Link] What manner of haven lies herein, our weary hearts to mend and win?\n[Erela] Behold the grove where Solana heals, a balm from nature's verdant fields.\n[Solana] With leaves of jade and blossoms fair, I weave a symphony of care.\n[Narrator] A harmonious respite, the soul it calms, with iridescent petals and outstretched palm.\n[Link] Dear Solana, spirit adorned in blooms, thy tender aura becomes a boon.\n[Solana] I sense within thy heart, tides converge, emotions wild and thoughts diverge.\n[Drakiel] As shadows haunt this realm afar, shall light be forged by kindred stars.\n[Narrator] A call to peace, they intertwine, within the grove's embrace divine.\n[Erela] By thy side, we journey true, to face the tempest, unyielding and stoic.\n[Solana] Together enwreathed, thy spirits renewed, I share my gift, a love pursued.\n[Narrator] A gentle affirmation emerge, as in the grove's serene cathedral, souls unite in whispers of hope and unity.\n[Link] Emboldened by this sacred space, we face the terrors that await."
+        },
+        {
+          "id": 5,
+          "name": "Link stumbles upon Valdor's nefarious scheme to exploit the fate of two worlds",
+          "summary": "The heroes discover Valdor's villainous plan to exploit the power of the portal to control both kingdoms. Undaunted, they stand against him, their bonds of love and friendship shining like beacons in the darkness. They must navigate the treacherous labyrinth of Valdor's malice and unite to defend their worlds against the looming specter of tyranny.",
+          "location": "Dark Chamber, gothic throne room, where creeping shadows seep through cold stone walls, stained glass windows billow with darkness, and Valdor plots to exploit the vulnerable realms with sinister delight.",
+          "background": {
+            "name": "Dark Chamber, gothic throne room, where creeping shadows seep through cold stone walls, stained glass windows billow with darkness, and Valdor plots to exploit the vulnerable realms with sinister delight.",
+            "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/60f9b926-8fc0-4dc1-95fa-ffdb9592ca00/public"
+          },
+          "music": {
+            "type": "youtube",
+            "name": "Mozart - Requiem: Lacrimosa (Instrumental)",
+            "info": "",
+            "uri": "k1-TrAvp_xs",
+            "loop": true
+          },
+          "script": "[Narrator] From sanctuary to shadows vile, a nefarious plot did creep and coil.\n[Link] What darkness born dost disrupt my journey, contriving fate two worlds to stray?\n[Valdor] Behold the grand architect of chaos, my mastery over the fates displayed!\n[Narrator] As Valdor's nefarious scheme unfurls, its treachery seeks to ensnare the worlds.\n[Drakiel] Thou fiend, with eyes affixed with greed, what task dost thou perform with evil's seed?\n[Valdor] I wield the portal's magic, a bridge to build, for wealth and power o'er both worlds to wield.\n[Erela] Thine ambition hast, a serpent's strike, thou shalt ne'er exploit this mortal plights!\n[Solana] O wretched foe, with heart of stone, face our love united, a force unknown.\n[Narrator] The heroes' spirits, aflame as one, stood against Valdor, corruption to be undone.\n[Link] Thy machinations shalt surely fail, as righteous hearts prevail and darkness quail.\n[Valdor] Laughable at best, thy courage blind, yet see how the tempest's rage I bind.\n[Narrator] All seemed lost, as chaos reigned, but these noble souls refuse to be chained.\n[Zelda] As wisdom prevails so shall thine end, I summon my strength, my love defend.\n[Link] Together as one, our fate withstand, our worlds restored by protective hands.\n[Narrator] In fierce defiance, these heroes bold, stared down a tyrant and fate untold."
+        },
+        {
+          "id": 6,
+          "name": "Link reunites with Zelda, who faces a test of her wisdom and resolve",
+          "summary": "Link is finally reunited with Zelda, and they join forces with the other heroes. Together, they face a test of Zelda's wisdom and resolve. This scene showcases the power of love and friendship in the face of adversity, as the characters prepare to confront even greater challenges ahead.",
+          "location": "Twilight Glade, a magical realm caught between daylight and nighttime, where glowing, dark violet petals scatter upon the mystical path, and golden rays of sunlight shimmer through trees that stretch towards the heavens.",
+          "background": {
+            "name": "Twilight Glade, a magical realm caught between daylight and nighttime, where glowing, dark violet petals scatter upon the mystical path, and golden rays of sunlight shimmer through trees that stretch towards the heavens.",
+            "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/49b6afcf-6874-48c0-6ec3-c5847de8e500/public"
+          },
+          "music": {
+            "type": "youtube",
+            "name": "Beethoven - Moonlight Sonata (Instrumental)",
+            "info": "",
+            "uri": "4591dCHe_sE",
+            "loop": true
+          },
+          "script": "[Narrator] Upon a yonder path that Nature spawn, the hour of reunion to be dawned.\n[Link] My heart dost dance in joy profound, as Zelda's visage now appears around.\n[Zelda] Link, thou brave with heart afire, my love is strengthened by trials dire.\n[Narrator] Love's embrace cannot delay, for fickle fate from trials may not sway.\n[Erela] Wise lady of fate, thy wisdom shines, thy trials to conquer by thy mind's designs.\n[Zelda] Thine aid and friendship, Erela dear, now lights my resolve, dispels my fear.\n[Drakiel] Within the tapestry of life, Shakespearean strands entwined with love and strife.\n[Narrator] A test hath come where wisdom trials, truth or falsehood, danger's mires.\n[Zelda] I seek the truth, with cautious grace, a perilous path, my mind embrace.\n[Narrator] Zelda's wisdom, her solace found, sends light upon dark shadows' hallowed ground.\n[Solana] A test of duty and of love, thy inner strength shall rise above.\n[Link] Together, Zelda, we shall dare, to face this challenge, our burden share.\n[Narrator] Reunited by a love that glows, the hero and the sage now face the shadows."
+        },
+        {
+          "id": 7,
+          "name": "A tangled web of emotion weaves the hearts of the heroes, binding them in desire and duty",
+          "summary": "In this scene, the heroes confront the tangled web of emotions, entwining their hearts in both desire and duty. As each character faces their own inner turmoil, they must seek to find truth and balance amidst the captivating allure of both love and obligation, preparing for the trials ahead.",
+          "location": "Lover's Cove, a secluded, romantic grotto surrounded by glittering, moonlit waters, adorned with shimmering gemstones embedded within the walls, casting a gentle glow on the tender entanglements of love and duty that unfolds in this sacred space.",
+          "background": {
+            "name": "Lover's Cove, a secluded, romantic grotto surrounded by glittering, moonlit waters, adorned with shimmering gemstones embedded within the walls, casting a gentle glow on the tender entanglements of love and duty that unfolds in this sacred space.",
+            "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/47508992-0098-456e-61d0-a306d1f05900/public"
+          },
+          "music": {
+            "type": "youtube",
+            "name": "Tchaikovsky - Serenade for Strings in C Major (Instrumental)",
+            "info": "",
+            "uri": "phBThlPTBEg",
+            "loop": true
+          },
+          "script": "[Narrator] As twilight descends, hearts dare entangled be; a web of passion, obligation, love and distress weave they.\n[Link] Torn is my spirit betwixt a love divine, duty whispers, yet passions twine.\n[Erela] Thy bonds of friendship, true and strong, we share in this, our hearts' song.\n[Drakiel] A heart that yearns for love's pure light, beware the shadows, ever out of sight.\n[Zelda] The balance of desire, dare weigh in palm, seeking harmony of love's sweet balm.\n[Solana] Dear heroes, within each heart's refrain, a choice must live, in bliss or pain.\n[Narrator] 'cross time's expanse, tender threads entwine, each heart's refrain, now held in line.\n[Link] To choose, to grasp for love's embrace or duty's path, my quest, my race?\n[Erela] Seek the truth that lies in thee, passion's fire, which sets thee free.\n[Drakiel] Dark tempest howls through hearts entwined; heed the call of ancient rhyme.\n[Zelda] Thine path thou choose, betwixt hearts storied, follow truth and claim thine glory.\n[Solana] Through twisted fates, a web of love, each heart doth strive to soar above.\n[Narrator] O, tangled threads in twilight's gleam, spinning ever toward truth unforeseen."
+        },
+        {
+          "id": 8,
+          "name": "Link and his companions confront Valdor in a clash of love, betrayal, and vengeance",
+          "summary": "In this scene, the heroes confront Valdor in a fierce battle, where the stakes are not only their worlds but their very hearts. Bound together by love, friendship, and duty, they bravely face the darkness and the treacherous, poisoned web of Valdor's desires. As love and betrayal clash, they seek to restore balance and light to both realms.",
+          "location": "The Heart of Desolation, a stark, desolate realm at the magical nexus between worlds, where the ripples of love and betrayal course through the very air. Jagged, obsidian-like rock formations suspend against a swirling abyss of violet and black, battered by whirling winds and crackling lightning.",
+          "background": {
+            "name": "The Heart of Desolation, a stark, desolate realm at the magical nexus between worlds, where the ripples of love and betrayal course through the very air. Jagged, obsidian-like rock formations suspend against a swirling abyss of violet and black, battered by whirling winds and crackling lightning.",
+            "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/b3e2e10a-bb11-4ff4-2fdf-d5bfe5a31200/public"
+          },
+          "music": {
+            "type": "youtube",
+            "name": "Mozart - Requiem Mass in D minor, Lacrimosa (Instrumental)",
+            "info": "",
+            "uri": "pYQa4XLwtGM",
+            "loop": true
+          },
+          "script": "[Narrator] Lo, a tempest brews, of love's betrayal; fierce vengeance awakes, sweet hearts assailed.\n[Link] Valdor, thine schemes beset the night, I'll see thee vanquished, restore the light.\n[Zelda] Beseech the heavens, thy sinful plot, stand with courage, we falter not.\n[Erela] Sworn I have to protect my realm, thou shall perish, thine power quelled.\n[Drakiel] The arcane powers that once ye sought, shall be the force by which ye're caught.\n[Solana] Kindred spirits reclaim the skies; shine truth and light upon your lies.\n[Narrator] War the storm, love the lightning; fury, intertwined hearts igniting.\n[Valdor] Deluded, ye heroes brave, thy fates in shadow, darkness I crave.\n[Link] Though sorrow hath ta'en us in its grasp, love's ember, too, shall brightly last.\n[Erela] In loyalty's name, we rise together; the tides may turn, but not our tether.\n[Drakiel] Betrayal's bane shall be thy curse; the serpent's kiss, secrets perverse.\n[Zelda] A love reborn in light's embrace, thy malice no longer our hearts to chase.\n[Solana] Hearts united, untangled, free; healing the bonds, a new decree.\n[Narrator] To fight the anguish, love's lament, o clash of hearts, divine torment."
+        },
+        {
+          "id": 9,
+          "name": "The true magic of the portal unveils a gateway to infinite romantic possibilities",
+          "summary": "In this scene, the heroes discover that the portal holds the key to unlock their romantic destinies, offering them the possibility to explore infinite connections to their truest desires. As they stand before the portal's mesmerizing beauty, they contemplate the way their hearts will be guided through this cosmic journey, seeking to traverse the vast expanse of love's infinite possibilities.",
+          "location": "The Starlit Atrium, a stunning, celestial chamber bathed in shimmering, constellated light, where the portal radiates with a magical iridescence, as if a cosmic tapestry spun from the silken strands of loves infinite. A nexus of passion, destiny, and emotion, suspended amidst the vast heavens.",
+          "background": {
+            "name": "The Starlit Atrium, a stunning, celestial chamber bathed in shimmering, constellated light, where the portal radiates with a magical iridescence, as if a cosmic tapestry spun from the silken strands of loves infinite. A nexus of passion, destiny, and emotion, suspended amidst the vast heavens.",
+            "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/4093dd4e-0a27-4147-9ad9-ecf5e4a8c200/public"
+          },
+          "music": {
+            "type": "youtube",
+            "name": "Debussy - Clair de Lune (Instrumental)",
+            "info": "",
+            "uri": "WNcsUNKlAKw",
+            "loop": true
+          },
+          "script": "[Narrator] Mark, the pulsing portal, threshold of hearts unfathomed; whispers of loves eternal hugged by shadows.\n[Link] Hark, beloved friends, these realms be now entwined; our hearts did set in motion love's celestial design.\n[Zelda] Aye, passions converge like stars, oh tender alignment; secrets of yon portal conjure destinies divine.\n[Erela] Boundless are our choices, through this enchanted doorway; connections forged in fire, the celestial firmament's decree.\n[Drakiel] To each, our destiny awaits, the veil of light ascended; the mystic arts empower love's eternal prism.\n[Solana] In blooming hues of passion, love's divine refracting; the gentle touch of fate does guide our hearts.\n[Narrator] Ensnared in choice, wherefore lies their truest ardor; traversing cosmic expanse, love's infinite corridor.\n[Link] Must each heart now decide its path, in tangled tapestry? Fates, paint thine vision, guide me to love's certainty.\n[Zelda] Stand I with thee, in solemn trust, sweet promise unbroken; love's guiding star shall lead me through the unknown.\n[Erela] Brave the tempest's loving dance, in search for my heart's solace; the portal's brilliance beckons me forth, entranced.\n[Drakiel] The path, enriched in magic's lore, shall draw me toward passion; entwined by fate's embrace, I yearn to find my truth.\n[Solana] Flourish love's buds, within the souls of kindred heat; our choices shall converge as one, where destiny and love entreat.\n[Narrator] Each heart, a voyager, through this cosmic rendezvous; their ardor spans the vast, loves eternal carousel renewed."
+        },
+        {
+          "id": 10,
+          "name": "Link chooses the love that shall set his heart ablaze, truest passion won against all odds",
+          "summary": "In this scene, amidst the ethereal radiance of the Luminous Chamber, Link finally chooses the love that shall set his heart ablaze. Having faced the unknown and discovered the myriad of possibilities within his own heart, he courageously casts his destiny with the one who ignites the truest passion within him, as they forge an everlasting bond of love that transcends mortal boundaries and unites their souls for eternity.",
+          "location": "Beneath the cascading streams of silver stardust, every celestial body a serenade to passion, the heroes gather in the Luminous Chamber, the grand hall bedecked in celestial adornments that shimmer with the glow of a thousand ardent suns. Here shall Link choose the love that shall set his heart ablaze, in this realm where hearts converge.",
+          "background": {
+            "name": "Beneath the cascading streams of silver stardust, every celestial body a serenade to passion, the heroes gather in the Luminous Chamber, the grand hall bedecked in celestial adornments that shimmer with the glow of a thousand ardent suns. Here shall Link choose the love that shall set his heart ablaze, in this realm where hearts converge.",
+            "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/41622c27-35b5-4143-9d23-79ad7de34f00/public"
+          },
+          "music": {
+            "type": "youtube",
+            "name": "Tchaikovsky - Romeo and Juliet (Fantasy Overture)",
+            "info": "",
+            "uri": "_Od7gx3Dc-U",
+            "loop": true
+          },
+          "script": "[Narrator] In this chamber of constellated dreams, the heroes, entwined in passion's cosmic embrace, stand upon love's precipice, poised to leap.\n[Link] My heart doth soar as Gryphon wings, in quest of connection pure; the heavens shall bear witness as I choose, love's most ardent allure.\n[Zelda] Thou hast journeyed far, brave hero, both in body and spirit; let this choice serve as a guide, thy destiny's worthy merit.\n[Erela] Pray, take hold of thy heart, valiant warrior; embrace thy chosen passion, and let it illuminate thy soul's direction.\n[Drakiel] Journey freely in love's eternal chambers, for yon cosmic map unveils now romance's truest rapture.\n[Solana] Fortify thy heart, sweet traveler, and in the balm of love's embrace, find solace that doth transcend the chasm of time and space.\n[Narrator] And so, amidst the shimmering iridescence of that celestial tapestry, the decision doth descend, and love's warm fire ignites.\n[Link] At last, my choice is made, the heavens shall rejoice; 'tis to ___, my heart doth call, the melody of a thousand angelic voices.\n[Narrator] United in love's embrace, the chosen soul entwines with thine own; the cosmic dance of hearts doth sway in celestial harmony, and fortune's favor smiles upon their union.\n[Zelda] Thy heart's divine chorus has called me, as a siren's song through the mists of eternity, and with love's ardent fire, we burn together as one."
+        },
+        {
+          "id": 11,
+          "name": "In triumphant reunion of souls, the chosen love conquers all and the world thrives anew",
+          "summary": "In this scene, the heroes, forever bound by love, stand united in the face of a radiant new dawn. With the triumphant reunion of souls and the chosen love conquering all, the two worlds now thrive, bathed in the warm embrace of unity and prosperity. Together, the heroes embark upon a brilliant future, luminous and vibrant, as the echoes of their ardent passion reverberate across the cosmos.",
+          "location": "Upon the sacred plains of time's uncharted shores, the heroes gather under a sky ablaze with celestial colors, a brilliant pageant of luminous auroras that herald the triumphant dawning of a revitalized world. Waves of blossoming flowers dance gaily beneath the soft caress of the winds, their petals strewn like a fragrant tapestry heralding the blossoming love that has forged a new age of harmony and unity.",
+          "background": {
+            "name": "Upon the sacred plains of time's uncharted shores, the heroes gather under a sky ablaze with celestial colors, a brilliant pageant of luminous auroras that herald the triumphant dawning of a revitalized world. Waves of blossoming flowers dance gaily beneath the soft caress of the winds, their petals strewn like a fragrant tapestry heralding the blossoming love that has forged a new age of harmony and unity.",
+            "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/d19030b2-7d36-4f4e-61ca-71168b280900/public"
+          },
+          "music": {
+            "type": "youtube",
+            "name": "Vivaldi - The Four Seasons (Spring - First Movement Allegro)",
+            "info": "",
+            "uri": "DLDvbnK_Sqk",
+            "loop": true
+          },
+          "script": "[Narrator] And lo, as the fateful strands of Fate's web fall into their rightful place, the worlds intertwine in harmonious union, echoing the ardor within the hearts of our intrepid heroes.\n[Link] Behold, as our love shines forth like the radiant sun, dispelling the shadows that once claimed the realms with a tyrant's grip.\n[Zelda] Thy love hast conquered the trials of darkness, and our souls now are intertwined; together, we shall kindle the fires of a glorious future, ever burning, never to wane.\n[Zelda] Through the strength of our love, and the bonds that have bound us as allies, may the two kingdoms rise anew, flourishing in the warm embrace of peace.\n[Erela] Thy valor and unwavering love hath ushered in a new dawn for our worlds; may a golden age of unity blossom, and span a thousand sunsets, bound in prosperity and joy.\n[Drakiel] Love's tenacious spirit doth conquer wicked machinations, and our united vision beams brightly as a beacon of hope, guiding the kingdoms towards their shared destiny.\n[Solana] Our hearts, now bound in triumphant unity, shall nourish the soil of our realms with new hope, as the elixir of love infuses every blooming leaf, tree, and flower with the tender touch of life.\n[Narrator] And thus, with love conquering all, the heroes usher forth a resplendent age of unity and prosperity; their tale of ardent passion and unyielding devotion, now eternally woven into the fabric of the cosmos."
+        }
+      ]
+    },
+    "currentTurnData": {
+      "currentSceneId": 0,
+      "currentTurnId": 0,
+      "currentCharacters": []
     }
+  },
+  "name": "Alternate dimension, vibrant colors, mystical forests, enchanting temples, a fusion of medieval and futuristic landscapes",
+  "newGame": true
 }

@@ -4,8 +4,7 @@ import systemSettingsReducer from "./SystemSettingsSlice";
 import tasksReducer from "./TasksSlice";
 import chatgptReducer from "./ChatgptSlice";
 import imagesReducer from "./ImagesSlice";
-import gameMakerReducer from "./VisualNovelGameMakerSlice";
-import visualNovelGameTurnsReducer from "./VisualNovelGameTurnsSlice";
+import gameReducer from "./GameSlice";
 import { elevenApi } from "./ElevenLabsSlice";
 import rootSaga from "./Sagas";
 
@@ -17,8 +16,7 @@ const store = configureStore({
     tasks: tasksReducer,
     chatgpt: chatgptReducer,
     images: imagesReducer,
-    visualNovelGameTurns: visualNovelGameTurnsReducer,
-    gameMaker: gameMakerReducer,
+    game: gameReducer,
     [elevenApi.reducerPath]: elevenApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

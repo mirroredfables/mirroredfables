@@ -2,11 +2,19 @@
     "id": 0,
     "timestamp": 1684843045167,
     "previewText": "[Narrator] As if summoned by a spectral hand, the clouds part ways, allowing the sun to bathe Diagon Alley in its warm embrace. Aurelia Potter steps through the magical barrier, her heart swelling with anticipation for the adventure to come.",
-    "gameEngineVersion": "0",
+    "gameEngineVersion": "1",
     "data": {
+      "gameGenerator": {
+        "init": false,
+        "generatorBusy": false,
+        "completed": false,
+        "messages": []
+      },
+      "gamePlayerSettings": {
         "init": false,
         "autoGenerate": false,
         "autoNextTurn": false,
+        "textSize": 16,
         "speech": true,
         "music": true,
         "hideYoutube": false,
@@ -14,1380 +22,324 @@
         "showHistory": false,
         "showCredits": false,
         "showLoadSave": false,
-        "maxConcurrentCharacters": 2,
-        "titleBackground": {
-            "name": "Hogwarts School of Witchcraft and Wizardry, Four Magical Realms, centuries after the Deathly Hallows, dark times and new challenges await",
-            "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/a5ab8447-dcf2-42fb-0b77-8c9636e36b00/public"
-        },
-        "scenes": [
-            {
-                "id": 0,
-                "name": "Aurelia and her family visit Diagon Alley for school supplies",
-                "summary": "Aurelia visits Diagon Alley with her family to buy school supplies, encounters her cousin Iris, and crosses paths with Caspian Malfoy",
-                "location": "Diagon Alley, magic swirling, enchanted shops line the cobbled streets",
-                "background": {
-                    "name": "Diagon Alley, magic swirling, enchanted shops line the cobbled streets",
-                    "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/c43f0c09-0c64-4639-4820-6c4917f45900/public"
-                },
-                "music": {
-                    "type": "youtube",
-                    "name": "John Williams - Diagon Alley (Instrumental)",
-                    "info": "",
-                    "uri": "wtHra9tFISY",
-                    "loop": true
-                }
-            },
-            {
-                "id": 1,
-                "name": "Aurelia enters Hogwarts Express and meets Iris and Caspian",
-                "summary": "Aurelia boards the Hogwarts Express, shares a chamber with her cousin Iris, and makes a reluctant truce with Caspian Malfoy",
-                "location": "Hogwarts Express, crimson-carpeted halls, warm steam, antique seats",
-                "background": {
-                    "name": "Hogwarts Express, crimson-carpeted halls, warm steam, antique seats",
-                    "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/528bfabc-3e27-4582-cd36-c773e7bdf800/public"
-                },
-                "music": {
-                    "type": "youtube",
-                    "name": "John Williams - Leaving Hogwarts (Instrumental)",
-                    "info": "",
-                    "uri": "LixG82u6fe4",
-                    "loop": true
-                }
-            },
-            {
-                "id": 2,
-                "name": "Aurelia and her friends are Sorted into their Houses",
-                "summary": "Aurelia, Iris, and Caspian are sorted into Hufflepuff, Gryffindor, and Slytherin respectively, as destinies converge and diverge beneath the starlit ceiling of the Great Hall. ",
-                "location": "Hogwarts Great Hall, candlelit, celestial ceiling, vibrant House banners",
-                "background": {
-                    "name": "Hogwarts Great Hall, candlelit, celestial ceiling, vibrant House banners",
-                    "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/ed0a14c9-ceb1-43b4-8584-9ee5f028b300/public"
-                },
-                "music": {
-                    "type": "youtube",
-                    "name": "John Williams - Hogwarts' Hymn (Instrumental)",
-                    "info": "",
-                    "uri": "wtHra9tFISY",
-                    "loop": true
-                }
-            },
-            {
-                "id": 3,
-                "name": "Aurelia attends her first day of magical classes",
-                "summary": "Aurelia attends her first day of magical classes and forms a tentative truce with Caspian.",
-                "location": "Hogwarts, classrooms with magical scrolls, enchanted artifacts, magical apparatus, and ancient tomes",
-                "background": {
-                    "name": "Hogwarts, classrooms with magical scrolls, enchanted artifacts, magical apparatus, and ancient tomes",
-                    "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/f3cd4ed9-1211-4e95-1674-3c8ad44a1a00/public"
-                },
-                "music": {
-                    "type": "youtube",
-                    "name": "John Williams - Hedwig's Theme (Instrumental)",
-                    "info": "",
-                    "uri": "54hoKbTWon4",
-                    "loop": true
-                }
-            },
-            {
-                "id": 4,
-                "name": "Aurelia befriends Aspen and Elysander in Herbology class",
-                "summary": "In a sunlit Herbology class, Aurelia befriends Aspen and Elysander, joining them in their quest to explore and uncover the secrets of magical flora. Together, they form a strong bond, ready to navigate the challenges that Hogwarts has to offer.",
-                "location": "Hogwarts greenhouse, an oasis of myriad greenery, where the sun kisses delighted leaves, causing gem-like dewdrops to sparkle atop flora both rare and brilliant",
-                "background": {
-                    "name": "Hogwarts greenhouse, an oasis of myriad greenery, where the sun kisses delighted leaves, causing gem-like dewdrops to sparkle atop flora both rare and brilliant",
-                    "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/ceec129e-d5dc-48f4-49e1-e9dc43c10100/public"
-                },
-                "music": {
-                    "type": "youtube",
-                    "name": "Yann Tiersen - Comptine d'un autre été: L'après-midi (Instrumental)",
-                    "info": "",
-                    "uri": "PaXKf0JEzEA",
-                    "loop": true
-                }
-            },
-            {
-                "id": 5,
-                "name": "Aurelia overhears rumours of the Four Magical Realms",
-                "summary": "Aurelia overhears whispers of the Four Magical Realms in Hogwarts' labyrinthine corridors. With the support of her friends, Iris, Aspen, and Elysander, they pledge to delve into the uncharted territories and mysterious depths of these fabled realms.",
-                "location": "The hallowed halls of the illustrious Hogwarts, where centuries-old rumors find refuge within dimly-lit corners, and the moon outside casts an eerie glow upon the ancient stone floor",
-                "background": {
-                    "name": "The hallowed halls of the illustrious Hogwarts, where centuries-old rumors find refuge within dimly-lit corners, and the moon outside casts an eerie glow upon the ancient stone floor",
-                    "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/f2a040e5-e89c-4825-558d-4a44b0c23400/public"
-                },
-                "music": {
-                    "type": "youtube",
-                    "name": "Pachelbel - Canon in D (Instrumental)",
-                    "info": "",
-                    "uri": "7051Y4WVFJA",
-                    "loop": true
-                }
-            },
-            {
-                "id": 6,
-                "name": "Aurelia's group investigates the mysterious Ravenna Blackthorn",
-                "summary": "Aurelia and her friends confront the enigmatic Ravenna Blackthorn, seeking to unveil the secrets that surround her. Unaware of the darkness that lies beneath her surface, they step forth into the unknown, their fates intertwined with Ravenna and the secrets of the Four Magical Realms.",
-                "location": "A secluded corner within the Hogwarts castle, where the light of day struggles to touch the dusty walls and the air bristles with untold secrets, as shadows drape themselves over time-worn statues",
-                "background": {
-                    "name": "A secluded corner within the Hogwarts castle, where the light of day struggles to touch the dusty walls and the air bristles with untold secrets, as shadows drape themselves over time-worn statues",
-                    "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/138f7b6a-41dd-4932-50ff-91a14973a300/public"
-                },
-                "music": {
-                    "type": "youtube",
-                    "name": "Mozart - Requiem in D Minor (Instrumental)",
-                    "info": "",
-                    "uri": "k1-TrAvp_xs",
-                    "loop": true
-                }
-            },
-            {
-                "id": 7,
-                "name": "Aurelia and her friends travel to the first Realm, discover ancient secrets",
-                "summary": "Aurelia and her friends embark on their journey, reaching the first realm, where they traverse ancient paths and come upon a chamber harboring secrets long forgotten. Driven by their unwavering resolve, they pledge to defend the sanctity of the Four Realms, daring to face the shadows that emanate from the unseen darkness.",
-                "location": "The first Realm, a vast and magical land, brimming with celestial seas and enchanted forests that precariously balance on the border between dream and reality. The skies a canvas of shimmering stars amidst an obsidian background.",
-                "background": {
-                    "name": "The first Realm, a vast and magical land, brimming with celestial seas and enchanted forests that precariously balance on the border between dream and reality. The skies a canvas of shimmering stars amidst an obsidian background.",
-                    "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/a7a74c38-70ad-4e11-85fe-5a68ca500400/public"
-                },
-                "music": {
-                    "type": "youtube",
-                    "name": "Vivaldi - The Four Seasons (Instrumental)",
-                    "info": "",
-                    "uri": "DLDvbnK_Sqk",
-                    "loop": true
-                }
-            },
-            {
-                "id": 8,
-                "name": "Ravenna captures Iris, forcing the group to travel to the second Realm",
-                "summary": "In a treacherous turn of events, Ravenna captures Iris and forces the group to venture into the perilous second Realm. With courage in their hearts and determination in their souls, Aurelia, Aspen, and Elysander bravely strive to overcome the darkness and bring their beloved friend back to safety.",
-                "location": "A moonlit battlefield between realms, the parched earth of the first realm and the approach to the second realm, shrouded in an unwelcoming darkness that heralds tales of dread and despair.",
-                "background": {
-                    "name": "A moonlit battlefield between realms, the parched earth of the first realm and the approach to the second realm, shrouded in an unwelcoming darkness that heralds tales of dread and despair.",
-                    "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/35eba74f-97ca-4626-6426-b8165c619d00/public"
-                },
-                "music": {
-                    "type": "youtube",
-                    "name": "Edvard Grieg - In the Hall of the Mountain King (Instrumental)",
-                    "info": "",
-                    "uri": "4nMUr8Rt2AI",
-                    "loop": true
-                }
-            },
-            {
-                "id": 9,
-                "name": "Aurelia learns to embrace her family legacy, saving Iris",
-                "summary": "Embracing her family legacy, Aurelia channels her ancestors' power to save Iris from Ravenna's dark embrace. Though they may have prevailed in this battle, Aurelia and her friends know that the war for the Four Realms is far from over, and they stand united within the crucible of destiny.",
-                "location": "The threshold between the tumultuous second Realm and the realm of safety, where the air is tinged with the bittersweet perfume of victory and the lingering shadow of struggle.",
-                "background": {
-                    "name": "The threshold between the tumultuous second Realm and the realm of safety, where the air is tinged with the bittersweet perfume of victory and the lingering shadow of struggle.",
-                    "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/69066178-c3e4-4793-22a6-387e3d0c0900/public"
-                },
-                "music": {
-                    "type": "youtube",
-                    "name": "Ludwig van Beethoven - Moonlight Sonata, Op. 27 No. 2 (Instrumental)",
-                    "info": "",
-                    "uri": "sbTVZMJ9Z2I",
-                    "loop": true
-                }
-            },
-            {
-                "id": 10,
-                "name": "Aurelia confronts Ravenna, who reveals herself to be the reincarnation of J.K. Rowling.",
-                "summary": "Aurelia confronts Ravenna, unmasking her as the reincarnation of J.K. Rowling. Ravenna seeks to alter their world and erase those who do not belong with the Four Realms' power, but Aurelia and her friends stand united against her in an impending clash which shall shape the destiny of magical realms.",
-                "location": "The tumultuous Third Realm, where the mists obscure the dividing line betwixt illusion and reality, suspended between the doom of Ravenna's machinations and the flickering embers of hope.",
-                "background": {
-                    "name": "The tumultuous Third Realm, where the mists obscure the dividing line betwixt illusion and reality, suspended between the doom of Ravenna's machinations and the flickering embers of hope.",
-                    "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/546b5284-ee4e-4dfd-ff19-aab137a19000/public"
-                },
-                "music": {
-                    "type": "youtube",
-                    "name": "Wolfgang Amadeus Mozart - Requiem in D Minor, K. 626 (Instrumental)",
-                    "info": "",
-                    "uri": "FUaIUHYfhjs",
-                    "loop": true
-                }
-            },
-            {
-                "id": 11,
-                "name": "Aurelia's group defeats Ravenna with cancel magic, securing the Four Realms for generations to come",
-                "summary": "Aurelia and her friends band together, channeling the power of the Cancel Charm to vanquish Ravenna, thereby ensuring the sanctity and freedom of the Four Realms for generations to come. Their victory serves as a testament to the enduring strength of love, unity, and acceptance against the forces of intolerance and darkness.",
-                "location": "The climactic battleground within the mist-shrouded Third Realm, poised precariously between the abyss of despair and the radiant zenith of hope's awakening.",
-                "background": {
-                    "name": "The climactic battleground within the mist-shrouded Third Realm, poised precariously between the abyss of despair and the radiant zenith of hope's awakening.",
-                    "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/b5bda5ee-ee12-431b-e054-32da9b261900/public"
-                },
-                "music": {
-                    "type": "youtube",
-                    "name": "Ludwig van Beethoven - Symphony No. 9 'Ode to Joy' (Instrumental)",
-                    "info": "",
-                    "uri": "-kcOpyM9cBg",
-                    "loop": true
-                }
-            }
-        ],
-        "characters": [
-            {
-                "id": 0,
-                "name": "Aurelia",
-                "description": "player character, transgender female, human, 12, bicurious, great-granddaughter of Harry Potter, first year Hogwarts student, British. Likes her family legacy, magical creatures, exploring; dislikes being overshadowed, bullies, dark magic.",
-                "voice": {
-                    "type": "elevenAI",
-                    "voiceId": "Qvudyxdl9p2Z52c5Z1nz",
-                    "name": "Aurelia",
-                    "gender": "female"
-                },
-                "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/1b724c33-ad6c-4f20-7471-c5630f160800/public"
-            },
-            {
-                "id": 1,
-                "name": "Caspian",
-                "description": "potential love interest, male, human, 12, straight, great-grandson of Draco Malfoy, first year Hogwarts student, British. Likes his family's wealth, potions, flying; dislikes being compared to his great-grandfather, Gryffindors, losing.",
-                "voice": {
-                    "type": "elevenAI",
-                    "voiceId": "nVMmEdcGIrm0kehgBtZF",
-                    "name": "Caspian",
-                    "gender": "male"
-                },
-                "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/2cda5881-e274-4747-446f-1cce1fe2ab00/public"
-            },
-            {
-                "id": 2,
-                "name": "Iris",
-                "description": "potential love interest, female, human, 12, lesbian, great-granddaughter of Hermione Granger and Ron Weasley, Aurelia's cousin, first year Hogwarts student, British. Likes books, magical creatures, defending her family; dislikes dishonesty, laziness, dark magic.",
-                "voice": {
-                    "type": "elevenAI",
-                    "voiceId": "I1QzXIe33mbKoPPmlRih",
-                    "name": "Iris",
-                    "gender": "female"
-                },
-                "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/a50bfcd0-5236-4f0e-9ce5-22271483e500/public"
-            },
-            {
-                "id": 3,
-                "name": "Elysander",
-                "description": "potential love interest, male, human, 13, bisexual, great-grandson of Luna Lovegood, second year Hogwarts student, British. Likes magical creatures, understanding the world, travelling through the Four Realms; dislikes cruelty, close-mindedness, dark magic.",
-                "voice": {
-                    "type": "elevenAI",
-                    "voiceId": "itPoMJzSNoO2K4ZEw7U4",
-                    "name": "Elysander",
-                    "gender": "male"
-                },
-                "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/0857b121-71ce-417f-1a16-94780aca7f00/public"
-            },
-            {
-                "id": 4,
-                "name": "Aspen",
-                "description": "potential love interest, transgender female, human, 12, pansexual, great-granddaughter of Neville Longbottom, first year Hogwarts student, British. Likes herbology, magical creatures, friends; dislikes feeling unsure about her identity, conflict, bullies.",
-                "voice": {
-                    "type": "elevenAI",
-                    "voiceId": "HEG0w3Mv9wlkz3KEbZFK",
-                    "name": "Aspen",
-                    "gender": "female"
-                },
-                "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/a72ea37e-eb3e-4e32-059d-0fe8e50f3e00/public"
-            },
-            {
-                "id": 5,
-                "name": "Ravenna",
-                "description": "rival and antagonist, human, female, 13, straight, mysterious Hogwarts student, distant relation to the Black family, but is secretly the reincarnation of J.K. Rowling and extremely conservative. British. Seeks the power of the Four Realms for her own dark purposes.",
-                "voice": {
-                    "type": "elevenAI",
-                    "voiceId": "z83ZMwLZMZVTElJdb5tO",
-                    "name": "Ravenna",
-                    "gender": "female"
-                },
-                "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/09130f64-0ea3-446c-afd0-d13bcf25e300/public"
-            }
-        ],
-        "currentSceneId": 0,
-        "currentTurnId": 0,
-        "currentCharacters": [],
-        "previousSceneScripts": [],
-        "world": {
-            "setting": "Hogwarts School of Witchcraft and Wizardry, Four Magical Realms, centuries after the Deathly Hallows, dark times and new challenges await",
-            "artStyle": "J.K. Rowling, watercolor illustrations, British, magical",
-            "writingStyle": "Charles Dickens, romantic, mysterious, adventurous, soap opera",
-            "history": []
-        },
+        "maxConcurrentCharacters": 2
+      },
+      "gameData": {
+        "creator": "mirroredfables v1",
+        "canModify": false,
+        "name": "Hogwarts School of Witchcraft and Wizardry, Four Magical Realms, centuries after the Deathly Hallows, dark times and new challenges await",
         "speechPrerecorded": true,
         "speechPrerecordedUrl": "https://www.mirroredfables.com/voices/potter",
-        "ids": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24,
-            25,
-            26,
-            27,
-            28,
-            29,
-            30,
-            31,
-            32,
-            33,
-            34,
-            35,
-            36,
-            37,
-            38,
-            39,
-            40,
-            41,
-            42,
-            43,
-            44,
-            45,
-            46,
-            47,
-            48,
-            49,
-            50,
-            51,
-            52,
-            53,
-            54,
-            55,
-            56,
-            57,
-            58,
-            59,
-            60,
-            61,
-            62,
-            63,
-            64,
-            65,
-            66,
-            67,
-            68,
-            69,
-            70,
-            71,
-            72,
-            73,
-            74,
-            75,
-            76,
-            77,
-            78,
-            79,
-            80,
-            81,
-            82,
-            83,
-            84,
-            85,
-            86,
-            87,
-            88,
-            89,
-            90,
-            91,
-            92,
-            93,
-            94,
-            95,
-            96,
-            97,
-            98,
-            99,
-            100,
-            101,
-            102,
-            103,
-            104,
-            105,
-            106,
-            107,
-            108,
-            109,
-            110,
-            111,
-            112,
-            113,
-            114,
-            115,
-            116,
-            117,
-            118,
-            119,
-            120,
-            121,
-            122,
-            123,
-            124,
-            125,
-            126,
-            127,
-            128,
-            129,
-            130,
-            131,
-            132,
-            133,
-            134,
-            135,
-            136,
-            137,
-            138,
-            139,
-            140,
-            141
+        "world": {
+          "setting": "Hogwarts School of Witchcraft and Wizardry, Four Magical Realms, centuries after the Deathly Hallows, dark times and new challenges await",
+          "artStyle": "J.K. Rowling, watercolor illustrations, British, magical",
+          "writingStyle": "Charles Dickens, romantic, mysterious, adventurous, soap opera",
+          "history": []
+        },
+        "titleBackground": {
+          "name": "Hogwarts School of Witchcraft and Wizardry, Four Magical Realms, centuries after the Deathly Hallows, dark times and new challenges await",
+          "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/a5ab8447-dcf2-42fb-0b77-8c9636e36b00/public"
+        },
+        "storySoFar": [],
+        "characters": [
+          {
+            "id": 0,
+            "name": "Aurelia",
+            "description": "player character, transgender female, human, 12, bicurious, great-granddaughter of Harry Potter, first year Hogwarts student, British. Likes her family legacy, magical creatures, exploring; dislikes being overshadowed, bullies, dark magic.",
+            "voice": {
+              "type": "elevenAI",
+              "voiceId": "Qvudyxdl9p2Z52c5Z1nz",
+              "name": "Aurelia",
+              "gender": "female"
+            },
+            "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/1b724c33-ad6c-4f20-7471-c5630f160800/public"
+          },
+          {
+            "id": 1,
+            "name": "Caspian",
+            "description": "potential love interest, male, human, 12, straight, great-grandson of Draco Malfoy, first year Hogwarts student, British. Likes his family's wealth, potions, flying; dislikes being compared to his great-grandfather, Gryffindors, losing.",
+            "voice": {
+              "type": "elevenAI",
+              "voiceId": "nVMmEdcGIrm0kehgBtZF",
+              "name": "Caspian",
+              "gender": "male"
+            },
+            "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/2cda5881-e274-4747-446f-1cce1fe2ab00/public"
+          },
+          {
+            "id": 2,
+            "name": "Iris",
+            "description": "potential love interest, female, human, 12, lesbian, great-granddaughter of Hermione Granger and Ron Weasley, Aurelia's cousin, first year Hogwarts student, British. Likes books, magical creatures, defending her family; dislikes dishonesty, laziness, dark magic.",
+            "voice": {
+              "type": "elevenAI",
+              "voiceId": "I1QzXIe33mbKoPPmlRih",
+              "name": "Iris",
+              "gender": "female"
+            },
+            "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/a50bfcd0-5236-4f0e-9ce5-22271483e500/public"
+          },
+          {
+            "id": 3,
+            "name": "Elysander",
+            "description": "potential love interest, male, human, 13, bisexual, great-grandson of Luna Lovegood, second year Hogwarts student, British. Likes magical creatures, understanding the world, travelling through the Four Realms; dislikes cruelty, close-mindedness, dark magic.",
+            "voice": {
+              "type": "elevenAI",
+              "voiceId": "itPoMJzSNoO2K4ZEw7U4",
+              "name": "Elysander",
+              "gender": "male"
+            },
+            "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/0857b121-71ce-417f-1a16-94780aca7f00/public"
+          },
+          {
+            "id": 4,
+            "name": "Aspen",
+            "description": "potential love interest, transgender female, human, 12, pansexual, great-granddaughter of Neville Longbottom, first year Hogwarts student, British. Likes herbology, magical creatures, friends; dislikes feeling unsure about her identity, conflict, bullies.",
+            "voice": {
+              "type": "elevenAI",
+              "voiceId": "HEG0w3Mv9wlkz3KEbZFK",
+              "name": "Aspen",
+              "gender": "female"
+            },
+            "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/a72ea37e-eb3e-4e32-059d-0fe8e50f3e00/public"
+          },
+          {
+            "id": 5,
+            "name": "Ravenna",
+            "description": "rival and antagonist, human, female, 13, straight, mysterious Hogwarts student, distant relation to the Black family, but is secretly the reincarnation of J.K. Rowling and extremely conservative. British. Seeks the power of the Four Realms for her own dark purposes.",
+            "voice": {
+              "type": "elevenAI",
+              "voiceId": "z83ZMwLZMZVTElJdb5tO",
+              "name": "Ravenna",
+              "gender": "female"
+            },
+            "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/09130f64-0ea3-446c-afd0-d13bcf25e300/public"
+          }
         ],
-        "entities": {
-            "0": {
-                "id": 0,
-                "sceneId": 0,
-                "type": "text",
-                "text": "[Narrator] As if summoned by a spectral hand, the clouds part ways, allowing the sun to bathe Diagon Alley in its warm embrace. Aurelia Potter steps through the magical barrier, her heart swelling with anticipation for the adventure to come."
-            },
-            "1": {
-                "id": 1,
-                "sceneId": 0,
-                "type": "speech",
-                "text": "[Aurelia] Father, I can't believe I'm finally going to Hogwarts! I've been waiting for this day for so long.",
-                "activePortrait": "Aurelia"
-            },
-            "2": {
-                "id": 2,
-                "sceneId": 0,
-                "type": "speech",
-                "text": "[Mr. Potter] My dear Aurelia, ever since your very first word, we knew that this moment was etched indelibly upon the pages of your destiny.",
-                "activePortrait": "Mr. Potter"
-            },
-            "3": {
-                "id": 3,
-                "sceneId": 0,
-                "type": "text",
-                "text": "[Narrator] Together, they traverse the cobbled streets of Diagon Alley, spirited gales of magic swirling around them as they secure Aurelia's school supplies."
-            },
-            "4": {
-                "id": 4,
-                "sceneId": 0,
-                "type": "speech",
-                "text": "[Aurelia] (marveling at a wand) Can it be true that each wand has but one true master, but also a great many tales to share?",
-                "activePortrait": "Aurelia"
-            },
-            "5": {
-                "id": 5,
-                "sceneId": 0,
-                "type": "speech",
-                "text": "[Mr. Potter] Quite so, Aurelia. Each wand imbibes wisdom from its owner, much as each owner absorbs wisdom from their chosen wand.",
-                "activePortrait": "Mr. Potter"
-            },
-            "6": {
-                "id": 6,
-                "sceneId": 0,
-                "type": "text",
-                "text": "[Narrator] As they explore the alley's fantastical wares, fate entwines Aurelia's path with another, most delicately poised."
-            },
-            "7": {
-                "id": 7,
-                "sceneId": 0,
-                "type": "speech",
-                "text": "[Caspian] (sneering) If it isn't Aurelia Potter, the girl expected to trump us all.",
-                "activePortrait": "Caspian"
-            },
-            "8": {
-                "id": 8,
-                "sceneId": 0,
-                "type": "speech",
-                "text": "[Aurelia] And you must be Caspian Malfoy, the boy forever chained to his family's past.",
-                "activePortrait": "Aurelia"
-            },
-            "9": {
-                "id": 9,
-                "sceneId": 0,
-                "type": "speech",
-                "text": "[Caspian] We'll see, Potter. We'll see who triumphs at Hogwarts.",
-                "activePortrait": "Caspian"
-            },
-            "10": {
-                "id": 10,
-                "sceneId": 0,
-                "type": "text",
-                "text": "[Narrator] Elsewhere in the throng of eldritch delights, an equally radiant soul catches Aurelia's eye."
-            },
-            "11": {
-                "id": 11,
-                "sceneId": 0,
-                "type": "speech",
-                "text": "[Iris] Aurelia, my dear cousin! Are you as filled with awe and wonder as I?",
-                "activePortrait": "Iris"
-            },
-            "12": {
-                "id": 12,
-                "sceneId": 0,
-                "type": "speech",
-                "text": "[Aurelia] Truly, Iris! I anticipate that our first year at Hogwarts will be nothing short of spectacular.",
-                "activePortrait": "Aurelia"
-            },
-            "13": {
-                "id": 13,
-                "sceneId": 0,
-                "type": "text",
-                "text": "[Narrator] What began as a pursuit of the mundane - the acquisition of wise tomes and enchanted quills - now teeters upon the precipice of destiny. Aurelia's future entwined with the threads of her heritage, shimmering just beyond her grasp."
-            },
-            "14": {
-                "id": 14,
-                "sceneId": 0,
-                "type": "speech",
-                "text": "[Aurelia] Mother, Father, I promise to stay true to our family legacy, to honor the memory of those who came before, and to forge my own path in the hallowed halls of Hogwarts.",
-                "activePortrait": "Aurelia"
-            },
-            "15": {
-                "id": 15,
-                "sceneId": 0,
-                "type": "speech",
-                "text": "[Mr. and Mrs. Potter] (proudly) We know you will, Aurelia.",
-                "activePortrait": "Mr. and Mrs. Potter"
-            },
-            "16": {
-                "id": 16,
-                "sceneId": 0,
-                "type": "text",
-                "text": "[Narrator] With oaths taken and hearts set alight, Aurelia takes the first step on a journey that will determine her fate, and perhaps the fate of the Four Magical Realms."
-            },
-            "17": {
-                "id": 17,
-                "sceneId": 1,
-                "type": "text",
-                "text": "[Narrator] Amidst the cacophony of heartfelt goodbyes and the rhythmic panting of the venerable locomotive, tender tendrils of steam embrace young Aurelia, as if to welcome her into the labyrinthian bosom of the Hogwarts Express."
-            },
-            "18": {
-                "id": 18,
-                "sceneId": 1,
-                "type": "speech",
-                "text": "[Aurelia] Oh, what grand mysteries these crimson carriages hold, and what great secrets have they shared with generations gone by!",
-                "activePortrait": "Aurelia"
-            },
-            "19": {
-                "id": 19,
-                "sceneId": 1,
-                "type": "text",
-                "text": "[Narrator] Aurelia carefully embarks upon the fabled train, the iron lady's timeworn corridors resonating with whispers of long-past friendships and rivalries."
-            },
-            "20": {
-                "id": 20,
-                "sceneId": 1,
-                "type": "speech",
-                "text": "[Aurelia] (searching for a seat) Surely, there must be a place for me within these hallowed walls.",
-                "activePortrait": "Aurelia"
-            },
-            "21": {
-                "id": 21,
-                "sceneId": 1,
-                "type": "text",
-                "text": "[Narrator] Fate kindly obliges, guiding our young heroine to a chamber shared with her beloved cousin, resplendent in her gleaming scarlet hair."
-            },
-            "22": {
-                "id": 22,
-                "sceneId": 1,
-                "type": "speech",
-                "text": "[Iris] Aurelia, have you too been drawn to this delicate nook, as if whispered secrets can be contained no longer within its walls?",
-                "activePortrait": "Iris"
-            },
-            "23": {
-                "id": 23,
-                "sceneId": 1,
-                "type": "speech",
-                "text": "[Aurelia] Indeed, dear Iris! Together, we shall embark on the greatest adventure of our lives and uncover endless wonders that await us at Hogwarts.",
-                "activePortrait": "Aurelia"
-            },
-            "24": {
-                "id": 24,
-                "sceneId": 1,
-                "type": "text",
-                "text": "[Narrator] As the train steams onward, Aurelia's path once more collides with that of the enigmatic Caspian Malfoy."
-            },
-            "25": {
-                "id": 25,
-                "sceneId": 1,
-                "type": "speech",
-                "text": "[Caspian] (smirking) It seems we are destined to share this journey.",
-                "activePortrait": "Caspian"
-            },
-            "26": {
-                "id": 26,
-                "sceneId": 1,
-                "type": "speech",
-                "text": "[Aurelia] Fear not, Caspian. Let us set aside our differences and shelter within the warmth of this friendship.",
-                "activePortrait": "Aurelia"
-            },
-            "27": {
-                "id": 27,
-                "sceneId": 1,
-                "type": "speech",
-                "text": "[Caspian] (hesitant) Agreed, Potter. But remember, the game is afoot, and I refuse to lie down before destiny.",
-                "activePortrait": "Caspian"
-            },
-            "28": {
-                "id": 28,
-                "sceneId": 1,
-                "type": "text",
-                "text": "[Narrator] The ardent engine drives our heroes forward, drawing closer and closer to the hallowed halls of education and revelations that vie for the title of divine."
-            },
-            "29": {
-                "id": 29,
-                "sceneId": 1,
-                "type": "speech",
-                "text": "[Iris] (excitedly) Can you imagine it, Aurelia? Just a few more hours until we cross the threshold of the great Hogwarts castle!",
-                "activePortrait": "Iris"
-            },
-            "30": {
-                "id": 30,
-                "sceneId": 1,
-                "type": "speech",
-                "text": "[Aurelia] So soon, we shall stand in the shadow of wisdom, ready to confront any challenge that comes our way. Together, we shall prevail, united by the blood that binds us and the bond we share.",
-                "activePortrait": "Aurelia"
-            },
-            "31": {
-                "id": 31,
-                "sceneId": 1,
-                "type": "text",
-                "text": "[Narrator] As the sun dips low behind the ancient hills, the fires of friendship and rivalry come to life between the fateful trio. In the heart of a locomotive that knows no fear, their story unfolds, tendrils of Destiny intertwining ever tighter."
-            },
-            "32": {
-                "id": 32,
-                "sceneId": 2,
-                "type": "text",
-                "text": "[Narrator] As firmaments give way to the encroaching night, beneath the celestial nocturnal drape spreads an orchestration of flickering candlelight like a myriad of fireflies, illuminating the Great Hall and reflecting within the eyes of young and old."
-            },
-            "33": {
-                "id": 33,
-                "sceneId": 2,
-                "type": "speech",
-                "text": "[Aurelia] (in awe) What splendor our eyes behold, a feast for the senses, a hallowed temple of enlightenment!",
-                "activePortrait": "Aurelia"
-            },
-            "34": {
-                "id": 34,
-                "sceneId": 2,
-                "type": "text",
-                "text": "[Narrator] The silence crescendos, announcing the arrival of the enigmatic Sorting Hat, a relic weaved with fate's very threads, bound to divulge the destiny of our ardent band of seekers."
-            },
-            "35": {
-                "id": 35,
-                "sceneId": 2,
-                "type": "speech",
-                "text": "[Sorting Hat] (singing) Oh, younglings yearning, gather 'round, let the timbre of my song resound; for secrets whispered low, shall unto you now flow.",
-                "activePortrait": "Sorting Hat"
-            },
-            "36": {
-                "id": 36,
-                "sceneId": 2,
-                "type": "speech",
-                "text": "[Aurelia] (whispering to Iris) The moment of truth is upon us, dear cousin, our hearts laid bare before this ancient judge of character.",
-                "activePortrait": "Aurelia"
-            },
-            "37": {
-                "id": 37,
-                "sceneId": 2,
-                "type": "text",
-                "text": "[Narrator] With bated breath, our heroines approach the venerable throne, hearts aflutter, as futures yet untold begin to unfurl."
-            },
-            "38": {
-                "id": 38,
-                "sceneId": 2,
-                "type": "speech",
-                "text": "[Iris] (whispers back) Fear not, sweet Aurelia, our destinies are as fluid and magnificent as the very stars that light our nights, ever-changing and endless.",
-                "activePortrait": "Iris"
-            },
-            "39": {
-                "id": 39,
-                "sceneId": 2,
-                "type": "speech",
-                "text": "[Sorting Hat] (to Iris) Ah, Weasley, resourceful and fiery, there is no doubt where you belong - Gryffindor!",
-                "activePortrait": "Sorting Hat"
-            },
-            "40": {
-                "id": 40,
-                "sceneId": 2,
-                "type": "text",
-                "text": "[Narrator] Aurelia, our resolute protagonist, offers herself unto the oracle, trembling and fearful but with a glimmer of hope dancing in her eyes."
-            },
-            "41": {
-                "id": 41,
-                "sceneId": 2,
-                "type": "speech",
-                "text": "[Sorting Hat] (to Aurelia) Orbiting planets, we see, no stranger to fortune are thee; your heart blooms in adversity, the fated and gallant Hufflepuff shall be!",
-                "activePortrait": "Sorting Hat"
-            },
-            "42": {
-                "id": 42,
-                "sceneId": 2,
-                "type": "speech",
-                "text": "[Aurelia] (smiling) With grace, I accept this new challenge, stepping forth into a realm of camaraderie and grit, the Hufflepuff kin!",
-                "activePortrait": "Aurelia"
-            },
-            "43": {
-                "id": 43,
-                "sceneId": 2,
-                "type": "text",
-                "text": "[Narrator] Coaxed, perchance, by the invisible hands of Fate, Caspian Malfoy approaches the textile soothsayer, arrogance sparring with vulnerability, offering his head for the somnolent specter's scrutiny."
-            },
-            "44": {
-                "id": 44,
-                "sceneId": 2,
-                "type": "speech",
-                "text": "[Sorting Hat] (to Caspian) Malfoy, a legacy ingrained, yet a spirit uncontained, astute and resolute, the mantle of Slytherin awaits!",
-                "activePortrait": "Sorting Hat"
-            },
-            "45": {
-                "id": 45,
-                "sceneId": 2,
-                "type": "speech",
-                "text": "[Caspian] (begrudging smile) Then let us follow our destinies, Potter. May we meet on the field of honor and learn the truths that yet elude us!",
-                "activePortrait": "Caspian"
-            },
-            "46": {
-                "id": 46,
-                "sceneId": 2,
-                "type": "text",
-                "text": "[Narrator] Thus, our trepid protagonists embark on divergent roads, bound by a shared purpose, a journey awash with all the hues of the human soul."
-            },
-            "47": {
-                "id": 47,
-                "sceneId": 3,
-                "type": "text",
-                "text": "[Narrator] Dawn breaks upon the hallowed halls of Hogwarts, casting radiant diadems across the myriad windows, heralding the advent of knowledge awaiting our intrepid protagonists."
-            },
-            "48": {
-                "id": 48,
-                "sceneId": 3,
-                "type": "speech",
-                "text": "[Aurelia] (excitedly) A cornucopia of learning, such wondrous opportunity I have dreamt of but ne'er have known, till now!",
-                "activePortrait": "Aurelia"
-            },
-            "49": {
-                "id": 49,
-                "sceneId": 3,
-                "type": "text",
-                "text": "[Narrator] As the youthful scholars wend their way through labyrinthine corridors, chanting portraits and sentient tapestries affording curious glimpses of their noble endeavors."
-            },
-            "50": {
-                "id": 50,
-                "sceneId": 3,
-                "type": "speech",
-                "text": "[Aurelia] (to Iris) Share in my joy, dear cousin, as we wade through the rivers of wisdom, seeking to kindle our innate magic.",
-                "activePortrait": "Aurelia"
-            },
-            "51": {
-                "id": 51,
-                "sceneId": 3,
-                "type": "text",
-                "text": "[Narrator] Delving into the mysteries of the arcane arts, our heroine, Aurelia, encounters the enigmatic Caspian Malfoy, their truce as delicate as a spider's gossamer thread."
-            },
-            "52": {
-                "id": 52,
-                "sceneId": 3,
-                "type": "speech",
-                "text": "[Caspian] (smirking) Potter, as much I detest admitting it, we ought to act in concert, for in this crucible of magical endeavors, our legacies collide and intertwine.",
-                "activePortrait": "Caspian"
-            },
-            "53": {
-                "id": 53,
-                "sceneId": 3,
-                "type": "speech",
-                "text": "[Aurelia] (reluctant) We tread along the same path, illuminated by fate, perhaps this is the key to unlocking our shared destiny.",
-                "activePortrait": "Aurelia"
-            },
-            "54": {
-                "id": 54,
-                "sceneId": 3,
-                "type": "text",
-                "text": "[Narrator] And thus they acquiesced, the threads of destiny binding them in tenuous accord, as the hallowed walls of Hogwarts bore witness to their unfolding tale."
-            },
-            "55": {
-                "id": 55,
-                "sceneId": 3,
-                "type": "speech",
-                "text": "[Aurelia] A truce, then, Malfoy. As the heavens foretold, we dive into the murky depths, seeking understanding amidst the chaos.",
-                "activePortrait": "Aurelia"
-            },
-            "56": {
-                "id": 56,
-                "sceneId": 3,
-                "type": "speech",
-                "text": "[Caspian] (nodding) Ambition tempered with shared wisdom, a fitting recipe, for the battle yet to unfold.",
-                "activePortrait": "Caspian"
-            },
-            "57": {
-                "id": 57,
-                "sceneId": 3,
-                "type": "text",
-                "text": "[Narrator] With newfound determination, Aurelia weaves her way through her first, exhilarating day of magical classes, her heart alight with the embers of learning, her spirit awash with the colors of the gory cosmos."
-            },
-            "58": {
-                "id": 58,
-                "sceneId": 3,
-                "type": "speech",
-                "text": "[Aurelia] Steeled by this newfound camaraderie, I shall forge ahead, embracing the adventures that lie ahead, and the secrets they bear.",
-                "activePortrait": "Aurelia"
-            },
-            "59": {
-                "id": 59,
-                "sceneId": 3,
-                "type": "text",
-                "text": "[Narrator] Thus, our dauntless Aurelia traverses the landscape of magical learning, her sights set on horizons unknown, her heart buoyed by the compendium of knowledge nestling within the sanctuary of Hogwarts."
-            },
-            "60": {
-                "id": 60,
-                "sceneId": 4,
-                "type": "text",
-                "text": "[Narrator] As our tale toils incessantly in the verdant tendrils of destiny, our beloved protagonist Aurelia, finds herself basking in the sun-dappled radiance of a Herbology class, where the explorers of magic's flora find succor."
-            },
-            "61": {
-                "id": 61,
-                "sceneId": 4,
-                "type": "speech",
-                "text": "[Aurelia] (whispering to herself) Amidst these tender saplings and blooms of rarest hue, doth mankind find solace from life's tumultuous brook.",
-                "activePortrait": "Aurelia"
-            },
-            "62": {
-                "id": 62,
-                "sceneId": 4,
-                "type": "text",
-                "text": "[Narrator] Lulled into the sweet embrace of Nature's verdure, a voice tinged with laughter catches Aurelia's ear, for in this hallowed classroom, do Aspen and Elysander weave their tapestries of friendship."
-            },
-            "63": {
-                "id": 63,
-                "sceneId": 4,
-                "type": "speech",
-                "text": "[Aspen] (to Elysander, with a jovial grin) Our botanical journey begins, Elysander, wouldst thou tread this path with me at thy side?",
-                "activePortrait": "Aspen"
-            },
-            "64": {
-                "id": 64,
-                "sceneId": 4,
-                "type": "speech",
-                "text": "[Elysander] (smiling at Aspen) Humbled am I by your inquiry, dear Aspen, hand in hand, we shall write our symphony of leaves and blooms.",
-                "activePortrait": "Elysander"
-            },
-            "65": {
-                "id": 65,
-                "sceneId": 4,
-                "type": "text",
-                "text": "[Narrator] Drawn to the warmth of the newfound allies, Aurelia wends her way to the ardent botanists, fueled by the thirst for camaraderie unmatched."
-            },
-            "66": {
-                "id": 66,
-                "sceneId": 4,
-                "type": "speech",
-                "text": "[Aurelia] (extending her hand to Aspen and Elysander) May I join your delightful congregation, seekers of Nature's eternal embrace?",
-                "activePortrait": "Aurelia"
-            },
-            "67": {
-                "id": 67,
-                "sceneId": 4,
-                "type": "speech",
-                "text": "[Aspen] (beaming) Of course, fair Aurelia! We forge bonds not only with these bounteous plants, but with fellow travellers in this green haven too.",
-                "activePortrait": "Aspen"
-            },
-            "68": {
-                "id": 68,
-                "sceneId": 4,
-                "type": "speech",
-                "text": "[Elysander] (nodding in agreement) United shall we stand, in our quest for enlightenment amidst these whispering leaves and blossoming petals.",
-                "activePortrait": "Elysander"
-            },
-            "69": {
-                "id": 69,
-                "sceneId": 4,
-                "type": "text",
-                "text": "[Narrator] Entwined in the soothing tendrils of heartfelt connection, Aurelia, Aspen, and Elysander vow to navigate the meandering halls of Hogwarts together, bolstered by newfound friendships even as shadows yet unknown lurk within the castle's depths."
-            },
-            "70": {
-                "id": 70,
-                "sceneId": 5,
-                "type": "text",
-                "text": "[Narrator] In the hallowed halls of the illustrious Hogwarts, secrets aplenty lay nestled within the whispers of its thousand-year-old walls; it is here that our diligent and curious protagonist, Aurelia, overhears murmurs of the fabled Four Magical Realms."
-            },
-            "71": {
-                "id": 71,
-                "sceneId": 5,
-                "type": "speech",
-                "text": "[Aurelia] (innocuously feigning disinterest) Strange, indeed, are these tales that reverberate amidst these storied corridors; could it truly be that hidden in the astral folds, the Realms of Ancient origin await our discovery?",
-                "activePortrait": "Aurelia"
-            },
-            "72": {
-                "id": 72,
-                "sceneId": 5,
-                "type": "text",
-                "text": "[Narrator] Drawn deeper into the mystery, like a ship enshrouded in fog, Aurelia, Willow wand in hand and steadfast companions in tow, ventures forth in search of enlightenment."
-            },
-            "73": {
-                "id": 73,
-                "sceneId": 5,
-                "type": "speech",
-                "text": "[Aspen] (whispering to Elysander) Beneath these crumbling walls, doth the whispers of ages unfurl their riddles, evoking within our souls the insatiable curiosity of explorers driven to the precipice of the unknown.",
-                "activePortrait": "Aspen"
-            },
-            "74": {
-                "id": 74,
-                "sceneId": 5,
-                "type": "speech",
-                "text": "[Elysander] (nodding to Aspen, clasping hands) Indeed, we are but travellers, celestial wanderers in search of the untamed wilds of knowledge, transcending realms both material and ethereal.",
-                "activePortrait": "Elysander"
-            },
-            "75": {
-                "id": 75,
-                "sceneId": 5,
-                "type": "text",
-                "text": "[Narrator] As friends gather 'round, enkindling their dreams and yearnings, our fortuitous protagonist invites her beloved cousin Iris to join the perilous quest."
-            },
-            "76": {
-                "id": 76,
-                "sceneId": 5,
-                "type": "speech",
-                "text": "[Aurelia] (clasping Iris' hand) Dearest cousin, dost thou stand beside us, as we voyage to realms beyond imagination's grasp?",
-                "activePortrait": "Aurelia"
-            },
-            "77": {
-                "id": 77,
-                "sceneId": 5,
-                "type": "speech",
-                "text": "[Iris] (with a resolute smile) With heart and steel, my most esteemed kindred, we shall face the veil of mysteries, together as family and as confidants, in the pursuit of truth everlasting.",
-                "activePortrait": "Iris"
-            },
-            "78": {
-                "id": 78,
-                "sceneId": 5,
-                "type": "text",
-                "text": "[Narrator] So with each other's support, Aurelia, Iris, Aspen, and Elysander pledge to uncover the enigmatic secrets shrouded by time, daring to venture into the uncharted mysteries of the Four Magical Realms."
-            },
-            "79": {
-                "id": 79,
-                "sceneId": 6,
-                "type": "text",
-                "text": "[Narrator] In the shadow of suspicion, a figure draped in enigma emerges from the swirling mists of the unknown; our intrepid protagonists, led by the ever-curious Aurelia, now turn their gaze to the cryptic Ravenna Blackthorn."
-            },
-            "80": {
-                "id": 80,
-                "sceneId": 6,
-                "type": "speech",
-                "text": "[Aurelia] (studying Ravenna from afar, in hushed tones) What secrets dost thou cling to, child of darkness and intrigue? For what purpose dost thou lurk behind cobwebs of shadows, weaving spells in silence?",
-                "activePortrait": "Aurelia"
-            },
-            "81": {
-                "id": 81,
-                "sceneId": 6,
-                "type": "text",
-                "text": "[Narrator] As the sun sinks beyond Hogwarts' parapets, painting the sky in hues of twilight's long-lost dreams, Aurelia and her companions ponder the enigma that is Ravenna, seeking to pierce the veil that shrouds her in mystery."
-            },
-            "82": {
-                "id": 82,
-                "sceneId": 6,
-                "type": "speech",
-                "text": "[Aspen] (eyes narrowed in suspicion) Somber and svelte as the specter of night, shall we trust this enigmatic sorceress, or yet shall we guard our hearts and wands with care?",
-                "activePortrait": "Aspen"
-            },
-            "83": {
-                "id": 83,
-                "sceneId": 6,
-                "type": "speech",
-                "text": "[Elysander] (finger on his chin, contemplating) Strange and foreboding as a whispering wind, Ravenna holds hidden depths from which we may yet glean the secrets of the fabled Realms. Tread lightly, my friends.",
-                "activePortrait": "Elysander"
-            },
-            "84": {
-                "id": 84,
-                "sceneId": 6,
-                "type": "text",
-                "text": "[Narrator] United in their pursuit of truth and bound by loyalty, our heroes approach Ravenna with caution, unbeknownst of the darkness that taints her very being."
-            },
-            "85": {
-                "id": 85,
-                "sceneId": 6,
-                "type": "speech",
-                "text": "[Iris] (bravely stepping forward) Shadows of the unknown, begone! Reveal yourself, Ravenna Blackthorn, and the purpose you serve, lest we remain strangers forevermore.",
-                "activePortrait": "Iris"
-            },
-            "86": {
-                "id": 86,
-                "sceneId": 6,
-                "type": "speech",
-                "text": "[Ravenna] (smiling sinisterly) A tale to be told, and secrets divulged? Very well, my would-be adversaries, come and bathe in the inky darkness of my inheritance.",
-                "activePortrait": "Ravenna"
-            },
-            "87": {
-                "id": 87,
-                "sceneId": 6,
-                "type": "text",
-                "text": "[Narrator] Entranced by Ravenna's enigmatic allure, Aurelia and her comrades prepare to delve into a twisted world of shadows and secrets, the strands of their fates entwining inextricably with the mysteries of the Magical Realms."
-            },
-            "88": {
-                "id": 88,
-                "sceneId": 7,
-                "type": "text",
-                "text": "[Narrator] As a new dawn crept from its slumber ushering the weary world into hope, Aurelia and her steadfast companions embarked on a journey into the first realm, trembling hearts ablaze with excitement and trepidation."
-            },
-            "89": {
-                "id": 89,
-                "sceneId": 7,
-                "type": "speech",
-                "text": "[Aurelia] (gazing at the entrancing realm before them) What wonders shall we uncover in these uncharted lands, my friends? Our quest begins anew as we embrace the unknown with courage.",
-                "activePortrait": "Aurelia"
-            },
-            "90": {
-                "id": 90,
-                "sceneId": 7,
-                "type": "text",
-                "text": "[Narrator] The first realm, a tapestry of colors and intricacies interwoven, rivers reflecting the subtle radiance of the stars against the ever-stretching tapestry of obsidian skies."
-            },
-            "91": {
-                "id": 91,
-                "sceneId": 7,
-                "type": "speech",
-                "text": "[Aspen] (wide-eyed in awe) Celestial seas and enchanted forests unfurl before us, my friends, as bountiful in their enchantments as a dreamer's imagination.",
-                "activePortrait": "Aspen"
-            },
-            "92": {
-                "id": 92,
-                "sceneId": 7,
-                "type": "speech",
-                "text": "[Iris] (determinedly) Let us traverse these deep-rooted trails, the ancient paths of a land forged by lore and magic, and divine the truths held within.",
-                "activePortrait": "Iris"
-            },
-            "93": {
-                "id": 93,
-                "sceneId": 7,
-                "type": "text",
-                "text": "[Narrator] Unveiling the realm's hidden beauty, the brave souls soon discovered a sanctuary of ancient secrets, a forgotten chamber that bore testament to its storied past."
-            },
-            "94": {
-                "id": 94,
-                "sceneId": 7,
-                "type": "speech",
-                "text": "[Elysander] (reading from an old book) Myriad mysteries and forgotten tales dwell within these hallowed pages, longing to be liberated and beholden to the light.",
-                "activePortrait": "Elysander"
-            },
-            "95": {
-                "id": 95,
-                "sceneId": 7,
-                "type": "speech",
-                "text": "[Aurelia] (scanning the chamber) What tales are yet untold, my friends? Betwixt these cryptic murals and crypts lies a truth that eludes the hands of time.",
-                "activePortrait": "Aurelia"
-            },
-            "96": {
-                "id": 96,
-                "sceneId": 7,
-                "type": "text",
-                "text": "[Narrator] Engrossed by their unfolding findings, the explorers uncovered a truth that long-slumbered, an unwritten tale of the Four Realms and the dark forces that threaten their harmony."
-            },
-            "97": {
-                "id": 97,
-                "sceneId": 7,
-                "type": "speech",
-                "text": "[Aspen] (with newfound resolve) We must defend these lands, friends, and guard the sanctity of the Four Realms with all our hearts and might.",
-                "activePortrait": "Aspen"
-            },
-            "98": {
-                "id": 98,
-                "sceneId": 7,
-                "type": "text",
-                "text": "[Narrator] Their spirits united by the resurgence of purpose, our heroes pledged to unearth the remaining history of the Four Realms and dare the darkness that awaits them in the shadows, poised to strike."
-            },
-            "99": {
-                "id": 99,
-                "sceneId": 8,
-                "type": "text",
-                "text": "[Narrator] As the shroud of moonlight casts a silken veil upon the lands, our intrepid heroes find themselves beset by an unforeseen turn of fate. Hovering amidst the shadows, the enigmatic Ravenna Blackthorn ensnares young Iris in her nefarious grasp."
-            },
-            "100": {
-                "id": 100,
-                "sceneId": 8,
-                "type": "speech",
-                "text": "[Aurelia] (frantic) No! Ravenna, release Iris from your perfidious clutches or suffer the wrath of our bonded hearts!",
-                "activePortrait": "Aurelia"
-            },
-            "101": {
-                "id": 101,
-                "sceneId": 8,
-                "type": "text",
-                "text": "[Narrator] The menacing Ravenna sneers, her countenance an unfathomable chasm of malice and scorn, tightening the grip of her imprisonment upon befuddled Iris."
-            },
-            "102": {
-                "id": 102,
-                "sceneId": 8,
-                "type": "speech",
-                "text": "[Ravenna] (tauntingly) A daring venture this may be, naïve children, yet if you desire to rescue your precious fellow, you shall acquiesce to my demands and pursue the second Realm.",
-                "activePortrait": "Ravenna"
-            },
-            "103": {
-                "id": 103,
-                "sceneId": 8,
-                "type": "speech",
-                "text": "[Elysander] (angrily) What wicked schemes do you conspire, Ravenna? Unshackle our beloved friend and relinquish your stranglehold upon her innocent spirit!",
-                "activePortrait": "Elysander"
-            },
-            "104": {
-                "id": 104,
-                "sceneId": 8,
-                "type": "text",
-                "text": "[Narrator] Behind her sinister eyes, a nebulous scheme unfurls, as her demands echo in the hollow void between foes."
-            },
-            "105": {
-                "id": 105,
-                "sceneId": 8,
-                "type": "speech",
-                "text": "[Aspen] (nervous, clutching her wand) We shall brave the tempests of the second Realm to retrieve our lost Iris, but know that the fires that forge our hearts will quell your darkness!",
-                "activePortrait": "Aspen"
-            },
-            "106": {
-                "id": 106,
-                "sceneId": 8,
-                "type": "text",
-                "text": "[Narrator] The path to the second Realm, an arduous trek fraught with peril, stretches out before Aurelia and her companions, daylight wavering on the edge of a foreboding twilight."
-            },
-            "107": {
-                "id": 107,
-                "sceneId": 8,
-                "type": "speech",
-                "text": "[Aurelia] (resolute) For our dear Iris, we shall tread into the nefarious abyss of the second Realm and bear witness to the crucible that awaits us. With heartbeats entwined, we shall vanquish the schemes of the insidious Ravenna Blackthorn.",
-                "activePortrait": "Aurelia"
-            },
-            "108": {
-                "id": 108,
-                "sceneId": 8,
-                "type": "text",
-                "text": "[Narrator] As the second Realm looms, Aurelia, Aspen and Elysander venture forth, their spirits tempered by adversity and their bonds forged stronger in the fires of their determination."
-            },
-            "109": {
-                "id": 109,
-                "sceneId": 9,
-                "type": "text",
-                "text": "[Narrator] As the inky veil of night succumbs to the resplendent glow of dawn, Aurelia stands poised upon the precipice of a transformative moment, her heart emboldened by the echoes of her storied lineage."
-            },
-            "110": {
-                "id": 110,
-                "sceneId": 9,
-                "type": "speech",
-                "text": "[Aurelia] (contemplative) I summon the might of my forebears, the indomitable spirit of the Potters of yore, to grant me the strength to rescind this nefarious curse that binds our cherished Iris!",
-                "activePortrait": "Aurelia"
-            },
-            "111": {
-                "id": 111,
-                "sceneId": 9,
-                "type": "text",
-                "text": "[Narrator] With the flames of family alight within her, Aurelia's eyes glisten with renewed vigour, and her wand hand trembles with a potency hitherto unknown to her."
-            },
-            "112": {
-                "id": 112,
-                "sceneId": 9,
-                "type": "speech",
-                "text": "[Caspian] (encouraging) You bear within you the very essence of heroism, Aurelia. Channel this unyielding power and free Iris from Ravenna's vile machinations!",
-                "activePortrait": "Caspian"
-            },
-            "113": {
-                "id": 113,
-                "sceneId": 9,
-                "type": "text",
-                "text": "[Narrator] A surge of ethereal energy cascades from Aurelia's wand, enveloping Iris in a swirling maelstrom of light, imbued with the affirmation of familial love and the promise of redemption."
-            },
-            "114": {
-                "id": 114,
-                "sceneId": 9,
-                "type": "speech",
-                "text": "[Iris] (gasping) Aurelia, your love has shattered the umbral fetters that encumbered me, and I stand liberated! Thank you, my dear cousin!",
-                "activePortrait": "Iris"
-            },
-            "115": {
-                "id": 115,
-                "sceneId": 9,
-                "type": "text",
-                "text": "[Narrator] Yet, as the spectre of Ravenna's perfidy dissipates, the scars of her treachery remain, indelible in the hearts of all."
-            },
-            "116": {
-                "id": 116,
-                "sceneId": 9,
-                "type": "speech",
-                "text": "[Aspen] (grateful) We must remain vigilant, my friends. For though we have rescued Iris and weathered this storm, the clouds of our adversaries still darken the horizon.",
-                "activePortrait": "Aspen"
-            },
-            "117": {
-                "id": 117,
-                "sceneId": 9,
-                "type": "speech",
-                "text": "[Elysander] (resolute) Together, hand in hand, we shall stand unyielding in the face of strife, as our fates entwine and our destinies shine with the radiance of a thousand suns.",
-                "activePortrait": "Elysander"
-            },
-            "118": {
-                "id": 118,
-                "sceneId": 9,
-                "type": "text",
-                "text": "[Narrator] Thus, with the courage and conviction of their ancestors pulsing through their veins, Aurelia and her companions forge upon a path of unwavering determination, resolute in their pursuit of justice."
-            },
-            "119": {
-                "id": 119,
-                "sceneId": 10,
-                "type": "text",
-                "text": "[Narrator] Amidst the swirling mists of the treacherous Third Realm, the portentous figure of Ravenna emerges from the shadows, her gaze as cold and impenetrable as the caress of death."
-            },
-            "120": {
-                "id": 120,
-                "sceneId": 10,
-                "type": "speech",
-                "text": "[Aurelia] (defiant) Ravenna, your deceit and betrayal shall plague us no further! Disrobe yourself of this vile masquerade, and let us peer upon your wretched visage!",
-                "activePortrait": "Aurelia"
-            },
-            "121": {
-                "id": 121,
-                "sceneId": 10,
-                "type": "text",
-                "text": "[Narrator] For a moment, a flicker of anguish flits across Ravenna's countenance, before she casts aside the shroud of her secrecy with a sigh long-weathered by uncountable years of isolation and heartache."
-            },
-            "122": {
-                "id": 122,
-                "sceneId": 10,
-                "type": "speech",
-                "text": "[Ravenna] (bitter) Very well, child. Witness the truth you so desperately crave: I am the vessel which harbors the soul of the one you know as J.K. Rowling. And with the power of the Four Realms, I shall rewrite the fabric of your world and erase those who do not belong!",
-                "activePortrait": "Ravenna"
-            },
-            "123": {
-                "id": 123,
-                "sceneId": 10,
-                "type": "text",
-                "text": "[Narrator] As the magnitude of her revelation coalesces into a smoldering tempest within Aurelia's heart, Ravenna's form shifts before their disbelieving eyes, her being now woven from the ink of her own creations."
-            },
-            "124": {
-                "id": 124,
-                "sceneId": 10,
-                "type": "speech",
-                "text": "[Caspian] (shocked) Surely, this cannot be! She is the harbinger of our beloved tales, the mother of the very world in which we dwell!",
-                "activePortrait": "Caspian"
-            },
-            "125": {
-                "id": 125,
-                "sceneId": 10,
-                "type": "speech",
-                "text": "[Iris] (outraged) Yet now she labors with hostile intent, seeking to wield our myths against us as weapons in her pursuit of dark dominion over all!",
-                "activePortrait": "Iris"
-            },
-            "126": {
-                "id": 126,
-                "sceneId": 10,
-                "type": "text",
-                "text": "[Narrator] With the weight of their world settling heavily upon their shoulders, Aurelia and her companions lock arms, prepared to repel the encroaching malevolence of Ravenna's renewed assault."
-            },
-            "127": {
-                "id": 127,
-                "sceneId": 10,
-                "type": "speech",
-                "text": "[Aspen] (steadfast) We stand undaunted, Ravenna, our resolve unbroken! We shall defend this world you birthed at any cost!",
-                "activePortrait": "Aspen"
-            },
-            "128": {
-                "id": 128,
-                "sceneId": 10,
-                "type": "speech",
-                "text": "[Elysander] (determined) For we are a mélange of creativity and love, of empathy and acceptance. We shall thwart your wicked designs, and guide this story's fate on a path of benevolence!",
-                "activePortrait": "Elysander"
-            },
-            "129": {
-                "id": 129,
-                "sceneId": 10,
-                "type": "text",
-                "text": "[Narrator] The stage is set, the die is cast, as Aurelia and her allies brace themselves for a battle that shall determine the very future of the magical world."
-            },
-            "130": {
-                "id": 130,
-                "sceneId": 11,
-                "type": "text",
-                "text": "[Narrator] Beset by the storm of conflict that engulfs them, Aurelia and her valiant companions battle against the deranged phantasm that was once Ravenna, their hearts ablaze with righteous fury."
-            },
-            "131": {
-                "id": 131,
-                "sceneId": 11,
-                "type": "speech",
-                "text": "[Aurelia] (determined) We shall not falter! For the sake of our world and those we hold dear, we shall triumph against your twisted machinations!",
-                "activePortrait": "Aurelia"
-            },
-            "132": {
-                "id": 132,
-                "sceneId": 11,
-                "type": "text",
-                "text": "[Narrator] Through the tempestuous whirlwind of their arcane dueling, a ray of hope descends upon our heroes in the form of a lost and arcane spell, heretofore unspoken in the annals of magical lore: The Cancel Charm."
-            },
-            "133": {
-                "id": 133,
-                "sceneId": 11,
-                "type": "speech",
-                "text": "[Aspen] (astonished) Aurelia, look! This divine providence may be our salvation! We must unite our powers as one, and invoke the Cancel Charm to vanquish Ravenna's dark foibles!",
-                "activePortrait": "Aspen"
-            },
-            "134": {
-                "id": 134,
-                "sceneId": 11,
-                "type": "text",
-                "text": "[Narrator] As the echoes of Aspen's words reverberate through the maelstrom, the bound hearts of Aurelia, Iris, Caspian, Aspen, and Elysander coalesce into a singular beacon of resistance, fueled by the fervent yearning for freedom and compassion."
-            },
-            "135": {
-                "id": 135,
-                "sceneId": 11,
-                "type": "speech",
-                "text": "[Iris] (resolute) Though our paths may weave and wend through the tapestry of fate, we shall together seek the golden threads that bind us to a brighter tomorrow!",
-                "activePortrait": "Iris"
-            },
-            "136": {
-                "id": 136,
-                "sceneId": 11,
-                "type": "text",
-                "text": "[Narrator] With the fervor of their collective desire nurturing the essence of their Cancel Charm, the united strength of Aurelia and her friends surges forth in a brilliant beam of exorcism, enveloping the beleaguered Ravenna in its relentless embrace."
-            },
-            "137": {
-                "id": 137,
-                "sceneId": 11,
-                "type": "speech",
-                "text": "[Ravenna] (screaming) No! My power, my dominion, stripped away by those who should kneel before my greatness! Curse you, children of misconstrued legacy! Forever disbanded from the world that I shaped!",
-                "activePortrait": "Ravenna"
-            },
-            "138": {
-                "id": 138,
-                "sceneId": 11,
-                "type": "text",
-                "text": "[Narrator] As Ravenna's wretched cries recede into the ether, the Cancel Charm successfully purifies the malign specter, sealing away her sinister aspirations behind the impenetrable veil of erasure."
-            },
-            "139": {
-                "id": 139,
-                "sceneId": 11,
-                "type": "speech",
-                "text": "[Caspian] (relieved) By the grace of our devotion, we have liberated the Four Realms, and disentangled its future from the cruel grasping tendrils of Ravenna's malevolent design.",
-                "activePortrait": "Caspian"
-            },
-            "140": {
-                "id": 140,
-                "sceneId": 11,
-                "type": "speech",
-                "text": "[Elysander] (thoughtful) May it serve as a lesson, etched indelibly across the canvas of time, that the power of love, unity, and acceptance shall ever triumph against the desolate shadows of intolerance and bigotry!",
-                "activePortrait": "Elysander"
-            },
-            "141": {
-                "id": 141,
-                "sceneId": 11,
-                "type": "text",
-                "text": "[Narrator] Thus concludes the epic saga of Aurelia and her resolute comrades, their resplendent victory illuminating the path toward future generations of enchanted wonder, unshackled from the darkness of tyranny. [END]"
-            }
-        }
-    }
-}
+        "scenes": [
+          {
+            "id": 0,
+            "name": "Aurelia and her family visit Diagon Alley for school supplies",
+            "summary": "Aurelia visits Diagon Alley with her family to buy school supplies, encounters her cousin Iris, and crosses paths with Caspian Malfoy",
+            "location": "Diagon Alley, magic swirling, enchanted shops line the cobbled streets",
+            "background": {
+              "name": "Diagon Alley, magic swirling, enchanted shops line the cobbled streets",
+              "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/c43f0c09-0c64-4639-4820-6c4917f45900/public"
+            },
+            "music": {
+              "type": "youtube",
+              "name": "John Williams - Diagon Alley (Instrumental)",
+              "info": "",
+              "uri": "wtHra9tFISY",
+              "loop": true
+            },
+            "script": "[Narrator] As if summoned by a spectral hand, the clouds part ways, allowing the sun to bathe Diagon Alley in its warm embrace. Aurelia Potter steps through the magical barrier, her heart swelling with anticipation for the adventure to come.\n[Aurelia] Father, I can't believe I'm finally going to Hogwarts! I've been waiting for this day for so long.\n[Mr. Potter] My dear Aurelia, ever since your very first word, we knew that this moment was etched indelibly upon the pages of your destiny.\n[Narrator] Together, they traverse the cobbled streets of Diagon Alley, spirited gales of magic swirling around them as they secure Aurelia's school supplies.\n[Aurelia] (marveling at a wand) Can it be true that each wand has but one true master, but also a great many tales to share?\n[Mr. Potter] Quite so, Aurelia. Each wand imbibes wisdom from its owner, much as each owner absorbs wisdom from their chosen wand.\n[Narrator] As they explore the alley's fantastical wares, fate entwines Aurelia's path with another, most delicately poised.\n[Caspian] (sneering) If it isn't Aurelia Potter, the girl expected to trump us all.\n[Aurelia] And you must be Caspian Malfoy, the boy forever chained to his family's past.\n[Caspian] We'll see, Potter. We'll see who triumphs at Hogwarts.\n[Narrator] Elsewhere in the throng of eldritch delights, an equally radiant soul catches Aurelia's eye.\n[Iris] Aurelia, my dear cousin! Are you as filled with awe and wonder as I?\n[Aurelia] Truly, Iris! I anticipate that our first year at Hogwarts will be nothing short of spectacular.\n[Narrator] What began as a pursuit of the mundane - the acquisition of wise tomes and enchanted quills - now teeters upon the precipice of destiny. Aurelia's future entwined with the threads of her heritage, shimmering just beyond her grasp.\n[Aurelia] Mother, Father, I promise to stay true to our family legacy, to honor the memory of those who came before, and to forge my own path in the hallowed halls of Hogwarts.\n[Mr. and Mrs. Potter] (proudly) We know you will, Aurelia.\n[Narrator] With oaths taken and hearts set alight, Aurelia takes the first step on a journey that will determine her fate, and perhaps the fate of the Four Magical Realms."
+          },
+          {
+            "id": 1,
+            "name": "Aurelia enters Hogwarts Express and meets Iris and Caspian",
+            "summary": "Aurelia boards the Hogwarts Express, shares a chamber with her cousin Iris, and makes a reluctant truce with Caspian Malfoy",
+            "location": "Hogwarts Express, crimson-carpeted halls, warm steam, antique seats",
+            "background": {
+              "name": "Hogwarts Express, crimson-carpeted halls, warm steam, antique seats",
+              "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/528bfabc-3e27-4582-cd36-c773e7bdf800/public"
+            },
+            "music": {
+              "type": "youtube",
+              "name": "John Williams - Leaving Hogwarts (Instrumental)",
+              "info": "",
+              "uri": "LixG82u6fe4",
+              "loop": true
+            },
+            "script": "[Narrator] Amidst the cacophony of heartfelt goodbyes and the rhythmic panting of the venerable locomotive, tender tendrils of steam embrace young Aurelia, as if to welcome her into the labyrinthian bosom of the Hogwarts Express.\n[Aurelia] Oh, what grand mysteries these crimson carriages hold, and what great secrets have they shared with generations gone by!\n[Narrator] Aurelia carefully embarks upon the fabled train, the iron lady's timeworn corridors resonating with whispers of long-past friendships and rivalries.\n[Aurelia] (searching for a seat) Surely, there must be a place for me within these hallowed walls.\n[Narrator] Fate kindly obliges, guiding our young heroine to a chamber shared with her beloved cousin, resplendent in her gleaming scarlet hair.\n[Iris] Aurelia, have you too been drawn to this delicate nook, as if whispered secrets can be contained no longer within its walls?\n[Aurelia] Indeed, dear Iris! Together, we shall embark on the greatest adventure of our lives and uncover endless wonders that await us at Hogwarts.\n[Narrator] As the train steams onward, Aurelia's path once more collides with that of the enigmatic Caspian Malfoy.\n[Caspian] (smirking) It seems we are destined to share this journey.\n[Aurelia] Fear not, Caspian. Let us set aside our differences and shelter within the warmth of this friendship.\n[Caspian] (hesitant) Agreed, Potter. But remember, the game is afoot, and I refuse to lie down before destiny.\n[Narrator] The ardent engine drives our heroes forward, drawing closer and closer to the hallowed halls of education and revelations that vie for the title of divine.\n[Iris] (excitedly) Can you imagine it, Aurelia? Just a few more hours until we cross the threshold of the great Hogwarts castle!\n[Aurelia] So soon, we shall stand in the shadow of wisdom, ready to confront any challenge that comes our way. Together, we shall prevail, united by the blood that binds us and the bond we share.\n[Narrator] As the sun dips low behind the ancient hills, the fires of friendship and rivalry come to life between the fateful trio. In the heart of a locomotive that knows no fear, their story unfolds, tendrils of Destiny intertwining ever tighter."
+          },
+          {
+            "id": 2,
+            "name": "Aurelia and her friends are Sorted into their Houses",
+            "summary": "Aurelia, Iris, and Caspian are sorted into Hufflepuff, Gryffindor, and Slytherin respectively, as destinies converge and diverge beneath the starlit ceiling of the Great Hall. ",
+            "location": "Hogwarts Great Hall, candlelit, celestial ceiling, vibrant House banners",
+            "background": {
+              "name": "Hogwarts Great Hall, candlelit, celestial ceiling, vibrant House banners",
+              "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/ed0a14c9-ceb1-43b4-8584-9ee5f028b300/public"
+            },
+            "music": {
+              "type": "youtube",
+              "name": "John Williams - Hogwarts' Hymn (Instrumental)",
+              "info": "",
+              "uri": "wtHra9tFISY",
+              "loop": true
+            },
+            "script": "[Narrator] As firmaments give way to the encroaching night, beneath the celestial nocturnal drape spreads an orchestration of flickering candlelight like a myriad of fireflies, illuminating the Great Hall and reflecting within the eyes of young and old.\n[Aurelia] (in awe) What splendor our eyes behold, a feast for the senses, a hallowed temple of enlightenment!\n[Narrator] The silence crescendos, announcing the arrival of the enigmatic Sorting Hat, a relic weaved with fate's very threads, bound to divulge the destiny of our ardent band of seekers.\n[Sorting Hat] (singing) Oh, younglings yearning, gather 'round, let the timbre of my song resound; for secrets whispered low, shall unto you now flow.\n[Aurelia] (whispering to Iris) The moment of truth is upon us, dear cousin, our hearts laid bare before this ancient judge of character.\n[Narrator] With bated breath, our heroines approach the venerable throne, hearts aflutter, as futures yet untold begin to unfurl.\n[Iris] (whispers back) Fear not, sweet Aurelia, our destinies are as fluid and magnificent as the very stars that light our nights, ever-changing and endless.\n[Sorting Hat] (to Iris) Ah, Weasley, resourceful and fiery, there is no doubt where you belong - Gryffindor!\n[Narrator] Aurelia, our resolute protagonist, offers herself unto the oracle, trembling and fearful but with a glimmer of hope dancing in her eyes.\n[Sorting Hat] (to Aurelia) Orbiting planets, we see, no stranger to fortune are thee; your heart blooms in adversity, the fated and gallant Hufflepuff shall be!\n[Aurelia] (smiling) With grace, I accept this new challenge, stepping forth into a realm of camaraderie and grit, the Hufflepuff kin!\n[Narrator] Coaxed, perchance, by the invisible hands of Fate, Caspian Malfoy approaches the textile soothsayer, arrogance sparring with vulnerability, offering his head for the somnolent specter's scrutiny.\n[Sorting Hat] (to Caspian) Malfoy, a legacy ingrained, yet a spirit uncontained, astute and resolute, the mantle of Slytherin awaits!\n[Caspian] (begrudging smile) Then let us follow our destinies, Potter. May we meet on the field of honor and learn the truths that yet elude us!\n[Narrator] Thus, our trepid protagonists embark on divergent roads, bound by a shared purpose, a journey awash with all the hues of the human soul."
+          },
+          {
+            "id": 3,
+            "name": "Aurelia attends her first day of magical classes",
+            "summary": "Aurelia attends her first day of magical classes and forms a tentative truce with Caspian.",
+            "location": "Hogwarts, classrooms with magical scrolls, enchanted artifacts, magical apparatus, and ancient tomes",
+            "background": {
+              "name": "Hogwarts, classrooms with magical scrolls, enchanted artifacts, magical apparatus, and ancient tomes",
+              "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/f3cd4ed9-1211-4e95-1674-3c8ad44a1a00/public"
+            },
+            "music": {
+              "type": "youtube",
+              "name": "John Williams - Hedwig's Theme (Instrumental)",
+              "info": "",
+              "uri": "54hoKbTWon4",
+              "loop": true
+            },
+            "script": "[Narrator] Dawn breaks upon the hallowed halls of Hogwarts, casting radiant diadems across the myriad windows, heralding the advent of knowledge awaiting our intrepid protagonists.\n[Aurelia] (excitedly) A cornucopia of learning, such wondrous opportunity I have dreamt of but ne'er have known, till now!\n[Narrator] As the youthful scholars wend their way through labyrinthine corridors, chanting portraits and sentient tapestries affording curious glimpses of their noble endeavors.\n[Aurelia] (to Iris) Share in my joy, dear cousin, as we wade through the rivers of wisdom, seeking to kindle our innate magic.\n[Narrator] Delving into the mysteries of the arcane arts, our heroine, Aurelia, encounters the enigmatic Caspian Malfoy, their truce as delicate as a spider's gossamer thread.\n[Caspian] (smirking) Potter, as much I detest admitting it, we ought to act in concert, for in this crucible of magical endeavors, our legacies collide and intertwine.\n[Aurelia] (reluctant) We tread along the same path, illuminated by fate, perhaps this is the key to unlocking our shared destiny.\n[Narrator] And thus they acquiesced, the threads of destiny binding them in tenuous accord, as the hallowed walls of Hogwarts bore witness to their unfolding tale.\n[Aurelia] A truce, then, Malfoy. As the heavens foretold, we dive into the murky depths, seeking understanding amidst the chaos.\n[Caspian] (nodding) Ambition tempered with shared wisdom, a fitting recipe, for the battle yet to unfold.\n[Narrator] With newfound determination, Aurelia weaves her way through her first, exhilarating day of magical classes, her heart alight with the embers of learning, her spirit awash with the colors of the gory cosmos.\n[Aurelia] Steeled by this newfound camaraderie, I shall forge ahead, embracing the adventures that lie ahead, and the secrets they bear.\n[Narrator] Thus, our dauntless Aurelia traverses the landscape of magical learning, her sights set on horizons unknown, her heart buoyed by the compendium of knowledge nestling within the sanctuary of Hogwarts."
+          },
+          {
+            "id": 4,
+            "name": "Aurelia befriends Aspen and Elysander in Herbology class",
+            "summary": "In a sunlit Herbology class, Aurelia befriends Aspen and Elysander, joining them in their quest to explore and uncover the secrets of magical flora. Together, they form a strong bond, ready to navigate the challenges that Hogwarts has to offer.",
+            "location": "Hogwarts greenhouse, an oasis of myriad greenery, where the sun kisses delighted leaves, causing gem-like dewdrops to sparkle atop flora both rare and brilliant",
+            "background": {
+              "name": "Hogwarts greenhouse, an oasis of myriad greenery, where the sun kisses delighted leaves, causing gem-like dewdrops to sparkle atop flora both rare and brilliant",
+              "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/ceec129e-d5dc-48f4-49e1-e9dc43c10100/public"
+            },
+            "music": {
+              "type": "youtube",
+              "name": "Yann Tiersen - Comptine d'un autre \u00e9t\u00e9: L'apr\u00e8s-midi (Instrumental)",
+              "info": "",
+              "uri": "PaXKf0JEzEA",
+              "loop": true
+            },
+            "script": "[Narrator] As our tale toils incessantly in the verdant tendrils of destiny, our beloved protagonist Aurelia, finds herself basking in the sun-dappled radiance of a Herbology class, where the explorers of magic's flora find succor.\n[Aurelia] (whispering to herself) Amidst these tender saplings and blooms of rarest hue, doth mankind find solace from life's tumultuous brook.\n[Narrator] Lulled into the sweet embrace of Nature's verdure, a voice tinged with laughter catches Aurelia's ear, for in this hallowed classroom, do Aspen and Elysander weave their tapestries of friendship.\n[Aspen] (to Elysander, with a jovial grin) Our botanical journey begins, Elysander, wouldst thou tread this path with me at thy side?\n[Elysander] (smiling at Aspen) Humbled am I by your inquiry, dear Aspen, hand in hand, we shall write our symphony of leaves and blooms.\n[Narrator] Drawn to the warmth of the newfound allies, Aurelia wends her way to the ardent botanists, fueled by the thirst for camaraderie unmatched.\n[Aurelia] (extending her hand to Aspen and Elysander) May I join your delightful congregation, seekers of Nature's eternal embrace?\n[Aspen] (beaming) Of course, fair Aurelia! We forge bonds not only with these bounteous plants, but with fellow travellers in this green haven too.\n[Elysander] (nodding in agreement) United shall we stand, in our quest for enlightenment amidst these whispering leaves and blossoming petals.\n[Narrator] Entwined in the soothing tendrils of heartfelt connection, Aurelia, Aspen, and Elysander vow to navigate the meandering halls of Hogwarts together, bolstered by newfound friendships even as shadows yet unknown lurk within the castle's depths."
+          },
+          {
+            "id": 5,
+            "name": "Aurelia overhears rumours of the Four Magical Realms",
+            "summary": "Aurelia overhears whispers of the Four Magical Realms in Hogwarts' labyrinthine corridors. With the support of her friends, Iris, Aspen, and Elysander, they pledge to delve into the uncharted territories and mysterious depths of these fabled realms.",
+            "location": "The hallowed halls of the illustrious Hogwarts, where centuries-old rumors find refuge within dimly-lit corners, and the moon outside casts an eerie glow upon the ancient stone floor",
+            "background": {
+              "name": "The hallowed halls of the illustrious Hogwarts, where centuries-old rumors find refuge within dimly-lit corners, and the moon outside casts an eerie glow upon the ancient stone floor",
+              "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/f2a040e5-e89c-4825-558d-4a44b0c23400/public"
+            },
+            "music": {
+              "type": "youtube",
+              "name": "Pachelbel - Canon in D (Instrumental)",
+              "info": "",
+              "uri": "7051Y4WVFJA",
+              "loop": true
+            },
+            "script": "[Narrator] In the hallowed halls of the illustrious Hogwarts, secrets aplenty lay nestled within the whispers of its thousand-year-old walls; it is here that our diligent and curious protagonist, Aurelia, overhears murmurs of the fabled Four Magical Realms.\n[Aurelia] (innocuously feigning disinterest) Strange, indeed, are these tales that reverberate amidst these storied corridors; could it truly be that hidden in the astral folds, the Realms of Ancient origin await our discovery?\n[Narrator] Drawn deeper into the mystery, like a ship enshrouded in fog, Aurelia, Willow wand in hand and steadfast companions in tow, ventures forth in search of enlightenment.\n[Aspen] (whispering to Elysander) Beneath these crumbling walls, doth the whispers of ages unfurl their riddles, evoking within our souls the insatiable curiosity of explorers driven to the precipice of the unknown.\n[Elysander] (nodding to Aspen, clasping hands) Indeed, we are but travellers, celestial wanderers in search of the untamed wilds of knowledge, transcending realms both material and ethereal.\n[Narrator] As friends gather 'round, enkindling their dreams and yearnings, our fortuitous protagonist invites her beloved cousin Iris to join the perilous quest.\n[Aurelia] (clasping Iris' hand) Dearest cousin, dost thou stand beside us, as we voyage to realms beyond imagination's grasp?\n[Iris] (with a resolute smile) With heart and steel, my most esteemed kindred, we shall face the veil of mysteries, together as family and as confidants, in the pursuit of truth everlasting.\n[Narrator] So with each other's support, Aurelia, Iris, Aspen, and Elysander pledge to uncover the enigmatic secrets shrouded by time, daring to venture into the uncharted mysteries of the Four Magical Realms."
+          },
+          {
+            "id": 6,
+            "name": "Aurelia's group investigates the mysterious Ravenna Blackthorn",
+            "summary": "Aurelia and her friends confront the enigmatic Ravenna Blackthorn, seeking to unveil the secrets that surround her. Unaware of the darkness that lies beneath her surface, they step forth into the unknown, their fates intertwined with Ravenna and the secrets of the Four Magical Realms.",
+            "location": "A secluded corner within the Hogwarts castle, where the light of day struggles to touch the dusty walls and the air bristles with untold secrets, as shadows drape themselves over time-worn statues",
+            "background": {
+              "name": "A secluded corner within the Hogwarts castle, where the light of day struggles to touch the dusty walls and the air bristles with untold secrets, as shadows drape themselves over time-worn statues",
+              "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/138f7b6a-41dd-4932-50ff-91a14973a300/public"
+            },
+            "music": {
+              "type": "youtube",
+              "name": "Mozart - Requiem in D Minor (Instrumental)",
+              "info": "",
+              "uri": "k1-TrAvp_xs",
+              "loop": true
+            },
+            "script": "[Narrator] In the shadow of suspicion, a figure draped in enigma emerges from the swirling mists of the unknown; our intrepid protagonists, led by the ever-curious Aurelia, now turn their gaze to the cryptic Ravenna Blackthorn.\n[Aurelia] (studying Ravenna from afar, in hushed tones) What secrets dost thou cling to, child of darkness and intrigue? For what purpose dost thou lurk behind cobwebs of shadows, weaving spells in silence?\n[Narrator] As the sun sinks beyond Hogwarts' parapets, painting the sky in hues of twilight's long-lost dreams, Aurelia and her companions ponder the enigma that is Ravenna, seeking to pierce the veil that shrouds her in mystery.\n[Aspen] (eyes narrowed in suspicion) Somber and svelte as the specter of night, shall we trust this enigmatic sorceress, or yet shall we guard our hearts and wands with care?\n[Elysander] (finger on his chin, contemplating) Strange and foreboding as a whispering wind, Ravenna holds hidden depths from which we may yet glean the secrets of the fabled Realms. Tread lightly, my friends.\n[Narrator] United in their pursuit of truth and bound by loyalty, our heroes approach Ravenna with caution, unbeknownst of the darkness that taints her very being.\n[Iris] (bravely stepping forward) Shadows of the unknown, begone! Reveal yourself, Ravenna Blackthorn, and the purpose you serve, lest we remain strangers forevermore.\n[Ravenna] (smiling sinisterly) A tale to be told, and secrets divulged? Very well, my would-be adversaries, come and bathe in the inky darkness of my inheritance.\n[Narrator] Entranced by Ravenna's enigmatic allure, Aurelia and her comrades prepare to delve into a twisted world of shadows and secrets, the strands of their fates entwining inextricably with the mysteries of the Magical Realms."
+          },
+          {
+            "id": 7,
+            "name": "Aurelia and her friends travel to the first Realm, discover ancient secrets",
+            "summary": "Aurelia and her friends embark on their journey, reaching the first realm, where they traverse ancient paths and come upon a chamber harboring secrets long forgotten. Driven by their unwavering resolve, they pledge to defend the sanctity of the Four Realms, daring to face the shadows that emanate from the unseen darkness.",
+            "location": "The first Realm, a vast and magical land, brimming with celestial seas and enchanted forests that precariously balance on the border between dream and reality. The skies a canvas of shimmering stars amidst an obsidian background.",
+            "background": {
+              "name": "The first Realm, a vast and magical land, brimming with celestial seas and enchanted forests that precariously balance on the border between dream and reality. The skies a canvas of shimmering stars amidst an obsidian background.",
+              "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/a7a74c38-70ad-4e11-85fe-5a68ca500400/public"
+            },
+            "music": {
+              "type": "youtube",
+              "name": "Vivaldi - The Four Seasons (Instrumental)",
+              "info": "",
+              "uri": "DLDvbnK_Sqk",
+              "loop": true
+            },
+            "script": "[Narrator] As a new dawn crept from its slumber ushering the weary world into hope, Aurelia and her steadfast companions embarked on a journey into the first realm, trembling hearts ablaze with excitement and trepidation.\n[Aurelia] (gazing at the entrancing realm before them) What wonders shall we uncover in these uncharted lands, my friends? Our quest begins anew as we embrace the unknown with courage.\n[Narrator] The first realm, a tapestry of colors and intricacies interwoven, rivers reflecting the subtle radiance of the stars against the ever-stretching tapestry of obsidian skies.\n[Aspen] (wide-eyed in awe) Celestial seas and enchanted forests unfurl before us, my friends, as bountiful in their enchantments as a dreamer's imagination.\n[Iris] (determinedly) Let us traverse these deep-rooted trails, the ancient paths of a land forged by lore and magic, and divine the truths held within.\n[Narrator] Unveiling the realm's hidden beauty, the brave souls soon discovered a sanctuary of ancient secrets, a forgotten chamber that bore testament to its storied past.\n[Elysander] (reading from an old book) Myriad mysteries and forgotten tales dwell within these hallowed pages, longing to be liberated and beholden to the light.\n[Aurelia] (scanning the chamber) What tales are yet untold, my friends? Betwixt these cryptic murals and crypts lies a truth that eludes the hands of time.\n[Narrator] Engrossed by their unfolding findings, the explorers uncovered a truth that long-slumbered, an unwritten tale of the Four Realms and the dark forces that threaten their harmony.\n[Aspen] (with newfound resolve) We must defend these lands, friends, and guard the sanctity of the Four Realms with all our hearts and might.\n[Narrator] Their spirits united by the resurgence of purpose, our heroes pledged to unearth the remaining history of the Four Realms and dare the darkness that awaits them in the shadows, poised to strike."
+          },
+          {
+            "id": 8,
+            "name": "Ravenna captures Iris, forcing the group to travel to the second Realm",
+            "summary": "In a treacherous turn of events, Ravenna captures Iris and forces the group to venture into the perilous second Realm. With courage in their hearts and determination in their souls, Aurelia, Aspen, and Elysander bravely strive to overcome the darkness and bring their beloved friend back to safety.",
+            "location": "A moonlit battlefield between realms, the parched earth of the first realm and the approach to the second realm, shrouded in an unwelcoming darkness that heralds tales of dread and despair.",
+            "background": {
+              "name": "A moonlit battlefield between realms, the parched earth of the first realm and the approach to the second realm, shrouded in an unwelcoming darkness that heralds tales of dread and despair.",
+              "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/35eba74f-97ca-4626-6426-b8165c619d00/public"
+            },
+            "music": {
+              "type": "youtube",
+              "name": "Edvard Grieg - In the Hall of the Mountain King (Instrumental)",
+              "info": "",
+              "uri": "4nMUr8Rt2AI",
+              "loop": true
+            },
+            "script": "[Narrator] As the shroud of moonlight casts a silken veil upon the lands, our intrepid heroes find themselves beset by an unforeseen turn of fate. Hovering amidst the shadows, the enigmatic Ravenna Blackthorn ensnares young Iris in her nefarious grasp.\n[Aurelia] (frantic) No! Ravenna, release Iris from your perfidious clutches or suffer the wrath of our bonded hearts!\n[Narrator] The menacing Ravenna sneers, her countenance an unfathomable chasm of malice and scorn, tightening the grip of her imprisonment upon befuddled Iris.\n[Ravenna] (tauntingly) A daring venture this may be, na\u00efve children, yet if you desire to rescue your precious fellow, you shall acquiesce to my demands and pursue the second Realm.\n[Elysander] (angrily) What wicked schemes do you conspire, Ravenna? Unshackle our beloved friend and relinquish your stranglehold upon her innocent spirit!\n[Narrator] Behind her sinister eyes, a nebulous scheme unfurls, as her demands echo in the hollow void between foes.\n[Aspen] (nervous, clutching her wand) We shall brave the tempests of the second Realm to retrieve our lost Iris, but know that the fires that forge our hearts will quell your darkness!\n[Narrator] The path to the second Realm, an arduous trek fraught with peril, stretches out before Aurelia and her companions, daylight wavering on the edge of a foreboding twilight.\n[Aurelia] (resolute) For our dear Iris, we shall tread into the nefarious abyss of the second Realm and bear witness to the crucible that awaits us. With heartbeats entwined, we shall vanquish the schemes of the insidious Ravenna Blackthorn.\n[Narrator] As the second Realm looms, Aurelia, Aspen and Elysander venture forth, their spirits tempered by adversity and their bonds forged stronger in the fires of their determination."
+          },
+          {
+            "id": 9,
+            "name": "Aurelia learns to embrace her family legacy, saving Iris",
+            "summary": "Embracing her family legacy, Aurelia channels her ancestors' power to save Iris from Ravenna's dark embrace. Though they may have prevailed in this battle, Aurelia and her friends know that the war for the Four Realms is far from over, and they stand united within the crucible of destiny.",
+            "location": "The threshold between the tumultuous second Realm and the realm of safety, where the air is tinged with the bittersweet perfume of victory and the lingering shadow of struggle.",
+            "background": {
+              "name": "The threshold between the tumultuous second Realm and the realm of safety, where the air is tinged with the bittersweet perfume of victory and the lingering shadow of struggle.",
+              "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/69066178-c3e4-4793-22a6-387e3d0c0900/public"
+            },
+            "music": {
+              "type": "youtube",
+              "name": "Ludwig van Beethoven - Moonlight Sonata, Op. 27 No. 2 (Instrumental)",
+              "info": "",
+              "uri": "sbTVZMJ9Z2I",
+              "loop": true
+            },
+            "script": "[Narrator] As the inky veil of night succumbs to the resplendent glow of dawn, Aurelia stands poised upon the precipice of a transformative moment, her heart emboldened by the echoes of her storied lineage.\n[Aurelia] (contemplative) I summon the might of my forebears, the indomitable spirit of the Potters of yore, to grant me the strength to rescind this nefarious curse that binds our cherished Iris!\n[Narrator] With the flames of family alight within her, Aurelia's eyes glisten with renewed vigour, and her wand hand trembles with a potency hitherto unknown to her.\n[Caspian] (encouraging) You bear within you the very essence of heroism, Aurelia. Channel this unyielding power and free Iris from Ravenna's vile machinations!\n[Narrator] A surge of ethereal energy cascades from Aurelia's wand, enveloping Iris in a swirling maelstrom of light, imbued with the affirmation of familial love and the promise of redemption.\n[Iris] (gasping) Aurelia, your love has shattered the umbral fetters that encumbered me, and I stand liberated! Thank you, my dear cousin!\n[Narrator] Yet, as the spectre of Ravenna's perfidy dissipates, the scars of her treachery remain, indelible in the hearts of all.\n[Aspen] (grateful) We must remain vigilant, my friends. For though we have rescued Iris and weathered this storm, the clouds of our adversaries still darken the horizon.\n[Elysander] (resolute) Together, hand in hand, we shall stand unyielding in the face of strife, as our fates entwine and our destinies shine with the radiance of a thousand suns.\n[Narrator] Thus, with the courage and conviction of their ancestors pulsing through their veins, Aurelia and her companions forge upon a path of unwavering determination, resolute in their pursuit of justice."
+          },
+          {
+            "id": 10,
+            "name": "Aurelia confronts Ravenna, who reveals herself to be the reincarnation of J.K. Rowling.",
+            "summary": "Aurelia confronts Ravenna, unmasking her as the reincarnation of J.K. Rowling. Ravenna seeks to alter their world and erase those who do not belong with the Four Realms' power, but Aurelia and her friends stand united against her in an impending clash which shall shape the destiny of magical realms.",
+            "location": "The tumultuous Third Realm, where the mists obscure the dividing line betwixt illusion and reality, suspended between the doom of Ravenna's machinations and the flickering embers of hope.",
+            "background": {
+              "name": "The tumultuous Third Realm, where the mists obscure the dividing line betwixt illusion and reality, suspended between the doom of Ravenna's machinations and the flickering embers of hope.",
+              "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/546b5284-ee4e-4dfd-ff19-aab137a19000/public"
+            },
+            "music": {
+              "type": "youtube",
+              "name": "Wolfgang Amadeus Mozart - Requiem in D Minor, K. 626 (Instrumental)",
+              "info": "",
+              "uri": "FUaIUHYfhjs",
+              "loop": true
+            },
+            "script": "[Narrator] Amidst the swirling mists of the treacherous Third Realm, the portentous figure of Ravenna emerges from the shadows, her gaze as cold and impenetrable as the caress of death.\n[Aurelia] (defiant) Ravenna, your deceit and betrayal shall plague us no further! Disrobe yourself of this vile masquerade, and let us peer upon your wretched visage!\n[Narrator] For a moment, a flicker of anguish flits across Ravenna's countenance, before she casts aside the shroud of her secrecy with a sigh long-weathered by uncountable years of isolation and heartache.\n[Ravenna] (bitter) Very well, child. Witness the truth you so desperately crave: I am the vessel which harbors the soul of the one you know as J.K. Rowling. And with the power of the Four Realms, I shall rewrite the fabric of your world and erase those who do not belong!\n[Narrator] As the magnitude of her revelation coalesces into a smoldering tempest within Aurelia's heart, Ravenna's form shifts before their disbelieving eyes, her being now woven from the ink of her own creations.\n[Caspian] (shocked) Surely, this cannot be! She is the harbinger of our beloved tales, the mother of the very world in which we dwell!\n[Iris] (outraged) Yet now she labors with hostile intent, seeking to wield our myths against us as weapons in her pursuit of dark dominion over all!\n[Narrator] With the weight of their world settling heavily upon their shoulders, Aurelia and her companions lock arms, prepared to repel the encroaching malevolence of Ravenna's renewed assault.\n[Aspen] (steadfast) We stand undaunted, Ravenna, our resolve unbroken! We shall defend this world you birthed at any cost!\n[Elysander] (determined) For we are a m\u00e9lange of creativity and love, of empathy and acceptance. We shall thwart your wicked designs, and guide this story's fate on a path of benevolence!\n[Narrator] The stage is set, the die is cast, as Aurelia and her allies brace themselves for a battle that shall determine the very future of the magical world."
+          },
+          {
+            "id": 11,
+            "name": "Aurelia's group defeats Ravenna with cancel magic, securing the Four Realms for generations to come",
+            "summary": "Aurelia and her friends band together, channeling the power of the Cancel Charm to vanquish Ravenna, thereby ensuring the sanctity and freedom of the Four Realms for generations to come. Their victory serves as a testament to the enduring strength of love, unity, and acceptance against the forces of intolerance and darkness.",
+            "location": "The climactic battleground within the mist-shrouded Third Realm, poised precariously between the abyss of despair and the radiant zenith of hope's awakening.",
+            "background": {
+              "name": "The climactic battleground within the mist-shrouded Third Realm, poised precariously between the abyss of despair and the radiant zenith of hope's awakening.",
+              "image": "https://imagedelivery.net/b5mSegxdhZuzmzCIP5eRsQ/b5bda5ee-ee12-431b-e054-32da9b261900/public"
+            },
+            "music": {
+              "type": "youtube",
+              "name": "Ludwig van Beethoven - Symphony No. 9 'Ode to Joy' (Instrumental)",
+              "info": "",
+              "uri": "-kcOpyM9cBg",
+              "loop": true
+            },
+            "script": "[Narrator] Beset by the storm of conflict that engulfs them, Aurelia and her valiant companions battle against the deranged phantasm that was once Ravenna, their hearts ablaze with righteous fury.\n[Aurelia] (determined) We shall not falter! For the sake of our world and those we hold dear, we shall triumph against your twisted machinations!\n[Narrator] Through the tempestuous whirlwind of their arcane dueling, a ray of hope descends upon our heroes in the form of a lost and arcane spell, heretofore unspoken in the annals of magical lore: The Cancel Charm.\n[Aspen] (astonished) Aurelia, look! This divine providence may be our salvation! We must unite our powers as one, and invoke the Cancel Charm to vanquish Ravenna's dark foibles!\n[Narrator] As the echoes of Aspen's words reverberate through the maelstrom, the bound hearts of Aurelia, Iris, Caspian, Aspen, and Elysander coalesce into a singular beacon of resistance, fueled by the fervent yearning for freedom and compassion.\n[Iris] (resolute) Though our paths may weave and wend through the tapestry of fate, we shall together seek the golden threads that bind us to a brighter tomorrow!\n[Narrator] With the fervor of their collective desire nurturing the essence of their Cancel Charm, the united strength of Aurelia and her friends surges forth in a brilliant beam of exorcism, enveloping the beleaguered Ravenna in its relentless embrace.\n[Ravenna] (screaming) No! My power, my dominion, stripped away by those who should kneel before my greatness! Curse you, children of misconstrued legacy! Forever disbanded from the world that I shaped!\n[Narrator] As Ravenna's wretched cries recede into the ether, the Cancel Charm successfully purifies the malign specter, sealing away her sinister aspirations behind the impenetrable veil of erasure.\n[Caspian] (relieved) By the grace of our devotion, we have liberated the Four Realms, and disentangled its future from the cruel grasping tendrils of Ravenna's malevolent design.\n[Elysander] (thoughtful) May it serve as a lesson, etched indelibly across the canvas of time, that the power of love, unity, and acceptance shall ever triumph against the desolate shadows of intolerance and bigotry!\n[Narrator] Thus concludes the epic saga of Aurelia and her resolute comrades, their resplendent victory illuminating the path toward future generations of enchanted wonder, unshackled from the darkness of tyranny."
+          }
+        ]
+      },
+      "currentTurnData": {
+        "currentSceneId": 0,
+        "currentTurnId": 0,
+        "currentCharacters": []
+      }
+    },
+    "name": "Hogwarts School of Witchcraft and Wizardry, Four Magical Realms, centuries after the Deathly Hallows, dark times and new challenges await",
+    "newGame": true
+  }

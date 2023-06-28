@@ -7,7 +7,7 @@ import { Button } from "react95-native";
 import * as Clipboard from "expo-clipboard";
 import TextInput from "../../atoms/TextInput";
 import ChatHistoryBox from "../../molecules/SystemApps/ChatMessagesBox";
-import { VisualNovelGameMakerGameState } from "../../redux/VisualNovelGameMakerSlice";
+import { GameSliceState } from "../../redux/GameSlice";
 import GameDebugMenu, {
   GameDebugMenuProps,
 } from "../../molecules/UserApps/GameDebugMenu";
@@ -15,10 +15,8 @@ import GameDebugMenu, {
 export interface VisualNovelGameMakerProps {
   messages: string[];
   sendMessage: (message: string) => void;
-  makeGameState: VisualNovelGameMakerGameState;
-  saveChangedMakeGameState: (
-    makeGameState: VisualNovelGameMakerGameState
-  ) => void;
+  makeGameState: GameSliceState;
+  saveChangedMakeGameState: (makeGameState: GameSliceState) => void;
   startGame: () => void;
   readyToStartGame: boolean;
   debug?: boolean;

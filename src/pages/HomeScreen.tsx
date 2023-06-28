@@ -61,10 +61,7 @@ import { defaultStartMenu } from "../molecules/Taskbar/StartMenu.stories";
 import Chat from "../organisms/SystemApps/Chat";
 import AiSettings from "../organisms/SystemApps/AiSettings";
 import WelcomeWizard from "../organisms/SystemApps/WelcomeWizard";
-import {
-  GameSaveFile,
-  resetGamePlayerState,
-} from "../redux/VisualNovelGameTurnsSlice";
+import { GameSaveFile, resetGamePlayer } from "../redux/GameSlice";
 import {
   addHumanMessage,
   askChatgpt,
@@ -366,9 +363,18 @@ export default function HomeScreen() {
     },
   };
 
-  const gameMakerGameSave = useAppSelector(
-    (state) => state.gameMaker.gameState.completedGameSave
-  );
+  const gameData = useAppSelector((state) => state.game);
+
+  // TODO: hacky
+  const gameMakerGameSave = {
+    id: 0,
+    name: "custom game",
+    timestamp: 0,
+    previewText: "none",
+    gameEngineVersion: "1",
+    newGame: true,
+    data: gameData,
+  };
 
   const gameIcon =
     Platform.OS === "web"
@@ -862,7 +868,7 @@ export default function HomeScreen() {
         },
         close: () => {
           if (task.name.startsWith("game_")) {
-            dispatch(resetGamePlayerState({}));
+            dispatch(resetGamePlayer({}));
           }
           dispatch(closeTask({ id: task.id }));
         },
