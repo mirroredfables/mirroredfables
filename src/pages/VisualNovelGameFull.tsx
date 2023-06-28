@@ -35,7 +35,6 @@ import { setSnackbar } from "../redux/SystemSettingsSlice";
 import { usePostTextToSpeechMutation } from "../redux/ElevenLabsSlice";
 import { VisualNovelGameMusic } from "../redux/VisualNovelGameTypes";
 import { saveGameToServer } from "../redux/GameGenerator";
-
 import GameEditMenu from "../molecules/UserApps/GameEditMenu";
 
 export interface VisualNovelGameFullProps {
@@ -767,9 +766,6 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
   // end debug menu
 
   // onClose stuff
-  // TODO: there is a bug when toggling the fullscreen / exit full screen
-  // React considers the window fully closed, and open a new one
-  // hence the saveGame() here is a hack to resume
   const onClose = () => {
     console.log("onClose");
     currentTextToSpeech.stop();
@@ -850,31 +846,6 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
           onSavePressed={(value) => {
             console.log("GameEditMenu onSavePressed", value);
             handleUpdateSceneWithNewLine(value);
-            setEditing(false);
-          }}
-        />
-      );
-      return gameEditMenu;
-    }
-    return <></>;
-  };
-
-  const [editing, setEditing] = React.useState(false);
-  const GameEditOverlay = () => {
-    if (editing) {
-      const regexSpeaker = new RegExp("\\[(.*?)\\]");
-      const matchesSpeaker = currentTurnText.match(regexSpeaker);
-      const speaker = matchesSpeaker ? matchesSpeaker[1] : "Narrator";
-      const regexText = new RegExp("\\] (.*)");
-      const matchesText = currentTurnText.match(regexText);
-      const defaultValue = matchesText ? matchesText[1] : "";
-      const gameEditMenu = (
-        <GameEditMenu
-          speaker={`[${speaker}]`}
-          defaultValue={defaultValue}
-          onCancelPressed={() => setEditing(false)}
-          onSavePressed={(value) => {
-            console.log("GameEditMenu onSavePressed", value);
             setEditing(false);
           }}
         />
