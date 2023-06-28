@@ -156,8 +156,8 @@ const initialGamePlayerSettings: GamePlayerSettings = {
   autoGenerate: false,
   autoNextTurn: false,
   textSize: 16, // should this carry over between resets?
-  speech: false,
-  music: false,
+  speech: true,
+  music: true,
   hideYoutube: false,
   showConfig: false,
   showHistory: false,
@@ -283,6 +283,7 @@ const gameSlice = createSlice({
     loadGameFromState: (state, action: PayloadAction<GameSliceState>) => {
       state.currentTurnData = action.payload.currentTurnData;
       state.gameData = action.payload.gameData;
+      // TODO: should it use generator and player settings?
       state.gameGenerator = action.payload.gameGenerator;
       state.gamePlayerSettings = action.payload.gamePlayerSettings;
 
