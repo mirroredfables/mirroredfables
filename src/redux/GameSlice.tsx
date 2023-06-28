@@ -289,7 +289,12 @@ const gameSlice = createSlice({
       return state;
     },
     resetGameFully: (state, action: PayloadAction<{}>) => {
-      state.gameGenerator = initialGameGenerator;
+      // TODO: here's a hack
+      // we keep the game generator's previous messages
+      state.gameGenerator = {
+        ...initialGameGenerator,
+        messages: state.gameGenerator.messages,
+      };
       state.gamePlayerSettings = initialGamePlayerSettings;
       state.gameData = initialGameData;
       state.currentTurnData = initialCurrentTurnData;
@@ -359,7 +364,7 @@ const gameSlice = createSlice({
       state,
       action: PayloadAction<{ sceneId: number; turnId: number; text: string }>
     ) => {
-      // replace the turn
+      // replace the turn text
       state.entities[action.payload.turnId].text = action.payload.text;
       // remove all scenes after this one
       state.gameData.scenes = state.gameData.scenes.filter(
@@ -376,6 +381,15 @@ const gameSlice = createSlice({
         )
       );
       state.ids = Object.keys(state.entities).map((id) => parseInt(id));
+
+      // TODO: should they belong here?
+      // setup the settings for autogenerate
+      state.gamePlayerSettings.autoGenerate = true;
+
+      // discontinue pre-recorded voice
+      state.gameData.speechPrerecorded = false;
+
+      return state;
     },
 
     // player

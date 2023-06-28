@@ -7,7 +7,6 @@ import { Button } from "react95-native";
 import * as Clipboard from "expo-clipboard";
 import TextInput from "../../atoms/TextInput";
 import ChatHistoryBox from "../../molecules/SystemApps/ChatMessagesBox";
-// import { VisualNovelGameMakerGameState } from "../../redux/VisualNovelGameMakerSlice";
 import { GameSliceState } from "../../redux/GameSlice";
 import GameDebugMenu, {
   GameDebugMenuProps,

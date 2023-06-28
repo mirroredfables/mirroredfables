@@ -34,7 +34,6 @@ import GameYoutubePlayer from "../molecules/UserApps/GameYoutubePlayer";
 import { setSnackbar } from "../redux/SystemSettingsSlice";
 import { usePostTextToSpeechMutation } from "../redux/ElevenLabsSlice";
 import { VisualNovelGameMusic } from "../redux/VisualNovelGameTypes";
-// import { saveGameToServer } from "../redux/VisualNovelGameMakerSlice";
 import { saveGameToServer } from "../redux/GameGenerator";
 import GameEditMenu from "../molecules/UserApps/GameEditMenu";
 
@@ -767,17 +766,11 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
   // end debug menu
 
   // onClose stuff
-  // TODO: there is a bug when toggling the fullscreen / exit full screen
-  // React considers the window fully closed, and open a new one
-  // hence the saveGame() here is a hack to resume
   const onClose = () => {
     console.log("onClose");
-    // saveGame();
     currentTextToSpeech.stop();
     currentTextToSpeech.unload();
     // background music is self unloading
-    // TODO? Fully reset???
-    // dispatch(resetGamePlayer({}));
   };
 
   React.useEffect(() => {
@@ -825,15 +818,10 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
   const textSize = currentGameState.gamePlayerSettings.textSize ?? 16;
 
   const handleUpdateSceneWithNewLine = (newLine: string) => {
-    const currentSceneStartingTurnId = allTurns
-      .filter((turn) => turn.sceneId === currentSceneId)
-      .sort((a, b) => a.id - b.id)[0].id;
-
     dispatch({
       type: "UPDATE_SCENE_WITH_NEW_LINE",
       payload: {
         targetSceneId: currentSceneId,
-        targetSceneStartingTurnId: currentSceneStartingTurnId,
         targetTurnId: currentTurnId,
         oldLine: currentTurnText,
         newLine: newLine,
