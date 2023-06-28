@@ -15,7 +15,109 @@ import {
   VisualNovelGameTurn,
   VisualNovelGameWorld,
 } from "./VisualNovelGameTypes";
-import { convertScenesToTurnsEntities } from "./VisualNovelGameMakerSlice";
+
+function upsertObjects(
+  A: { id: number }[],
+  B: { id: number }[]
+): { id: number }[] {
+  // Create a map of objects in A using their ids as keys
+  const aMap = new Map<number, { id: number }>(
+    A.map((item) => [item.id, item])
+  );
+
+  // Iterate over B array
+  B.forEach((item) => {
+    // If the id exists in the map, replace the object, otherwise insert the object
+    aMap.set(item.id, item);
+  });
+
+  // Convert the map values to an array and sort it by id
+  return Array.from(aMap.values()).sort((a, b) => a.id - b.id);
+}
+
+const convertScriptToTurn = (input: {
+  script: { id: number; line: string };
+  latestTurn: number;
+  scene: number;
+}) => {
+  // sample script line
+  // [Narrator] Leona arrives at NYU dorm, eager to start her college life in New York City. As she enters her new room, she meets her roommate Yumi.
+
+  const turn: VisualNovelGameTurn = {
+    id: input.latestTurn + input.script.id + 1,
+    sceneId: input.scene,
+    type: "text",
+    text: input.script.line,
+  };
+
+  const speakerMatch = input.script.line.match(/\[(.*?)\]/);
+  if (speakerMatch) {
+    const speaker = speakerMatch[1];
+    if (speaker != "Narrator") {
+      turn.activePortrait = speaker;
+      turn.type = "speech";
+    }
+  }
+
+  return turn;
+};
+
+const convertSceneToTurns = (input: {
+  scene: VisualNovelGameScene;
+  latestTurn?: number;
+}) => {
+  const formatScriptToLines = (script: string) => {
+    const lines = script.split("\n");
+    const result = [];
+    let id = 0;
+    for (let i = 0; i < lines.length; i++) {
+      if (lines[i].trim() !== "") {
+        result.push({ id: id, line: lines[i].trim() });
+        id++;
+      }
+    }
+    return result;
+  };
+  const scripts = formatScriptToLines(input.scene.script);
+
+  const turns = scripts.map((scriptLine) => {
+    return convertScriptToTurn({
+      script: scriptLine,
+      latestTurn: input.latestTurn ?? -1,
+      scene: input.scene.id,
+    });
+  });
+
+  return turns;
+};
+
+const convertScenesToTurnsEntities = (input: {
+  scenes: VisualNovelGameScene[];
+}) => {
+  const turns = [];
+  // const turns = convertSceneToTurns(input);
+  for (const scene of input.scenes) {
+    if (!scene.script) {
+      continue;
+    }
+    const sceneTurns = convertSceneToTurns({
+      scene: scene,
+      latestTurn: turns.length - 1,
+    });
+    turns.push(...sceneTurns);
+  }
+
+  const convertArrayToObject = (array, key) =>
+    array.reduce((acc, curr) => {
+      acc[curr[key]] = curr;
+      return acc;
+    }, {});
+
+  return {
+    ids: turns.map((turn) => turn.id),
+    entities: convertArrayToObject(turns, "id"),
+  };
+};
 
 interface GameGenerator {
   init: boolean;
@@ -129,7 +231,7 @@ const initialCurrentTurnData: CurrentTurnData = {
   currentCharacters: [],
 };
 
-interface GameSliceState {
+export interface GameSliceState {
   gameGenerator: GameGenerator;
   gamePlayerSettings: GamePlayerSettings;
   gameData: GameData;
@@ -169,7 +271,7 @@ const gameSlice = createSlice({
       state.gamePlayerSettings = data.gamePlayerSettings;
       state.gameData = data.gameData;
       state.currentTurnData = data.currentTurnData;
-      // TODO: still need to convert the gameData to turns
+      // convert the gameData to turns
       // then reset turns
       const { ids, entities } = convertScenesToTurnsEntities({
         scenes: state.gameData.scenes,
@@ -178,14 +280,104 @@ const gameSlice = createSlice({
       state.entities = entities;
       return state;
     },
+    loadGameFromState: (state, action: PayloadAction<GameSliceState>) => {
+      state.currentTurnData = action.payload.currentTurnData;
+      state.gameData = action.payload.gameData;
+      state.gameGenerator = action.payload.gameGenerator;
+      state.gamePlayerSettings = action.payload.gamePlayerSettings;
+
+      return state;
+    },
     resetGameFully: (state, action: PayloadAction<{}>) => {
       state.gameGenerator = initialGameGenerator;
       state.gamePlayerSettings = initialGamePlayerSettings;
       state.gameData = initialGameData;
       state.currentTurnData = initialCurrentTurnData;
-      // TODO: reset turns
+      // reset turns
+      state.ids = [];
+      state.entities = {};
       return state;
     },
+    // maker
+    addGameMakerMessage: (
+      state,
+      action: PayloadAction<{ message: string }>
+    ) => {
+      state.gameGenerator.messages = [
+        ...state.gameGenerator.messages,
+        action.payload.message,
+      ];
+      return state;
+    },
+    setInitialWorld: (
+      state,
+      action: PayloadAction<{
+        request: string;
+        world: VisualNovelGameWorld;
+        characters: VisualNovelGameCharacter[];
+        titleBackground: VisualNovelGameBackground;
+      }>
+    ) => {
+      // state.gameData.init = true;
+      state.gameData.world = action.payload.world;
+      state.gameData.characters = action.payload.characters;
+      state.gameData.titleBackground = action.payload.titleBackground;
+      return state;
+    },
+    upsertScenes: (
+      state,
+      action: PayloadAction<{ scenes: VisualNovelGameScene[] }>
+    ) => {
+      state.gameData.scenes = upsertObjects(
+        state.gameData.scenes,
+        action.payload.scenes
+      ) as VisualNovelGameScene[];
+      // then update the story so far
+      state.gameData.storySoFar = state.gameData.scenes.map(
+        (scene) => scene.summary
+      );
+      // then update the turns based on this
+      const { ids, entities } = convertScenesToTurnsEntities({
+        scenes: state.gameData.scenes,
+      });
+      state.ids = ids;
+      state.entities = entities;
+      return state;
+    },
+    setCompleted: (state, action: PayloadAction<{ completed: boolean }>) => {
+      state.gameGenerator.completed = action.payload.completed;
+      return state;
+    },
+    setGeneratorBusy: (state, action: PayloadAction<{ busy: boolean }>) => {
+      // TODO: technically this is only busy when generating new full scenes
+      state.gameGenerator.generatorBusy = action.payload.busy;
+      return state;
+    },
+
+    // editor
+    rewriteStory: (
+      state,
+      action: PayloadAction<{ sceneId: number; turnId: number; text: string }>
+    ) => {
+      // replace the turn
+      state.entities[action.payload.turnId].text = action.payload.text;
+      // remove all scenes after this one
+      state.gameData.scenes = state.gameData.scenes.filter(
+        (scene) => scene.id <= action.payload.sceneId
+      );
+      // remove from story so far, including this scene
+      state.gameData.storySoFar = state.gameData.storySoFar.filter(
+        (summary, index) => index < action.payload.sceneId
+      );
+      // remove all turns after this one
+      state.entities = Object.fromEntries(
+        Object.entries(state.entities).filter(
+          ([id, turn]) => turn.id <= action.payload.turnId
+        )
+      );
+      state.ids = Object.keys(state.entities).map((id) => parseInt(id));
+    },
+
     // player
     setPlayerSettings: (
       state,
@@ -199,6 +391,9 @@ const gameSlice = createSlice({
     },
     resetGamePlayer: (state, action: PayloadAction<{}>) => {
       state.gamePlayerSettings = initialGamePlayerSettings;
+      // reset turns
+      state.ids = [];
+      state.entities = {};
       return state;
     },
     nextTurn: (state, action: PayloadAction<{}>) => {
@@ -268,7 +463,14 @@ const gameSlice = createSlice({
 
 export const {
   loadGameFromFile,
+  loadGameFromState,
   resetGameFully,
+  addGameMakerMessage,
+  setInitialWorld,
+  upsertScenes,
+  setCompleted,
+  setGeneratorBusy,
+  rewriteStory,
   setPlayerSettings,
   resetGamePlayer,
   nextTurn,

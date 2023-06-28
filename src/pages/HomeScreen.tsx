@@ -363,9 +363,18 @@ export default function HomeScreen() {
     },
   };
 
-  const gameMakerGameSave = useAppSelector(
-    (state) => state.gameMaker.gameState.completedGameSave
-  );
+  const gameData = useAppSelector((state) => state.game);
+
+  // TODO: hacky
+  const gameMakerGameSave = {
+    id: 0,
+    name: "custom game",
+    timestamp: 0,
+    previewText: "none",
+    gameEngineVersion: "1",
+    newGame: true,
+    data: gameData,
+  };
 
   const gameIcon =
     Platform.OS === "web"

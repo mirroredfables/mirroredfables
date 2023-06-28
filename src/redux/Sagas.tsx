@@ -7,35 +7,29 @@ import {
   takeEvery,
   takeLatest,
 } from "redux-saga/effects";
-import {
-  GenerateInitialScenesResponseData,
-  GenerateInitialWorldResponseData,
-  GenerateScriptResponseData,
-  GenerateVoicesResponseData,
-  addGameMakerMessage,
-  addToStorySoFar,
-  convertSceneToTurns,
-  fixBrokenJson,
-  generateInitialScenesResponseDataTemplate,
-  generateInitialWorld,
-  generateInitialWorldResponseDataTemplate,
-  generateScenes,
-  generateScript,
-  generateScriptFromPrevious,
-  generateScriptResponseDataTemplate,
-  generateVoices,
-  generateVoicesResponseDataTemplate,
-  resetGameMakerGameState,
-  searchYoutubeForMusic,
-  setCompleted,
-  setGeneratorBusy,
-  setInitialWorld,
-  generateSceneWithNewLine,
-  updateScriptResponseDataTemplate,
-  upsertScenes,
-  removeScenes,
-  removeFromStorySoFar,
-} from "./VisualNovelGameMakerSlice";
+// import // addGameMakerMessage,
+// // addToStorySoFar,
+// // convertSceneToTurns,
+// // fixBrokenJson,
+// // generateInitialScenesResponseDataTemplate,
+// // generateInitialWorld,
+// // generateInitialWorldResponseDataTemplate,
+// // generateScenes,
+// // generateScript,
+// // generateScriptFromPrevious,
+// // generateScriptResponseDataTemplate,
+// // generateVoices,
+// // generateVoicesResponseDataTemplate,
+// // searchYoutubeForMusic,
+// // setCompleted,
+// // setGeneratorBusy,
+// // setInitialWorld,
+// // generateSceneWithNewLine,
+// // updateScriptResponseDataTemplate,
+// // upsertScenes,
+// // removeScenes,
+// // removeFromStorySoFar,
+// "./VisualNovelGameMakerSlice";
 import {
   generateImage,
   rewriteDallERequestPrompt,
@@ -47,15 +41,38 @@ import {
   VisualNovelGameMusic,
   VisualNovelGameScene,
 } from "./VisualNovelGameTypes";
+// import {
+//   // upsertScenes as upsertPlayerScenes,
+//   // addManyTurns as addManyPlayerTurns,
+//   // removePlayerScenes,
+//   // removePlayerTurns,
+//   // upsertTurns,
+//   // setTurnText,
+// } from "./VisualNovelGameTurnsSlice";
 import {
-  resetGamePlayerState,
-  upsertScenes as upsertPlayerScenes,
-  addManyTurns as addManyPlayerTurns,
-  removePlayerScenes,
-  removePlayerTurns,
-  upsertTurns,
-  setTurnText,
-} from "./VisualNovelGameTurnsSlice";
+  generateInitialWorldResponseDataTemplate,
+  generateInitialScenesResponseDataTemplate,
+  generateScriptResponseDataTemplate,
+  updateScriptResponseDataTemplate,
+  generateVoicesResponseDataTemplate,
+  fixBrokenJson,
+  generateInitialWorld,
+  generateScenes,
+  generateScript,
+  generateScriptFromPrevious,
+  generateSceneWithNewLine,
+  generateVoices,
+  searchYoutubeForMusic,
+} from "./GameGenerator";
+import {
+  resetGameFully,
+  addGameMakerMessage,
+  setInitialWorld,
+  upsertScenes,
+  setCompleted,
+  setGeneratorBusy,
+  rewriteStory,
+} from "./GameSlice";
 
 function* sagaTest(action) {
   const state = yield select();
@@ -189,8 +206,7 @@ function* sagaGenerateGame(action: {
 }
 
 function* sagaResetGame(action) {
-  yield put(resetGameMakerGameState({}));
-  yield put(resetGamePlayerState({}));
+  yield put(resetGameFully({}));
 
   yield put({ type: "RESET_GAME_SUCCEEDED" });
 }
@@ -377,8 +393,6 @@ function* sagaGenerateMoreScenes(action: {
   const scenes = yield call(subSagaGenerateMoreScenes, action);
   // set it in the game maker
   yield put(upsertScenes(scenes));
-  // set it in the game player
-  yield put(upsertPlayerScenes(scenes));
 
   yield put({
     type: "GENERATE_MORE_SCENES_SUCCEEDED",
@@ -482,12 +496,10 @@ function* sagaGenerateFullScene(action: {
 
     // set it in the game maker
     yield put(upsertScenes({ scenes: [scene] }));
-    yield put(addToStorySoFar({ summary: scene.summary }));
+    // yield put(addToStorySoFar({ summary: scene.summary }));
 
-    // set it in the game player
-    yield put(upsertPlayerScenes({ scenes: [scene] }));
-    const resultTurns = convertSceneToTurns({ scene: scene });
-    yield put(addManyPlayerTurns({ turns: resultTurns }));
+    // const resultTurns = convertSceneToTurns({ scene: scene });
+    // yield put(addManyPlayerTurns({ turns: resultTurns }));
 
     yield put({ type: "GENERATE_FULL_SCENE_SUCCEEDED", payload: scene });
     yield put({
@@ -588,17 +600,24 @@ function* sagaUpdateSceneWithNewLine(action: {
     },
   });
   yield put(setGeneratorBusy({ busy: true }));
-  // remove scenes after this one (player)
-  yield put(
-    removePlayerScenes({ greaterThanId: action.payload.targetSceneId })
-  );
+  // // remove scenes after this one (player)
+  // yield put(
+  //   removePlayerScenes({ greaterThanId: action.payload.targetSceneId })
+  // );
 
-  // remove turns after this one (player)
-  yield put(removePlayerTurns({ greaterThanId: action.payload.targetTurnId }));
+  // // remove turns after this one (player)
+  // yield put(removePlayerTurns({ greaterThanId: action.payload.targetTurnId }));
 
-  // update the turn (player)
+  // // update the turn (player)
+  // yield put(
+  //   setTurnText({
+  //     turnId: action.payload.targetTurnId,
+  //     text: action.payload.newLine,
+  //   })
+  // );
   yield put(
-    setTurnText({
+    rewriteStory({
+      sceneId: action.payload.targetSceneId,
       turnId: action.payload.targetTurnId,
       text: action.payload.newLine,
     })
@@ -606,28 +625,28 @@ function* sagaUpdateSceneWithNewLine(action: {
 
   const scene = yield call(subSagaGenerateSceneWithNewLine, action);
 
-  // remove scenes after this one (maker)
-  yield put(removeScenes({ greaterThanId: action.payload.targetSceneId }));
+  // // remove scenes after this one (maker)
+  // // yield put(removeScenes({ greaterThanId: action.payload.targetSceneId }));
 
-  // remove story so far, including this one (maker)
-  yield put(
-    removeFromStorySoFar({
-      greaterThanId: action.payload.targetSceneId - 1,
-    })
-  );
+  // // remove story so far, including this one (maker)
+  // yield put(
+  //   removeFromStorySoFar({
+  //     greaterThanId: action.payload.targetSceneId - 1,
+  //   })
+  // );
 
   // upsert (replace) new scene (maker)
   yield put(upsertScenes({ scenes: [scene] }));
 
   // insert new story so far (maker)
-  yield put(addToStorySoFar({ summary: scene.summary }));
+  // yield put(addToStorySoFar({ summary: scene.summary }));
 
   // upsert the new turns from scene (player)
-  const resultTurns = convertSceneToTurns({
-    scene: scene,
-    latestTurn: action.payload.targetSceneStartingTurnId - 1,
-  });
-  yield put(upsertTurns({ turns: resultTurns }));
+  // const resultTurns = convertSceneToTurns({
+  //   scene: scene,
+  //   latestTurn: action.payload.targetSceneStartingTurnId - 1,
+  // });
+  // yield put(upsertTurns({ turns: resultTurns }));
 
   yield put(setGeneratorBusy({ busy: false }));
 }

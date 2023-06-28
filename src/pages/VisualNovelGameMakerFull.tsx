@@ -9,13 +9,14 @@ import GameIcon from "../../public/icons/game.png";
 import VisualNovelGameMaker from "../organisms/UserApps/VisualNovelGameMaker";
 import { useAppDispatch, useAppSelector } from "../redux/Hooks";
 import {
-  addGameMakerMessage,
+  // addGameMakerMessage,
   convertScenesToTurnsEntities,
   exportCompletedGameAsSave,
   loadGameMakerGameState,
   setCompletedGameSave,
-  generateSceneWithNewLine,
+  // generateSceneWithNewLine,
 } from "../redux/VisualNovelGameMakerSlice";
+import { addGameMakerMessage, loadGameFromState } from "../redux/GameSlice";
 import { newTask } from "../redux/TasksSlice";
 
 export interface VisualNovelGameMakerFullProps {
@@ -27,11 +28,11 @@ export default function VisualNovelGameMakerFull(
 ) {
   const dispatch = useAppDispatch();
 
-  const gameMakerGameState = useAppSelector(
-    (state) => state.gameMaker.gameState
-  );
+  const gameState = useAppSelector((state) => state.game);
 
-  const gameMakerMessages = useAppSelector((state) => state.gameMaker.messages);
+  const gameMakerGameState = gameState.gameData;
+
+  const gameGeneratorState = gameState.gameGenerator;
 
   const sendSystemMessage = (message: string) => {
     dispatch(addGameMakerMessage({ message: `[system] ${message}` }));
@@ -62,20 +63,20 @@ export default function VisualNovelGameMakerFull(
     });
   };
 
-  const handleDebugConvertSceneToTurns = () => {
-    const scene = gameMakerGameState.scenes[0];
-    const turns = convertScenesToTurnsEntities({ scenes: [scene] });
-    console.log(turns);
-  };
+  // const handleDebugConvertSceneToTurns = () => {
+  //   const scene = gameMakerGameState.scenes[0];
+  //   const turns = convertScenesToTurnsEntities({ scenes: [scene] });
+  //   console.log(turns);
+  // };
 
   const handleDebugExportGameAsSave = () => {
-    const gameSaveFile = exportCompletedGameAsSave(gameMakerGameState);
-    dispatch(setCompletedGameSave({ gameSave: gameSaveFile }));
+    // const gameSaveFile = exportCompletedGameAsSave(gameMakerGameState);
+    // dispatch(setCompletedGameSave({ gameSave: gameSaveFile }));
   };
 
   const handleStartGame = () => {
-    const gameSaveFile = exportCompletedGameAsSave(gameMakerGameState);
-    dispatch(setCompletedGameSave({ gameSave: gameSaveFile }));
+    // const gameSaveFile = exportCompletedGameAsSave(gameMakerGameState);
+    // dispatch(setCompletedGameSave({ gameSave: gameSaveFile }));
 
     const gameIcon =
       Platform.OS === "web"
@@ -90,7 +91,7 @@ export default function VisualNovelGameMakerFull(
     );
   };
 
-  const handleUpdateScript = () => {
+  const handleDebugUpdateScript = () => {
     dispatch({
       type: "UPDATE_SCENE_WITH_NEW_LINE",
       payload: {
@@ -190,7 +191,7 @@ export default function VisualNovelGameMakerFull(
     buttons: [
       {
         name: "test update script",
-        onPress: handleUpdateScript,
+        onPress: handleDebugUpdateScript,
       },
       {
         name: "dispatch test",
@@ -200,10 +201,10 @@ export default function VisualNovelGameMakerFull(
         name: "force start",
         onPress: handleStartGame,
       },
-      {
-        name: "convert scene to turns",
-        onPress: handleDebugConvertSceneToTurns,
-      },
+      // {
+      //   name: "convert scene to turns",
+      //   onPress: handleDebugConvertSceneToTurns,
+      // },
       {
         name: "export game as save",
         onPress: handleDebugExportGameAsSave,
@@ -217,14 +218,14 @@ export default function VisualNovelGameMakerFull(
 
   return (
     <VisualNovelGameMaker
-      messages={gameMakerMessages}
+      messages={gameGeneratorState.messages}
       sendMessage={sendUserMessage}
-      makeGameState={gameMakerGameState}
+      makeGameState={gameState}
       saveChangedMakeGameState={(gameState) => {
-        dispatch(loadGameMakerGameState(gameState));
+        dispatch(loadGameFromState(gameState));
       }}
       startGame={handleStartGame}
-      readyToStartGame={gameMakerGameState.completed}
+      readyToStartGame={gameGeneratorState.completed}
       debug={props.debug}
       debugMenu={debugMenu}
     />

@@ -34,7 +34,8 @@ import GameYoutubePlayer from "../molecules/UserApps/GameYoutubePlayer";
 import { setSnackbar } from "../redux/SystemSettingsSlice";
 import { usePostTextToSpeechMutation } from "../redux/ElevenLabsSlice";
 import { VisualNovelGameMusic } from "../redux/VisualNovelGameTypes";
-import { saveGameToServer } from "../redux/VisualNovelGameMakerSlice";
+// import { saveGameToServer } from "../redux/VisualNovelGameMakerSlice";
+import { saveGameToServer } from "../redux/GameGenerator";
 import GameEditMenu from "../molecules/UserApps/GameEditMenu";
 
 export interface VisualNovelGameFullProps {
@@ -633,7 +634,7 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
   const autoGenerate = currentGameState.gamePlayerSettings.autoGenerate;
 
   const generatorBusy = useAppSelector(
-    (state) => state.gameMaker.generatorBusy
+    (state) => state.game.gameGenerator.generatorBusy
   );
 
   React.useEffect(() => {
