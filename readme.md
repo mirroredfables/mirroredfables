@@ -127,6 +127,8 @@ To run them with wrangler, do the following:
 
 # Roadmap
 
+- [ ] Add in a proxy server for requests
+- [ ] Migrate to langchain.ts
 - [ ] Add in support for retrying prompts when OpenAI is busy
 - [ ] Add choices to game engine
 - [ ] Add support for multiple sprites per character to game engine
