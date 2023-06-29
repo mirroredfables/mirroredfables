@@ -103,7 +103,7 @@ To run them with wrangler, do the following:
    ```
    (Optional) or if you want to use buckets for saving games
    ```sh
-   npx wrangler pages dev dist --r2=BUCKET
+   npx wrangler pages dev dist --r2=BUCKET --kv=KV_PROXY
    ```
 6. (Optional) Once the app is running, either through expo or wrangler, open the app, then go to `"Desktop" -> "Turn on Debug" -> "Turn on Use Local Server"`
 
@@ -121,7 +121,8 @@ To run them with wrangler, do the following:
    | CLOUDFLARE_ACCOUNT_ID | YOUR_CLOUDFLARE_ACCOUNT_ID |
    | CLOUDFLARE_API_TOKEN | YOUR_CLOUDFLARE_API_TOKEN |
    | YOUTUBE_API_KEY | YOUR_YOUTUBE_API_KEY |
-5. Add a R2 bucket bindings (remember to set both preview and prod)
+5. Add a R2 bucket bindings (remember to set both preview and prod) to BUCKET
+6. Add a KV binding (if you want to use proxy servers) to KV_PROXY
 
 <!-- ROADMAP -->
 
