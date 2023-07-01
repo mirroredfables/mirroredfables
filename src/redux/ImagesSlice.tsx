@@ -24,11 +24,16 @@ export const generateImage = createAsyncThunk(
     try {
       const state = getState() as RootState;
       const authToken = state.systemSettings.openAiKey;
-      const url = `https://api.openai.com/v1/images/generations`;
+      const useProxy = state.systemSettings.useProxy;
+      const proxyKey = state.systemSettings.proxyKey;
+      const url = useProxy
+        ? `/api/v0/proxy/openai/images/generations`
+        : `https://api.openai.com/v1/images/generations`;
       console.log(`images - generate - ${payload.prompt}`);
       const response = await client.post(url, payload, {
         headers: {
           Authorization: `Bearer ${authToken}`,
+          "x-proxy-key": proxyKey,
           "Content-Type": "application/json",
         },
       });
@@ -67,7 +72,11 @@ export const rewriteDallERequestPrompt = createAsyncThunk(
     try {
       const state = getState() as RootState;
       const authToken = state.systemSettings.openAiKey;
-      const url = `https://api.openai.com/v1/chat/completions`;
+      const useProxy = state.systemSettings.useProxy;
+      const proxyKey = state.systemSettings.proxyKey;
+      const url = useProxy
+        ? `/api/v0/proxy/openai/chat/completions`
+        : `https://api.openai.com/v1/chat/completions`;
       const requestData: ChatgptRequestData = {
         messages: [
           {
@@ -80,6 +89,7 @@ export const rewriteDallERequestPrompt = createAsyncThunk(
       const response = await client.post(url, requestData, {
         headers: {
           Authorization: `Bearer ${authToken}`,
+          "x-proxy-key": proxyKey,
           "Content-Type": "application/json",
         },
       });
