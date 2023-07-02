@@ -39,7 +39,11 @@ export default function VisualNovelGameMakerFull(
 
   React.useEffect(() => {
     sendSystemMessage("welcome to the game maker");
-    sendSystemMessage("tell me about the world and yourself");
+    sendSystemMessage("tell me what kind of story you want told");
+    sendSystemMessage("and what characters you would like see");
+    sendSystemMessage("you can be as broad or as specific as you like");
+    sendSystemMessage("you can also include style of writing and art");
+    sendSystemMessage("but please do not include any personal information");
   }, []);
 
   const [hasSentFirstMessage, setHasSentFirstMessage] = React.useState(false);

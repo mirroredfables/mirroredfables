@@ -927,15 +927,6 @@ export default function HomeScreen() {
     onDismiss: () => dispatch(dismissSnackbar({})),
   };
 
-  // launch welcome wizard for first time users
-  React.useEffect(() => {
-    AsyncStorage.getItem("welcomed").then((value) => {
-      if (value != "true") {
-        launchWelcomeWizard();
-      }
-    });
-  }, []);
-
   // launch game if game save is provided
   // web only
   React.useEffect(() => {
@@ -951,6 +942,13 @@ export default function HomeScreen() {
         };
         dispatch(configureProxy(config));
         dispatch(saveConfigProxy(config));
+        // lauch game maker
+        dispatch(
+          newTask({
+            name: "gamemaker.exe",
+            icon: gameMakerAppIcon,
+          })
+        );
       }
 
       // example: http://localhost:19000/?gameUuid=xyz
@@ -967,6 +965,19 @@ export default function HomeScreen() {
         launchGameFromUrl(gameUrl);
       }
     }
+  }, []);
+
+  // launch welcome wizard for first time users
+  React.useEffect(() => {
+    AsyncStorage.getItem("welcomed").then((value) => {
+      if (value != "true") {
+        AsyncStorage.getItem("useProxy").then((value) => {
+          if (value != "true") {
+            launchWelcomeWizard();
+          }
+        });
+      }
+    });
   }, []);
 
   if (!currentSystemSettings.restored) {
