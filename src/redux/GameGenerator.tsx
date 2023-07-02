@@ -134,7 +134,11 @@ export const fixBrokenJson = createAsyncThunk(
     try {
       const state = getState() as RootState;
       const authToken = state.systemSettings.openAiKey;
-      const url = `https://api.openai.com/v1/chat/completions`;
+      const useProxy = state.systemSettings.useProxy;
+      const proxyKey = state.systemSettings.proxyKey;
+      const url = useProxy
+        ? `/api/v0/proxy/openai/chat/completions`
+        : `https://api.openai.com/v1/chat/completions`;
       const requestData: ChatgptRequestData = {
         messages: [
           {
@@ -147,6 +151,7 @@ export const fixBrokenJson = createAsyncThunk(
       const response = await client.post(url, requestData, {
         headers: {
           Authorization: `Bearer ${authToken}`,
+          "x-proxy-key": proxyKey,
           "Content-Type": "application/json",
         },
       });
@@ -164,7 +169,11 @@ export const generateInitialWorld = createAsyncThunk(
     try {
       const state = getState() as RootState;
       const authToken = state.systemSettings.openAiKey;
-      const url = `https://api.openai.com/v1/chat/completions`;
+      const useProxy = state.systemSettings.useProxy;
+      const proxyKey = state.systemSettings.proxyKey;
+      const url = useProxy
+        ? `/api/v0/proxy/openai/chat/completions`
+        : `https://api.openai.com/v1/chat/completions`;
       const requestData: ChatgptRequestData = {
         messages: [
           {
@@ -183,6 +192,7 @@ export const generateInitialWorld = createAsyncThunk(
       const response = await client.post(url, requestData, {
         headers: {
           Authorization: `Bearer ${authToken}`,
+          "x-proxy-key": proxyKey,
           "Content-Type": "application/json",
         },
       });
@@ -200,7 +210,11 @@ export const generateScenes = createAsyncThunk(
     try {
       const state = getState() as RootState;
       const authToken = state.systemSettings.openAiKey;
-      const url = `https://api.openai.com/v1/chat/completions`;
+      const useProxy = state.systemSettings.useProxy;
+      const proxyKey = state.systemSettings.proxyKey;
+      const url = useProxy
+        ? `/api/v0/proxy/openai/chat/completions`
+        : `https://api.openai.com/v1/chat/completions`;
       const requestData: ChatgptRequestData = {
         messages: [
           {
@@ -228,6 +242,7 @@ export const generateScenes = createAsyncThunk(
       const response = await client.post(url, requestData, {
         headers: {
           Authorization: `Bearer ${authToken}`,
+          "x-proxy-key": proxyKey,
           "Content-Type": "application/json",
         },
       });
@@ -254,7 +269,11 @@ export const generateScript = createAsyncThunk(
     try {
       const state = getState() as RootState;
       const authToken = state.systemSettings.openAiKey;
-      const url = `https://api.openai.com/v1/chat/completions`;
+      const useProxy = state.systemSettings.useProxy;
+      const proxyKey = state.systemSettings.proxyKey;
+      const url = useProxy
+        ? `/api/v0/proxy/openai/chat/completions`
+        : `https://api.openai.com/v1/chat/completions`;
       const requestData: ChatgptRequestData = {
         messages: [
           {
@@ -291,6 +310,7 @@ export const generateScript = createAsyncThunk(
       const response = await client.post(url, requestData, {
         headers: {
           Authorization: `Bearer ${authToken}`,
+          "x-proxy-key": proxyKey,
           "Content-Type": "application/json",
         },
       });
@@ -316,7 +336,11 @@ export const generateScriptFromPrevious = createAsyncThunk(
     try {
       const state = getState() as RootState;
       const authToken = state.systemSettings.openAiKey;
-      const url = `https://api.openai.com/v1/chat/completions`;
+      const useProxy = state.systemSettings.useProxy;
+      const proxyKey = state.systemSettings.proxyKey;
+      const url = useProxy
+        ? `/api/v0/proxy/openai/chat/completions`
+        : `https://api.openai.com/v1/chat/completions`;
       const requestData: ChatgptRequestData = {
         messages: [
           {
@@ -373,6 +397,7 @@ export const generateScriptFromPrevious = createAsyncThunk(
       const response = await client.post(url, requestData, {
         headers: {
           Authorization: `Bearer ${authToken}`,
+          "x-proxy-key": proxyKey,
           "Content-Type": "application/json",
         },
       });
@@ -398,7 +423,11 @@ export const generateSceneWithNewLine = createAsyncThunk(
     try {
       const state = getState() as RootState;
       const authToken = state.systemSettings.openAiKey;
-      const url = `https://api.openai.com/v1/chat/completions`;
+      const useProxy = state.systemSettings.useProxy;
+      const proxyKey = state.systemSettings.proxyKey;
+      const url = useProxy
+        ? `/api/v0/proxy/openai/chat/completions`
+        : `https://api.openai.com/v1/chat/completions`;
       const requestData: ChatgptRequestData = {
         messages: [
           {
@@ -425,6 +454,7 @@ export const generateSceneWithNewLine = createAsyncThunk(
       const response = await client.post(url, requestData, {
         headers: {
           Authorization: `Bearer ${authToken}`,
+          "x-proxy-key": proxyKey,
           "Content-Type": "application/json",
         },
       });
@@ -445,7 +475,11 @@ export const generateVoices = createAsyncThunk(
     try {
       const state = getState() as RootState;
       const authToken = state.systemSettings.openAiKey;
-      const url = `https://api.openai.com/v1/chat/completions`;
+      const useProxy = state.systemSettings.useProxy;
+      const proxyKey = state.systemSettings.proxyKey;
+      const url = useProxy
+        ? `/api/v0/proxy/openai/chat/completions`
+        : `https://api.openai.com/v1/chat/completions`;
       const requestData: ChatgptRequestData = {
         messages: [
           {
@@ -464,6 +498,7 @@ export const generateVoices = createAsyncThunk(
       const response = await client.post(url, requestData, {
         headers: {
           Authorization: `Bearer ${authToken}`,
+          "x-proxy-key": proxyKey,
           "Content-Type": "application/json",
         },
       });

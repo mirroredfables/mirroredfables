@@ -41,6 +41,7 @@ import {
   setCompleted,
   setGeneratorBusy,
   rewriteStory,
+  upsertScenesStubs,
 } from "./GameSlice";
 
 function* sagaTest(action) {
@@ -360,7 +361,7 @@ function* sagaGenerateMoreScenes(action: {
   yield put(setGeneratorBusy({ busy: true }));
   const scenes = yield call(subSagaGenerateMoreScenes, action);
   // set it in the game maker
-  yield put(upsertScenes(scenes));
+  yield put(upsertScenesStubs(scenes));
 
   yield put({
     type: "GENERATE_MORE_SCENES_SUCCEEDED",

@@ -43,6 +43,8 @@ import {
   saveConfigElevenLabs,
   saveLocalServer,
   setLocalServer,
+  configureProxy,
+  saveConfigProxy,
 } from "../redux/SystemSettingsSlice";
 
 import FullApp from "../templates/FullApp";
@@ -92,6 +94,7 @@ import TextToImage from "../organisms/SystemApps/TextToImage";
 import { generateImage } from "../redux/ImagesSlice";
 import VisualNovelGameMakerFull from "./VisualNovelGameMakerFull";
 import VisualNovelGameLauncher from "../organisms/UserApps/VisualNovelGameLauncher";
+import ProxySettings from "../organisms/SystemApps/ProxySettings";
 
 export default function HomeScreen() {
   const dispatch = useAppDispatch();
@@ -181,6 +184,24 @@ export default function HomeScreen() {
     onPress: () => {
       console.log("ai settings pressed");
       launchAiSettings();
+    },
+  };
+
+  const launchProxySettings = () => {
+    dispatch(
+      newTask({
+        name: "proxy_settings.exe",
+        icon: aiSettingsAppIcon,
+      })
+    );
+  };
+
+  const proxySettingsShortcut = {
+    icon: aiSettingsAppIcon,
+    name: "proxy_settings.exe",
+    onPress: () => {
+      console.log("proxy settings pressed");
+      launchProxySettings();
     },
   };
 
@@ -535,6 +556,7 @@ export default function HomeScreen() {
       welcomeWizardShortcut,
       systemSettingsShortcut,
       aiSettingsShortcut,
+      proxySettingsShortcut,
       browserShortcut,
       chatShortcut,
       textToImageShortcut,
@@ -692,6 +714,19 @@ export default function HomeScreen() {
     );
   };
 
+  const ProxySettingsApp = () => {
+    return (
+      <ProxySettings
+        useProxy={currentSystemSettings.useProxy}
+        proxyKey={currentSystemSettings.proxyKey}
+        configureProxy={(config: { useProxy: boolean; proxyKey: string }) => {
+          dispatch(configureProxy(config));
+          dispatch(saveConfigProxy(config));
+        }}
+      />
+    );
+  };
+
   const WebBrowserApp = () => {
     return <WebBrowser url={"https://bing.com"} />;
   };
@@ -813,6 +848,8 @@ export default function HomeScreen() {
         return SystemSettingsApp();
       } else if (task.name == "ai_settings.exe") {
         return AiSettingsApp();
+      } else if (task.name == "proxy_settings.exe") {
+        return ProxySettingsApp();
       } else if (task.name == "browser.exe") {
         return WebBrowserApp();
       } else if (task.name == "youtube.exe") {
@@ -890,33 +927,57 @@ export default function HomeScreen() {
     onDismiss: () => dispatch(dismissSnackbar({})),
   };
 
-  // launch welcome wizard for first time users
-  React.useEffect(() => {
-    AsyncStorage.getItem("welcomed").then((value) => {
-      if (value != "true") {
-        launchWelcomeWizard();
-      }
-    });
-  }, []);
-
   // launch game if game save is provided
   // web only
-  // example:
-  // http://localhost:19000/?game=http://localhost:19000/scripts/ZeldaStory.json
   React.useEffect(() => {
     if (Platform.OS === "web") {
       const urlParams = new URLSearchParams(window.location.search);
+
+      // example: http://localhost:19000/?proxyKey=xyz
+      const proxyKey = urlParams.get("proxyKey");
+      if (proxyKey) {
+        const config = {
+          useProxy: true,
+          proxyKey: proxyKey,
+        };
+        dispatch(configureProxy(config));
+        dispatch(saveConfigProxy(config));
+        // lauch game maker
+        dispatch(
+          newTask({
+            name: "gamemaker.exe",
+            icon: gameMakerAppIcon,
+          })
+        );
+      }
+
+      // example: http://localhost:19000/?gameUuid=xyz
       const gameUuid = urlParams.get("gameUuid");
       if (gameUuid) {
         launchGameFromUrl(
           "https://usercontent.mirroredfables.com/json/" + gameUuid + ".json"
         );
       }
-      const game = urlParams.get("game");
-      if (game) {
-        launchGameFromUrl(game);
+
+      // example: http://localhost:19000/?gameUrl=http://localhost:19000/scripts/ZeldaStory.json
+      const gameUrl = urlParams.get("gameUrl");
+      if (gameUrl) {
+        launchGameFromUrl(gameUrl);
       }
     }
+  }, []);
+
+  // launch welcome wizard for first time users
+  React.useEffect(() => {
+    AsyncStorage.getItem("welcomed").then((value) => {
+      if (value != "true") {
+        AsyncStorage.getItem("useProxy").then((value) => {
+          if (value != "true") {
+            launchWelcomeWizard();
+          }
+        });
+      }
+    });
   }, []);
 
   if (!currentSystemSettings.restored) {

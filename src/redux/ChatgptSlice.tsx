@@ -11,6 +11,7 @@ import type { RootState } from "./Store";
 
 export enum GptModel {
   GPT3 = "gpt-3.5-turbo",
+  GPT3_16k = "gpt-3.5-turbo-16k",
   GPT4 = "gpt-4",
 }
 
@@ -58,7 +59,11 @@ export const askChatgpt = createAsyncThunk(
     try {
       const state = getState() as RootState;
       const authToken = state.systemSettings.openAiKey;
-      const url = `https://api.openai.com/v1/chat/completions`;
+      const useProxy = state.systemSettings.useProxy;
+      const proxyKey = state.systemSettings.proxyKey;
+      const url = useProxy
+        ? `/api/v0/proxy/openai/chat/completions`
+        : `https://api.openai.com/v1/chat/completions`;
       console.log(`chatgpt - askChatgpt - ${payload.question}`);
       const requestData: ChatgptRequestData = {
         messages: [
@@ -80,6 +85,7 @@ export const askChatgpt = createAsyncThunk(
       const response = await client.post(url, requestData, {
         headers: {
           Authorization: `Bearer ${authToken}`,
+          "x-proxy-key": proxyKey,
           "Content-Type": "application/json",
         },
       });
@@ -95,8 +101,13 @@ export const testConfigChatgpt = createAsyncThunk(
   // it's the exact same as askChatgpt, but with a different handler
   async (payload: ConfigureGptForm, { getState, rejectWithValue }) => {
     try {
+      const state = getState() as RootState;
       const authToken = payload.key;
-      const url = `https://api.openai.com/v1/chat/completions`;
+      const useProxy = state.systemSettings.useProxy;
+      const proxyKey = state.systemSettings.proxyKey;
+      const url = useProxy
+        ? `/api/v0/proxy/openai/chat/completions`
+        : `https://api.openai.com/v1/chat/completions`;
       console.log(`chatgpt - testConfigChatgpt`);
       const requestData: ChatgptRequestData = {
         messages: [
@@ -110,6 +121,7 @@ export const testConfigChatgpt = createAsyncThunk(
       const response = await client.post(url, requestData, {
         headers: {
           Authorization: `Bearer ${authToken}`,
+          "x-proxy-key": proxyKey,
           "Content-Type": "application/json",
         },
       });

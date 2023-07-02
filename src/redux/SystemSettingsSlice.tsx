@@ -22,6 +22,8 @@ export const restoreConfig = createAsyncThunk(
     const elevenKey = await AsyncStorage.getItem("elevenKey");
     const debug = await AsyncStorage.getItem("debug");
     const localServer = await AsyncStorage.getItem("localServer");
+    const useProxy = await AsyncStorage.getItem("useProxy");
+    const proxyKey = await AsyncStorage.getItem("proxyKey");
     return {
       theme: theme,
       desktopBackground: desktopBackground,
@@ -30,6 +32,8 @@ export const restoreConfig = createAsyncThunk(
       elevenKey: elevenKey,
       debug: debug,
       localServer: localServer,
+      useProxy: useProxy,
+      proxyKey: proxyKey,
     };
   }
 );
@@ -79,6 +83,15 @@ export const saveConfigElevenLabs = createAsyncThunk(
   }
 );
 
+export const saveConfigProxy = createAsyncThunk(
+  "systemSettings/saveConfigProxy",
+  async (payload: { useProxy: boolean; proxyKey: string }) => {
+    await AsyncStorage.setItem("useProxy", payload.useProxy.toString());
+    await AsyncStorage.setItem("proxyKey", payload.proxyKey);
+    return payload;
+  }
+);
+
 interface SystemSettingsState {
   debug: boolean;
   localServer: boolean;
@@ -93,6 +106,10 @@ interface SystemSettingsState {
 
   // eleven voice
   elevenKey: string;
+
+  // proxy
+  useProxy: boolean;
+  proxyKey: string;
 }
 
 const initialState: SystemSettingsState = {
@@ -108,6 +125,8 @@ const initialState: SystemSettingsState = {
   openAiKey: "",
   openAiGptModel: GptModel.GPT4,
   elevenKey: "",
+  useProxy: false,
+  proxyKey: "",
 };
 
 export const systemSettingsSlice = createSlice({
@@ -156,6 +175,14 @@ export const systemSettingsSlice = createSlice({
       state.elevenKey = action.payload.elevenKey;
       return state;
     },
+    configureProxy: (
+      state,
+      action: PayloadAction<{ useProxy: boolean; proxyKey: string }>
+    ) => {
+      state.useProxy = action.payload.useProxy;
+      state.proxyKey = action.payload.proxyKey;
+      return state;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(restoreConfig.fulfilled, (state, action) => {
@@ -182,6 +209,12 @@ export const systemSettingsSlice = createSlice({
       if (action.payload.localServer) {
         state.localServer = action.payload.localServer === "true";
       }
+      if (action.payload.useProxy) {
+        state.useProxy = action.payload.useProxy === "true";
+      }
+      if (action.payload.proxyKey) {
+        state.proxyKey = action.payload.proxyKey;
+      }
       state.restored = true;
     });
   },
@@ -196,6 +229,7 @@ export const {
   dismissSnackbar,
   configureChatgpt,
   configureElevenLabs,
+  configureProxy,
 } = systemSettingsSlice.actions;
 
 export default systemSettingsSlice.reducer;

@@ -1,4 +1,10 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import {
+  BaseQueryFn,
+  FetchArgs,
+  FetchBaseQueryError,
+  createApi,
+  fetchBaseQuery,
+} from "@reduxjs/toolkit/query/react";
 
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./Store";
@@ -71,23 +77,49 @@ interface ElevenTextToSpeechInput {
   similarityBoost?: number;
 }
 
+const rawBaseQuery = fetchBaseQuery({
+  baseUrl: "",
+  prepareHeaders: (headers, { getState }) => {
+    const state = getState() as RootState;
+    const useProxy = state.systemSettings.useProxy;
+    const proxyKey = state.systemSettings.proxyKey;
+    if (useProxy) {
+      headers.set("x-proxy-key", proxyKey);
+    }
+    // TODO: if using proxy, no need for elevenKey
+    const elevenKey = state.systemSettings.elevenKey;
+    headers.set("xi-api-key", elevenKey);
+    headers.set("Content-Type", "application/json");
+    return headers;
+  },
+});
+
+const dynamicBaseQuery: BaseQueryFn<
+  string | FetchArgs,
+  unknown,
+  FetchBaseQueryError
+> = async (args, api, extraOptions) => {
+  const state = api.getState() as RootState;
+  const useProxy = state.systemSettings.useProxy;
+  const urlEnd = typeof args === "string" ? args : args.url;
+  // construct a dynamically generated portion of the url
+  const adjustedUrl = useProxy
+    ? `/api/v0/proxy/elevenai/${urlEnd}`
+    : `https://api.elevenlabs.io/v1/${urlEnd}`;
+  const adjustedArgs =
+    typeof args === "string" ? adjustedUrl : { ...args, url: adjustedUrl };
+  // provide the amended url and other params to the raw base query
+  return rawBaseQuery(adjustedArgs, api, extraOptions);
+};
+
 export const elevenApi = createApi({
   // Set the baseUrl for every endpoint below
   reducerPath: "elevenApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: "https://api.elevenlabs.io/v1",
-    prepareHeaders: (headers, { getState }) => {
-      const state = getState() as RootState;
-      const elevenKey = state.systemSettings.elevenKey;
-      headers.set("xi-api-key", elevenKey);
-      headers.set("Content-Type", "application/json");
-      return headers;
-    },
-  }),
+  baseQuery: dynamicBaseQuery,
   endpoints: (builder) => ({
     postTextToSpeech: builder.mutation({
       query: (input: ElevenTextToSpeechInput) => ({
-        url: `/text-to-speech/${input.voiceId}`,
+        url: `text-to-speech/${input.voiceId}`,
         method: "POST",
         // headers: {
         //   "xi-api-key": elevenLabsAuthToken,
@@ -115,7 +147,7 @@ export const elevenApi = createApi({
     // TODO: this is not working
     getTestApiKey: builder.query<any, { key: string }>({
       query: (input: { key: string }) => ({
-        url: `/user`,
+        url: `user`,
         method: "GET",
         headers: {
           "xi-api-key": input.key,

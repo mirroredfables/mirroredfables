@@ -359,6 +359,28 @@ const gameSlice = createSlice({
       state.gameGenerator.generatorBusy = action.payload.busy;
       return state;
     },
+    upsertScenesStubs: (
+      state,
+      action: PayloadAction<{
+        scenes: {
+          id: number;
+          name: string;
+        }[];
+      }>
+    ) => {
+      for (const scene of action.payload.scenes) {
+        if (state.gameData.scenes.find((s) => s.id === scene.id)) {
+          // already exists
+          continue;
+        }
+        state.gameData.scenes.push({
+          id: scene.id,
+          name: scene.name,
+        });
+      }
+
+      return state;
+    },
 
     // editor
     rewriteStory: (
@@ -483,6 +505,7 @@ export const {
   addGameMakerMessage,
   setInitialWorld,
   upsertScenes,
+  upsertScenesStubs,
   setCompleted,
   setGeneratorBusy,
   rewriteStory,
