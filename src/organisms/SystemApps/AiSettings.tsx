@@ -1,7 +1,7 @@
 // A windows 95 style gpt settings app for the browser, written in React Native and Typescript.
 
 import * as React from "react";
-import { View, StyleSheet, Platform, Pressable } from "react-native";
+import { View, StyleSheet, Platform } from "react-native";
 import {
   ScrollView,
   Text,
@@ -57,6 +57,12 @@ export default function AiSettings(props: AiSettingsProps) {
     divider: {
       marginVertical: 8,
     },
+    horizontalContainer: {
+      flexDirection: "row",
+    },
+    showSecretButton: {
+      marginLeft: 4,
+    },
     applyChangesButton: {
       margin: 4,
     },
@@ -79,12 +85,14 @@ export default function AiSettings(props: AiSettingsProps) {
   };
 
   const [applyChange, setApplyChange] = React.useState(false);
+  const [showSecretOpenAiKey, setShowSecretOpenAiKey] = React.useState(false);
   const [openAiKey, setOpenAiKey] = React.useState(props.openAiKey || "");
   const [openAiGptModel, setOpenAiGptModel] = React.useState(
     props.openAiGptModel || GptModel.GPT3
   );
   const [runOpenAiTest, setRunOpenAiTest] = React.useState(false);
   const [elevenKey, setElevenKey] = React.useState(props.elevenKey || "");
+  const [showSecretElevenKey, setShowSecretElevenKey] = React.useState(false);
   const [runElevenTest, setRunElevenTest] = React.useState(false);
 
   const gptModels = Object.values(GptModel);
@@ -145,14 +153,26 @@ export default function AiSettings(props: AiSettingsProps) {
             onPress={onOpenAiKeyLinkPress}
             text={"get it from openai"}
           />
-          <TextInput
-            autoCapitalize={"none"}
-            placeholder={"sk-..."}
-            value={openAiKey}
-            onChangeText={(newValue) => {
-              setOpenAiKey(newValue);
-            }}
-          />
+          <View style={styles.horizontalContainer}>
+            <TextInput
+              secureTextEntry={!showSecretOpenAiKey}
+              autoCapitalize={"none"}
+              placeholder={"sk-..."}
+              value={openAiKey}
+              onChangeText={(newValue) => {
+                setOpenAiKey(newValue);
+              }}
+            />
+            <Button
+              style={styles.showSecretButton}
+              onPress={() => {
+                setShowSecretOpenAiKey(!showSecretOpenAiKey);
+              }}
+              active={showSecretOpenAiKey}
+            >
+              👀
+            </Button>
+          </View>
         </Fieldset>
         <Fieldset label="openai gpt model (gpt-4 recommanded):">
           <View style={styles.selectView}>
@@ -182,14 +202,26 @@ export default function AiSettings(props: AiSettingsProps) {
             onPress={onElevenKeyLinkPress}
             text={"get it from elevenlabs"}
           />
-          <TextInput
-            autoCapitalize={"none"}
-            placeholder={"..."}
-            value={elevenKey}
-            onChangeText={(newValue) => {
-              setElevenKey(newValue);
-            }}
-          />
+          <View style={styles.horizontalContainer}>
+            <TextInput
+              secureTextEntry={!showSecretElevenKey}
+              autoCapitalize={"none"}
+              placeholder={"..."}
+              value={elevenKey}
+              onChangeText={(newValue) => {
+                setElevenKey(newValue);
+              }}
+            />
+            <Button
+              style={styles.showSecretButton}
+              onPress={() => {
+                setShowSecretElevenKey(!showSecretElevenKey);
+              }}
+              active={showSecretElevenKey}
+            >
+              👀
+            </Button>
+          </View>
         </Fieldset>
       </View>
       <Button
