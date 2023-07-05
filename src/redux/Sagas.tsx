@@ -42,6 +42,7 @@ import {
   setGeneratorBusy,
   rewriteStory,
   upsertScenesStubs,
+  setPlayerSettings,
 } from "./GameSlice";
 
 function* sagaTest(action) {
@@ -171,6 +172,8 @@ function* sagaGenerateGame(action: {
     type: "ADD_SYSTEM_MESSAGE",
     payload: { message: "Generator succeeded!" },
   });
+
+  yield put(setPlayerSettings({ autoGenerate: true }));
 
   yield put(setCompleted({ completed: true }));
 }
