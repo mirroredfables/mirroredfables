@@ -20,6 +20,8 @@ export const restoreConfig = createAsyncThunk(
     const openAiKey = await AsyncStorage.getItem("openAiKey");
     const openAiGptModel = await AsyncStorage.getItem("openAiGptModel");
     const elevenKey = await AsyncStorage.getItem("elevenKey");
+    const imageGenerator = await AsyncStorage.getItem("imageGenerator");
+    const stabilityKey = await AsyncStorage.getItem("stabilityKey");
     const debug = await AsyncStorage.getItem("debug");
     const localServer = await AsyncStorage.getItem("localServer");
     const useProxy = await AsyncStorage.getItem("useProxy");
@@ -30,6 +32,8 @@ export const restoreConfig = createAsyncThunk(
       openAiKey: openAiKey,
       openAiGptModel: openAiGptModel,
       elevenKey: elevenKey,
+      imageGenerator: imageGenerator,
+      stabilityKey: stabilityKey,
       debug: debug,
       localServer: localServer,
       useProxy: useProxy,
@@ -83,6 +87,20 @@ export const saveConfigElevenLabs = createAsyncThunk(
   }
 );
 
+interface ConfigureImageGeneratorForm {
+  imageGenerator: string;
+  stabilityKey: string;
+}
+
+export const saveConfigImageGenerator = createAsyncThunk(
+  "systemSettings/saveConfigImageGenerator",
+  async (payload: ConfigureImageGeneratorForm) => {
+    await AsyncStorage.setItem("imageGenerator", payload.imageGenerator);
+    await AsyncStorage.setItem("stabilityKey", payload.stabilityKey);
+    return payload;
+  }
+);
+
 export const saveConfigProxy = createAsyncThunk(
   "systemSettings/saveConfigProxy",
   async (payload: { useProxy: boolean; proxyKey: string }) => {
@@ -107,6 +125,10 @@ interface SystemSettingsState {
   // eleven voice
   elevenKey: string;
 
+  // stability ai imagegen
+  imageGenerator: string;
+  stabilityKey: string;
+
   // proxy
   useProxy: boolean;
   proxyKey: string;
@@ -125,6 +147,8 @@ const initialState: SystemSettingsState = {
   openAiKey: "",
   openAiGptModel: GptModel.GPT4,
   elevenKey: "",
+  imageGenerator: "",
+  stabilityKey: "",
   useProxy: false,
   proxyKey: "",
 };
@@ -175,6 +199,14 @@ export const systemSettingsSlice = createSlice({
       state.elevenKey = action.payload.elevenKey;
       return state;
     },
+    configureImageGenerator: (
+      state,
+      action: PayloadAction<ConfigureImageGeneratorForm>
+    ) => {
+      state.imageGenerator = action.payload.imageGenerator;
+      state.stabilityKey = action.payload.stabilityKey;
+      return state;
+    },
     configureProxy: (
       state,
       action: PayloadAction<{ useProxy: boolean; proxyKey: string }>
@@ -203,6 +235,12 @@ export const systemSettingsSlice = createSlice({
       if (action.payload.elevenKey) {
         state.elevenKey = action.payload.elevenKey;
       }
+      if (action.payload.imageGenerator) {
+        state.imageGenerator = action.payload.imageGenerator;
+      }
+      if (action.payload.stabilityKey) {
+        state.stabilityKey = action.payload.stabilityKey;
+      }
       if (action.payload.debug) {
         state.debug = action.payload.debug === "true";
       }
@@ -229,6 +267,7 @@ export const {
   dismissSnackbar,
   configureChatgpt,
   configureElevenLabs,
+  configureImageGenerator,
   configureProxy,
 } = systemSettingsSlice.actions;
 

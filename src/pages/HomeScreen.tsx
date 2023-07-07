@@ -45,6 +45,8 @@ import {
   setLocalServer,
   configureProxy,
   saveConfigProxy,
+  configureImageGenerator,
+  saveConfigImageGenerator,
 } from "../redux/SystemSettingsSlice";
 
 import FullApp from "../templates/FullApp";
@@ -696,11 +698,15 @@ export default function HomeScreen() {
           // });
         }}
         testElevenResponse={chatgptStateVars.testElevenConfigResponse}
+        imageGenerator={currentSystemSettings.imageGenerator}
+        stabilityKey={currentSystemSettings.stabilityKey}
         configureAi={(config) => {
           dispatch(configureChatgpt(config));
           dispatch(saveConfigChatgpt(config));
           dispatch(configureElevenLabs(config));
           dispatch(saveConfigElevenLabs(config));
+          dispatch(configureImageGenerator(config));
+          dispatch(saveConfigImageGenerator(config));
         }}
         lauchGameMaker={() => {
           dispatch(

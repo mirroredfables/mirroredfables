@@ -18,6 +18,22 @@ export interface GenerateImageForm {
   response_format: "url" | "b64_json";
 }
 
+export interface GenerateImageStabilityForm {
+  // https://platform.stability.ai/rest-api#tag/v1generation/operation/textToImage
+  engine: string; // default "stable-diffusion-xl-beta-v2-2-2"
+  text_prompts: { text: string; weight: number }[];
+  height?: number; // default 512
+  width?: number; // default 512
+  cfg_scale?: number; // default 7
+  clip_guidance_preset?: string; // default "NONE"
+  sampler?: string; // default automatic
+  samples?: number; // default 1, number of images to generate
+  seed?: number; // default random
+  steps?: number; // default 50
+  style_preset?: string; // default none
+  extras?: any;
+}
+
 export const generateImage = createAsyncThunk(
   "images/generateImage",
   async (payload: GenerateImageForm, { getState, rejectWithValue }) => {
@@ -38,6 +54,37 @@ export const generateImage = createAsyncThunk(
         },
       });
       return response.data;
+    } catch (e) {
+      return rejectWithValue(e);
+    }
+  }
+);
+
+export const generateImageStability = createAsyncThunk(
+  "images/generateImageStability",
+  async (
+    payload: GenerateImageStabilityForm,
+    { getState, rejectWithValue }
+  ) => {
+    try {
+      const state = getState() as RootState;
+      const stabilityKey = state.systemSettings.stabilityKey;
+      const useProxy = state.systemSettings.useProxy;
+      const proxyKey = state.systemSettings.proxyKey;
+      const url = useProxy
+        ? `/api/v0/proxy/stability/generation/${payload.engine}/text-to-image`
+        : `https://api.stability.ai/v1/generation/${payload.engine}/text-to-image`;
+      console.log(`images (stability) - generate - ${payload}`);
+      const response = await client.post(url, payload, {
+        headers: {
+          Authorization: `Bearer ${stabilityKey}`,
+          "x-proxy-key": proxyKey,
+          "Content-Type": "application/json",
+          "Stability-Client-ID": "mirroredfables",
+          "Stability-Client-Version": "1",
+        },
+      });
+      return response;
     } catch (e) {
       return rejectWithValue(e);
     }
