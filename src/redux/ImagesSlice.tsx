@@ -10,6 +10,11 @@ import type { RootState } from "./Store";
 import { ChatgptRequestData } from "./ChatgptSlice";
 import { generateRewriteDallERequestPromptTemplate } from "../prompts/GamePrompts";
 
+export enum ImageGeneratorProvider {
+  openai = "openai",
+  stability = "stability",
+}
+
 export interface GenerateImageForm {
   // using DALL-E's API
   prompt: string;
@@ -101,6 +106,28 @@ export const saveImage = createAsyncThunk(
         : "";
       const url = `${rootUrl}/api/v0/saveimage`;
       console.log(`images - save - ${payload.image}`);
+      const response = await client.post(url, payload, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return response;
+    } catch (e) {
+      return rejectWithValue(e);
+    }
+  }
+);
+
+export const saveImageB64 = createAsyncThunk(
+  "images/saveImageB64",
+  async (payload: { image: string }, { getState, rejectWithValue }) => {
+    try {
+      const state = getState() as RootState;
+      const rootUrl = state.systemSettings.localServer
+        ? "http://localhost:8788"
+        : "";
+      const url = `${rootUrl}/api/v0/saveimageraw`;
+      console.log(`images - save raw`);
       const response = await client.post(url, payload, {
         headers: {
           "Content-Type": "application/json",

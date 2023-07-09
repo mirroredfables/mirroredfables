@@ -11,6 +11,7 @@ import { SystemSnackbarProps } from "../organisms/SystemSnackbar";
 import { ConfigureGptForm, GptModel } from "./ChatgptSlice";
 
 import type { RootState } from "./Store";
+import { ImageGeneratorProvider } from "./ImagesSlice";
 
 export const restoreConfig = createAsyncThunk(
   "systemSettings/restoreConfig",
@@ -88,7 +89,7 @@ export const saveConfigElevenLabs = createAsyncThunk(
 );
 
 interface ConfigureImageGeneratorForm {
-  imageGenerator: string;
+  imageGenerator: ImageGeneratorProvider;
   stabilityKey: string;
 }
 
@@ -126,7 +127,7 @@ interface SystemSettingsState {
   elevenKey: string;
 
   // stability ai imagegen
-  imageGenerator: string;
+  imageGenerator: ImageGeneratorProvider;
   stabilityKey: string;
 
   // proxy
@@ -147,7 +148,7 @@ const initialState: SystemSettingsState = {
   openAiKey: "",
   openAiGptModel: GptModel.GPT4,
   elevenKey: "",
-  imageGenerator: "",
+  imageGenerator: ImageGeneratorProvider.stability,
   stabilityKey: "",
   useProxy: false,
   proxyKey: "",
@@ -236,7 +237,8 @@ export const systemSettingsSlice = createSlice({
         state.elevenKey = action.payload.elevenKey;
       }
       if (action.payload.imageGenerator) {
-        state.imageGenerator = action.payload.imageGenerator;
+        state.imageGenerator = action.payload
+          .imageGenerator as ImageGeneratorProvider;
       }
       if (action.payload.stabilityKey) {
         state.stabilityKey = action.payload.stabilityKey;

@@ -8,9 +8,12 @@ import {
   takeLatest,
 } from "redux-saga/effects";
 import {
+  ImageGeneratorProvider,
   generateImage,
+  generateImageStability,
   rewriteDallERequestPrompt,
   saveImage,
+  saveImageB64,
 } from "./ImagesSlice";
 import { generateGameImagePromptTemplate } from "../prompts/GamePrompts";
 import {
@@ -131,7 +134,11 @@ function* sagaParseJson(action: {
 }
 
 function* sagaGenerateGame(action: {
-  payload: { setting: string; noImage?: boolean };
+  payload: {
+    setting: string;
+    imageGenerator: ImageGeneratorProvider;
+    noImage?: boolean;
+  };
 }) {
   yield put({
     type: "ADD_SYSTEM_MESSAGE",
@@ -161,6 +168,7 @@ function* sagaGenerateGame(action: {
         "generate scripts for the initial scene, include foreshadowing for the scenes in the future. The script should have between 30 to 50 lines.",
       writingStyle: generateWorldResult.payload.world.writingStyle,
       artStyle: generateWorldResult.payload.world.artStyle,
+      imageGenerator: action.payload.imageGenerator,
       targetSceneId: 0,
       noImage: action.payload.noImage,
     },
@@ -185,7 +193,11 @@ function* sagaResetGame(action) {
 }
 
 function* sagaGenerateWorld(action: {
-  payload: { setting: string; noImage?: boolean };
+  payload: {
+    setting: string;
+    imageGenerator: ImageGeneratorProvider;
+    noImage?: boolean;
+  };
 }) {
   yield put({
     type: "ADD_SYSTEM_MESSAGE",
@@ -200,6 +212,7 @@ function* sagaGenerateWorld(action: {
   if (!action.payload.noImage) {
     worldImage = yield call(sagaGenerateImage, {
       payload: {
+        generator: action.payload.imageGenerator,
         object: gameWorld.world.setting,
         type: "background",
         style: gameWorld.world.artStyle,
@@ -226,6 +239,7 @@ function* sagaGenerateWorld(action: {
     if (!action.payload.noImage) {
       characterImage = yield call(sagaGenerateImage, {
         payload: {
+          generator: action.payload.imageGenerator,
           object: character.description,
           type: "character portrait",
           style: gameWorld.world.artStyle,
@@ -431,6 +445,7 @@ function* sagaGenerateFullScene(action: {
     request: string;
     writingStyle: string;
     artStyle: string;
+    imageGenerator: ImageGeneratorProvider;
     targetSceneId?: number;
     exampleScriptsGenInput?: string;
     exampleScriptsGenOutput?: string;
@@ -454,6 +469,7 @@ function* sagaGenerateFullScene(action: {
     if (!action.payload.noImage) {
       image = yield call(sagaGenerateImage, {
         payload: {
+          generator: action.payload.imageGenerator,
           object: scene.location,
           type: "background",
           style: action.payload.artStyle,
@@ -697,6 +713,25 @@ function* sagaSearchYoutubeForMusic(action: {
 
 function* sagaGenerateImage(action: {
   payload: {
+    generator: ImageGeneratorProvider;
+    object: string;
+    type: string;
+    style: string;
+    save?: boolean;
+  };
+}) {
+  switch (action.payload.generator) {
+    case ImageGeneratorProvider.openai:
+      const imageOpenAi = yield call(subSagaGenerateImageOpenAi, action);
+      return imageOpenAi;
+    case ImageGeneratorProvider.stability:
+      const imageStability = yield call(subSagaGenerateImageStability, action);
+      return imageStability;
+  }
+}
+
+function* subSagaGenerateImageOpenAi(action: {
+  payload: {
     object: string;
     type: string;
     style: string;
@@ -849,6 +884,140 @@ function* sagaRepairDallEGenerateImage(action: {
       })
     );
   }
+}
+
+function* subSagaGenerateImageStability(action: {
+  payload: {
+    object: string;
+    type: string;
+    style: string;
+    seed?: number;
+  };
+}) {
+  yield put({
+    type: "ADD_SYSTEM_MESSAGE",
+    payload: { message: "Generating image started..." },
+  });
+
+  const imageOriginal = yield call(subSagaGenerateOriginalImageStability, {
+    payload: {
+      object: action.payload.object,
+      type: action.payload.type,
+      style: action.payload.style,
+    },
+  });
+
+  if (imageOriginal == "") {
+    // HACKY
+    console.log("imageOriginal is empty");
+    return imageOriginal;
+  }
+
+  if (!action.payload.save) {
+    yield put({
+      type: "ADD_SYSTEM_MESSAGE",
+      payload: { message: "Generating image succeeded." },
+    });
+    return imageOriginal;
+  }
+
+  const imageCopy = yield call(subSagaUploadImageViaB64, {
+    payload: {
+      image: imageOriginal,
+    },
+  });
+  yield put({
+    type: "ADD_SYSTEM_MESSAGE",
+    payload: { message: "Generating image succeeded." },
+  });
+  return imageCopy;
+}
+
+function* subSagaGenerateOriginalImageStability(action: {
+  payload: {
+    object: string;
+    type: string;
+    style: string;
+    seed?: number;
+  };
+}) {
+  try {
+    yield put({
+      type: "ADD_SYSTEM_MESSAGE",
+      payload: { message: "Generating image with worker..." },
+    });
+    const defaultEngine = "stable-diffusion-xl-beta-v2-2-2";
+
+    const prompt = generateGameImagePromptTemplate({
+      object: action.payload.object,
+      type: action.payload.type,
+      style: action.payload.style,
+    }).prompt;
+    const negativePrompt = `deformed, distorted, disfigured, stacked torsos, totem pole, poorly drawn, bad anatomy, wrong anatomy, extra limb, missing limb, floating limbs, mutated hands and fingers, disconnected limbs, mutation, mutated, ugly, disgusting, blurry, amputation, Nrealfixer, nfixer, nartfixer`;
+
+    const form = {
+      engine: defaultEngine,
+      text_prompts: [
+        { text: prompt, weight: 0.8 },
+        { text: negativePrompt, weight: -0.9 },
+      ],
+      ...(action.payload.seed && { seed: action.payload.seed }),
+      style_preset: "comic-book",
+    };
+
+    console.log(form);
+
+    yield put(generateImageStability(form));
+    const generateImageResponse = yield take(generateImageStability.fulfilled);
+    if (generateImageResponse.payload.artifacts[0].finishReason == "SUCCESS") {
+      const image = generateImageResponse.payload.artifacts[0].base64 as string;
+      yield put({
+        type: "ADD_SYSTEM_MESSAGE",
+        payload: { message: "Generating image with worker succeeded." },
+      });
+      // TODO: figure out how to handle the seed here
+      // maybe set the seed to the store?
+      return image;
+    } else {
+      yield put({
+        type: "ADD_SYSTEM_MESSAGE",
+        payload: {
+          message: "Generating image with worker failed... Need fix.",
+        },
+      });
+      // TODO: regen image
+      return "";
+    }
+  } catch (e) {
+    yield put({
+      type: "ADD_SYSTEM_MESSAGE",
+      payload: { message: "Generating image with worker failed." },
+    });
+    yield put({
+      type: "ADD_SYSTEM_MESSAGE",
+      payload: { message: e.message },
+    });
+    return "";
+  }
+}
+
+function* subSagaUploadImageViaB64(action: {
+  payload: {
+    image: string;
+  };
+}) {
+  yield put({
+    type: "ADD_SYSTEM_MESSAGE",
+    payload: { message: "Saving image with worker..." },
+  });
+  yield put(saveImageB64(action.payload));
+  const saveImageResponse = yield take(saveImageB64.fulfilled);
+  const image = saveImageResponse.payload.result.variants[0] as string;
+  yield put({
+    type: "ADD_SYSTEM_MESSAGE",
+    payload: { message: "Saving image with worker succeeded." },
+  });
+  return image;
 }
 
 function* watchStartGame() {

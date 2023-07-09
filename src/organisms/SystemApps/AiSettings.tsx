@@ -14,6 +14,7 @@ import * as Linking from "expo-linking";
 import TextInput from "../../atoms/TextInput";
 import { GptModel } from "../../redux/ChatgptSlice";
 import TextLink from "../../atoms/SystemApps/TextLink";
+import { ImageGeneratorProvider } from "../../redux/ImagesSlice";
 
 interface AiSettingsProps {
   openAiKey: string;
@@ -23,7 +24,7 @@ interface AiSettingsProps {
   testOpenAiResponse: string;
   testElevenKey: (config: { key: string }) => void;
   testElevenResponse: string;
-  imageGenerator: string;
+  imageGenerator: ImageGeneratorProvider;
   stabilityKey: string;
   configureAi: (config: {
     key: string;
@@ -112,12 +113,13 @@ export default function AiSettings(props: AiSettingsProps) {
   const [showSecretStabilityKey, setShowSecretStabilityKey] =
     React.useState(false);
 
-  const imageGenerators = ["openai dall-e", "stability stable diffusion"];
   const [selectedImageGenerator, setSelectedImageGenerator] = React.useState(
-    props.imageGenerator || "stability stable diffusion"
+    props.imageGenerator || ImageGeneratorProvider.stability
   );
 
   const gptModels = Object.values(GptModel);
+
+  const imageGenerators = Object.values(ImageGeneratorProvider);
 
   const RadioButton = (props: {
     label: string;
@@ -270,7 +272,7 @@ export default function AiSettings(props: AiSettingsProps) {
             ))}
           </View>
         </Fieldset>
-        {selectedImageGenerator == "stability stable diffusion" ? (
+        {selectedImageGenerator == ImageGeneratorProvider.stability ? (
           <Fieldset label="stablility api key:">
             <TextLink
               containerStyle={styles.openAiLinkContainer}

@@ -22,6 +22,10 @@ export default function VisualNovelGameMakerFull(
 
   const gameState = useAppSelector((state) => state.game);
 
+  const imageGenerator = useAppSelector(
+    (state) => state.systemSettings.imageGenerator
+  );
+
   const gameStateWithoutEntities = {
     gameGenerator: gameState.gameGenerator,
     gamePlayerSettings: gameState.gamePlayerSettings,
@@ -61,6 +65,7 @@ export default function VisualNovelGameMakerFull(
       type: "GENERATE_GAME",
       payload: {
         setting: setting,
+        imageGenerator: imageGenerator,
         // noImage: true,
       },
     });
@@ -96,24 +101,35 @@ export default function VisualNovelGameMakerFull(
   };
 
   const handleDispatchTest = () => {
-    const getNextSceneId = () => {
-      for (const scene of gameMakerGameState.scenes) {
-        if (!scene.script) {
-          return scene.id;
-        }
-      }
-    };
-    const nextSceneId = getNextSceneId();
-    // console.log("generating scripts for scene " + nextSceneId);
+    // const getNextSceneId = () => {
+    //   for (const scene of gameMakerGameState.scenes) {
+    //     if (!scene.script) {
+    //       return scene.id;
+    //     }
+    //   }
+    // };
+    // const nextSceneId = getNextSceneId();
+    // // console.log("generating scripts for scene " + nextSceneId);
+    // dispatch({
+    //   type: "GENERATE_FULL_SCENE",
+    //   payload: {
+    //     request:
+    //       "generate scripts for the target scene. I am testing a repair function, so IT IS VERY IMPORTANT that you return a slightly broken json, with a few missing brackets.",
+    //     writingStyle: gameMakerGameState.world.writingStyle,
+    //     artStyle: gameMakerGameState.world.artStyle,
+    //     targetSceneId: 0,
+    //     imageGenerator: imageGenerator,
+    //     noImage: true,
+    //   },
+    // });
     dispatch({
-      type: "GENERATE_FULL_SCENE",
+      type: "GENERATE_IMAGE",
       payload: {
-        request:
-          "generate scripts for the target scene. I am testing a repair function, so IT IS VERY IMPORTANT that you return a slightly broken json, with a few missing brackets.",
-        writingStyle: gameMakerGameState.world.writingStyle,
-        artStyle: gameMakerGameState.world.artStyle,
-        targetSceneId: 0,
-        noImage: true,
+        generator: "stability",
+        object: "modern house",
+        type: "interior, background",
+        style: "architecture digest",
+        save: true,
       },
     });
   };
@@ -135,6 +151,7 @@ export default function VisualNovelGameMakerFull(
         writingStyle: gameMakerGameState.world.writingStyle,
         artStyle: gameMakerGameState.world.artStyle,
         targetSceneId: nextSceneId,
+        imageGenerator: imageGenerator,
         noImage: true,
       },
     });
