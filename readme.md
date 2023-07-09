@@ -128,14 +128,12 @@ To run them with wrangler, do the following:
 
 # Roadmap
 
-- [ ] Add in a proxy server for requests
 - [ ] Migrate to langchain.ts
 - [ ] Add in support for retrying prompts when OpenAI is busy
 - [ ] Add choices to game engine
 - [ ] Add support for multiple sprites per character to game engine
 - [ ] Add competibility support for renpy scripts (\*maybe)
 - [ ] Support other AIs (beside OpenAI)
-- [ ] Support other image generators (beside DALL-E)
 - [ ] Support other voice generators (beside Eleven)
 
 See the [open issues](https://github.com/mirroredfables/mirroredfables/issues) for a full list of proposed features (and known issues).

@@ -14,6 +14,7 @@ import * as Linking from "expo-linking";
 import TextInput from "../../atoms/TextInput";
 import { GptModel } from "../../redux/ChatgptSlice";
 import TextLink from "../../atoms/SystemApps/TextLink";
+import { ImageGeneratorProvider } from "../../redux/ImagesSlice";
 
 interface AiSettingsProps {
   openAiKey: string;
@@ -23,10 +24,14 @@ interface AiSettingsProps {
   testOpenAiResponse: string;
   testElevenKey: (config: { key: string }) => void;
   testElevenResponse: string;
+  imageGenerator: ImageGeneratorProvider;
+  stabilityKey: string;
   configureAi: (config: {
     key: string;
     model: GptModel;
     elevenKey: string;
+    imageGenerator: string;
+    stabilityKey: string;
   }) => void;
   lauchGameMaker: () => void;
 }
@@ -84,6 +89,14 @@ export default function AiSettings(props: AiSettingsProps) {
     }
   };
 
+  const onStabilityKeyLinkPress = () => {
+    if (Platform.OS === "web") {
+      window.open("https://www.stability.ai/");
+    } else {
+      Linking.openURL("https://www.stability.ai/");
+    }
+  };
+
   const [applyChange, setApplyChange] = React.useState(false);
   const [showSecretOpenAiKey, setShowSecretOpenAiKey] = React.useState(false);
   const [openAiKey, setOpenAiKey] = React.useState(props.openAiKey || "");
@@ -94,8 +107,19 @@ export default function AiSettings(props: AiSettingsProps) {
   const [elevenKey, setElevenKey] = React.useState(props.elevenKey || "");
   const [showSecretElevenKey, setShowSecretElevenKey] = React.useState(false);
   const [runElevenTest, setRunElevenTest] = React.useState(false);
+  const [stabilityKey, setStabilityKey] = React.useState(
+    props.stabilityKey || ""
+  );
+  const [showSecretStabilityKey, setShowSecretStabilityKey] =
+    React.useState(false);
+
+  const [selectedImageGenerator, setSelectedImageGenerator] = React.useState(
+    props.imageGenerator || ImageGeneratorProvider.stability
+  );
 
   const gptModels = Object.values(GptModel);
+
+  const imageGenerators = Object.values(ImageGeneratorProvider);
 
   const RadioButton = (props: {
     label: string;
@@ -121,6 +145,8 @@ export default function AiSettings(props: AiSettingsProps) {
         key: openAiKey,
         model: openAiGptModel,
         elevenKey: elevenKey,
+        imageGenerator: selectedImageGenerator,
+        stabilityKey: stabilityKey,
       });
     }
   }, [applyChange]);
@@ -232,6 +258,53 @@ export default function AiSettings(props: AiSettingsProps) {
         test elevenlabs api key
       </Button>
       <Text style={styles.testResultText}>{props.testElevenResponse}</Text>
+      <Divider style={styles.divider} />
+      <View style={styles.insideContainer}>
+        <Fieldset label="image generator:">
+          <View style={styles.selectView}>
+            {imageGenerators.map((option) => (
+              <RadioButton
+                label={option}
+                key={option}
+                setter={setSelectedImageGenerator}
+                getter={selectedImageGenerator}
+              />
+            ))}
+          </View>
+        </Fieldset>
+        {selectedImageGenerator == ImageGeneratorProvider.stability ? (
+          <Fieldset label="stablility api key:">
+            <TextLink
+              containerStyle={styles.openAiLinkContainer}
+              onPress={onStabilityKeyLinkPress}
+              text={"get it from stability.ai"}
+            />
+            <View style={styles.horizontalContainer}>
+              <TextInput
+                secureTextEntry={!showSecretStabilityKey}
+                autoCapitalize={"none"}
+                placeholder={"sk-..."}
+                value={stabilityKey}
+                onChangeText={(newValue) => {
+                  setStabilityKey(newValue);
+                }}
+              />
+              <Button
+                style={styles.showSecretButton}
+                onPress={() => {
+                  setShowSecretStabilityKey(!showSecretStabilityKey);
+                }}
+                active={showSecretStabilityKey}
+              >
+                👀
+              </Button>
+            </View>
+          </Fieldset>
+        ) : (
+          <></>
+        )}
+      </View>
+
       <Divider style={styles.divider} />
       <Button
         onPress={() => setApplyChange(true)}

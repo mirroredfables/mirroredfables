@@ -47,6 +47,10 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
 
   const debugStatus = useAppSelector((state) => state.systemSettings.debug);
 
+  const imageGenerator = useAppSelector(
+    (state) => state.systemSettings.imageGenerator
+  );
+
   const [currentSavedGames, setCurrentSavedGames] = React.useState<
     GameSaveFile[]
   >([]);
@@ -113,6 +117,7 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
         request: "generate scripts for the target scene.",
         writingStyle: currentGameState.gameData.world.writingStyle,
         artStyle: currentGameState.gameData.world.artStyle,
+        imageGenerator: imageGenerator,
         targetSceneId: nextSceneId,
       },
     });
@@ -463,49 +468,51 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
   };
 
   React.useEffect(() => {
-    if (shouldSpeak) {
-      if (currentTurn) {
-        if (currentGameState.gameData.speechPrerecorded) {
-          // check if there is prerecorded speech
-          currentTextToSpeech.start({
-            type: "prerecorded",
-            onDone: onDoneSpeech,
-            prerecordedType: "remote",
-            prerecordedUri: `${currentGameState.gameData.speechPrerecordedUrl}/${currentTurnId}.mp3`,
-          });
-        } else {
-          // removes everything in brackets for speech
-          const line = currentTurnText.replace(/[\[({].*?[\])}]/g, "");
-
-          let defaultVoiceIdentifier = "";
-          let useEleven = elevenKey && elevenKey !== "undefined";
-          if (useEleven) {
-            defaultVoiceIdentifier = "EXAVITQu4vr4xnSDxMaL";
+    if (initialized) {
+      if (shouldSpeak) {
+        if (currentTurn) {
+          if (currentGameState.gameData.speechPrerecorded) {
+            // check if there is prerecorded speech
+            currentTextToSpeech.start({
+              type: "prerecorded",
+              onDone: onDoneSpeech,
+              prerecordedType: "remote",
+              prerecordedUri: `${currentGameState.gameData.speechPrerecordedUrl}/${currentTurnId}.mp3`,
+            });
           } else {
-            defaultVoiceIdentifier = "Google US English";
-          }
-          const speakerName = currentTurn.activePortrait;
-          if (speakerName) {
-            const character = currentGameState.gameData.characters.find(
-              (c) => c.name === speakerName
-            );
-            if (character) {
-              if (character.voice) {
-                useEleven = character.voice.type === "elevenAI";
-                defaultVoiceIdentifier = character.voice.voiceId;
+            // removes everything in brackets for speech
+            const line = currentTurnText.replace(/[\[({].*?[\])}]/g, "");
+
+            let defaultVoiceIdentifier = "";
+            let useEleven = elevenKey && elevenKey !== "undefined";
+            if (useEleven) {
+              defaultVoiceIdentifier = "EXAVITQu4vr4xnSDxMaL";
+            } else {
+              defaultVoiceIdentifier = "Google US English";
+            }
+            const speakerName = currentTurn.activePortrait;
+            if (speakerName) {
+              const character = currentGameState.gameData.characters.find(
+                (c) => c.name === speakerName
+              );
+              if (character) {
+                if (character.voice) {
+                  useEleven = character.voice.type === "elevenAI";
+                  defaultVoiceIdentifier = character.voice.voiceId;
+                }
               }
             }
+            currentTextToSpeech.start({
+              type: useEleven ? "elevenAI" : "system",
+              onDone: onDoneSpeech,
+              text: line,
+              voiceId: defaultVoiceIdentifier,
+            });
           }
-          currentTextToSpeech.start({
-            type: useEleven ? "elevenAI" : "system",
-            onDone: onDoneSpeech,
-            text: line,
-            voiceId: defaultVoiceIdentifier,
-          });
         }
       }
     }
-  }, [shouldSpeak, currentTurnText]);
+  }, [shouldSpeak, currentTurnText, initialized]);
 
   const [autoAdvanceTimer, setAutoAdvanceTimer] =
     React.useState<NodeJS.Timeout | null>(null);

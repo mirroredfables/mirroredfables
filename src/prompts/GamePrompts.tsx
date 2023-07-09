@@ -59,6 +59,7 @@ export const generateGameWorldGenPromptTemplate = (input: {
   return {
     prompt: `
 Generate a game world and its characters, some of whom should be potential love interests of the player character. 
+For the artStyle and writingStyle, include the name of one or more well-known artist and writer as a reference.
 Pay close attention to the output format in JSON.
 
 Example Input: ${input.exampleWorldGenInputString ?? exampleWorldGenInput}

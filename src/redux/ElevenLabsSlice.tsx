@@ -25,12 +25,13 @@ export const publicElevenVoices = {
       name: "Domi",
       gender: "female",
     },
-    {
-      type: "elevenAI",
-      voice_id: "EXAVITQu4vr4xnSDxMaL",
-      name: "Bella",
-      gender: "female",
-    },
+    // this is the default narrator voice
+    // {
+    //   type: "elevenAI",
+    //   voice_id: "EXAVITQu4vr4xnSDxMaL",
+    //   name: "Bella",
+    //   gender: "female",
+    // },
     {
       type: "elevenAI",
       voice_id: "ErXwobaYiN019PkySvjV",
