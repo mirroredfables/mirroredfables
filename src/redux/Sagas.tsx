@@ -227,7 +227,7 @@ function* sagaGenerateWorld(action: {
 
   const state = yield select();
   // TODO: change this when other voices are available
-  if (state.systemSettings.elevenKey) {
+  if (state.systemSettings.useProxy || state.systemSettings.elevenKey) {
     const characterWithVoices = yield call(subSagaGenerateVoices, {
       payload: { characters: gameWorld.characters },
     });
