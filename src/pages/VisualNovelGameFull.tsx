@@ -59,6 +59,8 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
     (state) => state.game.gamePlayerSettings.init
   );
 
+  const useProxy = useAppSelector((state) => state.systemSettings.useProxy);
+
   React.useEffect(() => {
     // this loads the game from the initial game save state file
     // dispatch(loadGameFromSave({ state: props.game.data }));
@@ -484,7 +486,10 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
             const line = currentTurnText.replace(/[\[({].*?[\])}]/g, "");
 
             let defaultVoiceIdentifier = "";
-            let useEleven = elevenKey && elevenKey !== "undefined";
+            // here is where we set the proxy to useEleven
+            // TODO: update this so it pulls the setting from the proxy?
+            let useEleven =
+              useProxy || (elevenKey && elevenKey !== "undefined");
             if (useEleven) {
               defaultVoiceIdentifier = "EXAVITQu4vr4xnSDxMaL";
             } else {
