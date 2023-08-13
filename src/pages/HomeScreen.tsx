@@ -409,6 +409,7 @@ export default function HomeScreen() {
       newTask({
         name: "game_custom.exe",
         icon: gameIcon,
+        fullscreened: true,
       })
     );
   };
@@ -432,6 +433,7 @@ export default function HomeScreen() {
       newTask({
         name: "game_long.exe",
         icon: reonaIcon,
+        fullscreened: true,
       })
     );
   };
@@ -455,6 +457,7 @@ export default function HomeScreen() {
       newTask({
         name: "game_short.exe",
         icon: bookIcon,
+        fullscreened: true,
       })
     );
   };
@@ -478,6 +481,7 @@ export default function HomeScreen() {
       newTask({
         name: "game_naruto.exe",
         icon: narutoIcon,
+        fullscreened: true,
       })
     );
   };
@@ -501,6 +505,7 @@ export default function HomeScreen() {
       newTask({
         name: "game_potter.exe",
         icon: potterIcon,
+        fullscreened: true,
       })
     );
   };
@@ -524,6 +529,7 @@ export default function HomeScreen() {
       newTask({
         name: "game_zelda.exe",
         icon: zeldaIcon,
+        fullscreened: true,
       })
     );
   };
