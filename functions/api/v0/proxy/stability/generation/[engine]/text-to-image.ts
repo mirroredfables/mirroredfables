@@ -17,6 +17,7 @@ export const onRequest: PagesFunction<Env> = async (context) => {
   //   await KV.put(
   //     "xyz",
   //     JSON.stringify({
+  //       status: "active",
   //       stabilityKey: "abc",
   //     })
   //   );
@@ -26,6 +27,14 @@ export const onRequest: PagesFunction<Env> = async (context) => {
   if (!proxyValue) {
     return new Response(JSON.stringify({ error: "x-proxy-key not valid" }), {
       status: 400,
+    });
+  }
+
+  const PROXY_KEY_STATUS = proxyValue.status;
+
+  if (PROXY_KEY_STATUS != "active") {
+    return new Response(JSON.stringify({ error: "x-proxy-key not active" }), {
+      status: 500,
     });
   }
 
