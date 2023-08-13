@@ -193,6 +193,7 @@ interface GameData {
   // old stuff
   world: VisualNovelGameWorld;
   titleBackground: VisualNovelGameBackground;
+  title: string;
   storySoFar: string[];
   characters: VisualNovelGameCharacter[];
   scenes: VisualNovelGameScene[];
@@ -213,6 +214,7 @@ const initialGameData: GameData = {
     name: "",
     image: "",
   },
+  title: "",
   storySoFar: [],
   characters: [],
   scenes: [],
@@ -322,12 +324,14 @@ const gameSlice = createSlice({
         world: VisualNovelGameWorld;
         characters: VisualNovelGameCharacter[];
         titleBackground: VisualNovelGameBackground;
+        title: string;
       }>
     ) => {
       // state.gameData.init = true;
       state.gameData.world = action.payload.world;
       state.gameData.characters = action.payload.characters;
       state.gameData.titleBackground = action.payload.titleBackground;
+      state.gameData.title = action.payload.title;
       return state;
     },
     upsertScenes: (

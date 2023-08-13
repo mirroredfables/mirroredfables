@@ -228,6 +228,7 @@ export const generateScenes = createAsyncThunk(
                 {
                   request: input.request,
                   world: state.game.gameData.world,
+                  title: state.game.gameData.title,
                   characters: shortenCharacters(state.game.gameData.characters),
                   scenes: shortenScenes(state.game.gameData.scenes),
                 },
@@ -294,6 +295,7 @@ export const generateScript = createAsyncThunk(
                     state.game.gameData.scenes[input.targetSceneId ?? 0],
                   storySoFar: state.game.gameData.storySoFar,
                   world: state.game.gameData.world,
+                  title: state.game.gameData.title,
                   characters: shortenCharacters(state.game.gameData.characters),
                   scenes: shortenScenes(state.game.gameData.scenes),
                 },
@@ -375,6 +377,7 @@ export const generateScriptFromPrevious = createAsyncThunk(
                   ),
                   storySoFar: state.game.gameData.storySoFar.slice(0, -1),
                   world: state.game.gameData.world,
+                  title: state.game.gameData.title,
                   characters: shortenCharacters(state.game.gameData.characters),
                   scenes: shortenScenes(state.game.gameData.scenes),
                 },

@@ -89,6 +89,7 @@ const exampleWorldGenOutput = {
     artStyle: "Eiichiro Oda, colorful, line drawings, anime",
     writingStyle: "Jane Austen, romantic, witty, purple prose, soap opera",
   },
+  title: "Sunrise Over Manhattan: Reona's Ascension",
   characters: [
     {
       id: 0,

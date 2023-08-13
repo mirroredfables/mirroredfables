@@ -1001,6 +1001,7 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
             ...props.game.data.gameData.titleBackground,
             fullscreen: props.task.fullscreened,
           }}
+          title={props.game.data.gameData.title}
           onResumePressed={() => {
             loadGameSave(currentSavedGames[0]);
           }}
