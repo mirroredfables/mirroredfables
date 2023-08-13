@@ -1,8 +1,10 @@
 // A windows 95 style welcome wizard screen for the browser, written in React Native and Typescript.
 
 import * as React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Platform } from "react-native";
 import { ScrollView, Text, Button, Divider } from "react95-native";
+import * as Linking from "expo-linking";
+import TextLink from "../../atoms/SystemApps/TextLink";
 
 interface WelcomeWizardProps {
   // onShortStoryButtonPressed: () => void;
@@ -34,7 +36,11 @@ export default function WelcomeWizard(props: WelcomeWizardProps) {
     },
     welcomeText: {
       marginTop: 8,
-      marginBottom: 24,
+      marginBottom: 8,
+    },
+    welcomeTextDiscordLink: {
+      marginTop: 8,
+      marginBottom: 16,
     },
     buttonGroupView: {
       // flexDirection: "row",
@@ -57,12 +63,16 @@ embark on a literary odyssey with mirrored fables, an AI-powered visual novel ge
 
 mirrored fables is open source and in very early alpha. please report any bugs or issues to our discord or github. contributions are welcome.
 
-you can request stories in our discord if you don't have openai, but it may take a while for us to get to them. 
-
 enjoy.
-
-ps. if you want some prompt consulting, contact us!
 `;
+
+  const onDiscordLinkPress = () => {
+    if (Platform.OS === "web") {
+      window.open("https://discord.gg/J5Frvrzg46");
+    } else {
+      Linking.openURL("https://discord.gg/J5Frvrzg46");
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -74,6 +84,13 @@ ps. if you want some prompt consulting, contact us!
         <Text style={styles.welcomeText}>
           {props.welcomeText ?? defaultWelcomeText}
         </Text>
+        <TextLink
+          containerStyle={styles.welcomeTextDiscordLink}
+          onPress={onDiscordLinkPress}
+          text={
+            "ps, you can request stories in our discord if you don't have openai or a proxy key!"
+          }
+        />
       </ScrollView>
 
       <Divider />
