@@ -16,6 +16,7 @@ import {
   closeTask,
   exitFullscreenTask,
   fullscreenTask,
+  newTask,
   Task,
 } from "../redux/TasksSlice";
 import {
@@ -770,6 +771,18 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
         onPress: () => {
           dispatch(resetGamePlayer({}));
           dispatch(loadGameFromFile(props.game));
+        },
+      },
+      {
+        name: "Launch Error",
+        onPress: () => {
+          dispatch(
+            newTask({
+              name: "error.exe",
+              icon: "icons/warning.png",
+              maximized: true,
+            })
+          );
         },
       },
     ],

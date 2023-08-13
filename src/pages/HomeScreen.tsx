@@ -65,6 +65,7 @@ import { defaultStartMenu } from "../molecules/Taskbar/StartMenu.stories";
 import Chat from "../organisms/SystemApps/Chat";
 import AiSettings from "../organisms/SystemApps/AiSettings";
 import WelcomeWizard from "../organisms/SystemApps/WelcomeWizard";
+import ErrorPopup from "../organisms/SystemApps/ErrorPopup";
 import { GameSaveFile, resetGamePlayer } from "../redux/GameSlice";
 import {
   addHumanMessage,
@@ -144,6 +145,30 @@ export default function HomeScreen() {
     onPress: () => {
       console.log("welcome wizard pressed");
       launchWelcomeWizard();
+    },
+  };
+
+  const errorPopupAppIcon =
+    Platform.OS === "web"
+      ? "icons/warning.png"
+      : Image.resolveAssetSource(WarningIcon).uri;
+
+  const launchErrorPopup = () => {
+    dispatch(
+      newTask({
+        name: "error.exe",
+        icon: errorPopupAppIcon,
+        maximized: true,
+      })
+    );
+  };
+
+  const errorPopupShortcut = {
+    icon: errorPopupAppIcon,
+    name: "error.exe",
+    onPress: () => {
+      console.log("error popup pressed");
+      launchErrorPopup();
     },
   };
 
@@ -584,6 +609,7 @@ export default function HomeScreen() {
             // newTaskShortcut,
             localServerOnShortcut,
             localServerOffShortcut,
+            errorPopupShortcut,
           ]
         : []
     ),
@@ -663,6 +689,10 @@ export default function HomeScreen() {
         ]}
       />
     );
+  };
+
+  const ErrorApp = () => {
+    return <ErrorPopup />;
   };
 
   const SystemSettingsApp = () => {
@@ -856,6 +886,8 @@ export default function HomeScreen() {
     const getChildren = () => {
       if (task.name == "welcome_wizard.exe") {
         return WelcomeWizardApp();
+      } else if (task.name == "error.exe") {
+        return ErrorApp();
       } else if (task.name == "system_settings.exe") {
         return SystemSettingsApp();
       } else if (task.name == "ai_settings.exe") {
