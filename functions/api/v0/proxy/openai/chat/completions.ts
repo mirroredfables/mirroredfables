@@ -41,6 +41,8 @@ export const onRequest: PagesFunction<Env> = async (context) => {
 
   const OPENAI_API_KEY = proxyValue.openaiKey;
 
+  // TODO: should set the model in request body to "gpt-3.5-turbo-16k" when using proxy
+
   const newRequest = new Request(
     `https://api.openai.com/v1/chat/completions`,
     new Request(context.request)
