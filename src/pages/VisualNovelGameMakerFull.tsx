@@ -81,6 +81,7 @@ export default function VisualNovelGameMakerFull(
       newTask({
         name: "game_custom.exe",
         icon: gameIcon,
+        fullscreened: true,
       })
     );
   };

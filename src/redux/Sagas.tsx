@@ -892,6 +892,7 @@ function* subSagaGenerateImageStability(action: {
     type: string;
     style: string;
     seed?: number;
+    // save?: boolean;
   };
 }) {
   yield put({
@@ -913,13 +914,14 @@ function* subSagaGenerateImageStability(action: {
     return imageOriginal;
   }
 
-  if (!action.payload.save) {
-    yield put({
-      type: "ADD_SYSTEM_MESSAGE",
-      payload: { message: "Generating image succeeded." },
-    });
-    return imageOriginal;
-  }
+  // // by default save, since it stability returns a B64 image
+  // if (!action.payload.save) {
+  //   yield put({
+  //     type: "ADD_SYSTEM_MESSAGE",
+  //     payload: { message: "Generating image succeeded." },
+  //   });
+  //   return imageOriginal;
+  // }
 
   const imageCopy = yield call(subSagaUploadImageViaB64, {
     payload: {
@@ -953,6 +955,7 @@ function* subSagaGenerateOriginalImageStability(action: {
       type: action.payload.type,
       style: action.payload.style,
     }).prompt;
+    // TODO: put this prompt elsewhere
     const negativePrompt = `deformed, distorted, disfigured, stacked torsos, totem pole, poorly drawn, bad anatomy, wrong anatomy, extra limb, missing limb, floating limbs, mutated hands and fingers, disconnected limbs, mutation, mutated, ugly, disgusting, blurry, amputation, Nrealfixer, nfixer, nartfixer`;
 
     const form = {
@@ -985,7 +988,7 @@ function* subSagaGenerateOriginalImageStability(action: {
           message: "Generating image with worker failed... Need fix.",
         },
       });
-      // TODO: regen image
+      // TODO: regen image, removing potentially problematic words
       return "";
     }
   } catch (e) {
@@ -1076,6 +1079,7 @@ function* watchGenerateImage() {
 }
 
 function* watchRepairGenerateImage() {
+  // TODO: roll this into retry functions
   yield takeEvery(generateImage.rejected, sagaRepairDallEGenerateImage);
 }
 

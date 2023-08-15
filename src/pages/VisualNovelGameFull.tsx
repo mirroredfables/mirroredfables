@@ -16,6 +16,7 @@ import {
   closeTask,
   exitFullscreenTask,
   fullscreenTask,
+  newTask,
   Task,
 } from "../redux/TasksSlice";
 import {
@@ -772,6 +773,18 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
           dispatch(loadGameFromFile(props.game));
         },
       },
+      {
+        name: "Launch Error",
+        onPress: () => {
+          dispatch(
+            newTask({
+              name: "error.exe",
+              icon: "icons/warning.png",
+              maximized: true,
+            })
+          );
+        },
+      },
     ],
   };
 
@@ -1001,6 +1014,7 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
             ...props.game.data.gameData.titleBackground,
             fullscreen: props.task.fullscreened,
           }}
+          title={props.game.data.gameData.title}
           onResumePressed={() => {
             loadGameSave(currentSavedGames[0]);
           }}

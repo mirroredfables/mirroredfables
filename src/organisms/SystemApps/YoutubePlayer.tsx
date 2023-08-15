@@ -68,7 +68,8 @@ export default function ParrotYoutubePlayer(props: YoutubePlayerProps) {
       // 4. The API will call this function when the video player is ready.
       function onPlayerReady(event) {
         event.target.playVideo();
-        // player.unMute();
+        event.target.unMute();
+        event.target.setVolume(50);
       }
 
       // 5. The API calls this function when the player's state changes.

@@ -17,6 +17,7 @@ export const onRequest: PagesFunction<Env> = async (context) => {
   //   await KV.put(
   //     "xyz",
   //     JSON.stringify({
+  //       status: "active",
   //       openaiKey: "abc",
   //       elevenKey: "xyz",
   //     })
@@ -30,7 +31,17 @@ export const onRequest: PagesFunction<Env> = async (context) => {
     });
   }
 
+  const PROXY_KEY_STATUS = proxyValue.status;
+
+  if (PROXY_KEY_STATUS != "active") {
+    return new Response(JSON.stringify({ error: "x-proxy-key not active" }), {
+      status: 500,
+    });
+  }
+
   const OPENAI_API_KEY = proxyValue.openaiKey;
+
+  // TODO: should set the model in request body to "gpt-3.5-turbo-16k" when using proxy
 
   const newRequest = new Request(
     `https://api.openai.com/v1/chat/completions`,

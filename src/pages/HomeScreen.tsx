@@ -65,6 +65,7 @@ import { defaultStartMenu } from "../molecules/Taskbar/StartMenu.stories";
 import Chat from "../organisms/SystemApps/Chat";
 import AiSettings from "../organisms/SystemApps/AiSettings";
 import WelcomeWizard from "../organisms/SystemApps/WelcomeWizard";
+import ErrorPopup from "../organisms/SystemApps/ErrorPopup";
 import { GameSaveFile, resetGamePlayer } from "../redux/GameSlice";
 import {
   addHumanMessage,
@@ -97,11 +98,13 @@ import { generateImage } from "../redux/ImagesSlice";
 import VisualNovelGameMakerFull from "./VisualNovelGameMakerFull";
 import VisualNovelGameLauncher from "../organisms/UserApps/VisualNovelGameLauncher";
 import ProxySettings from "../organisms/SystemApps/ProxySettings";
+import { testProxyKey } from "../redux/ProxySlice";
 
 export default function HomeScreen() {
   const dispatch = useAppDispatch();
 
   const currentSystemSettings = useAppSelector((state) => state.systemSettings);
+  const currentProxy = useAppSelector((state) => state.proxy);
   const debugStatus = currentSystemSettings.debug;
 
   React.useEffect(() => {
@@ -144,6 +147,30 @@ export default function HomeScreen() {
     onPress: () => {
       console.log("welcome wizard pressed");
       launchWelcomeWizard();
+    },
+  };
+
+  const errorPopupAppIcon =
+    Platform.OS === "web"
+      ? "icons/warning.png"
+      : Image.resolveAssetSource(WarningIcon).uri;
+
+  const launchErrorPopup = () => {
+    dispatch(
+      newTask({
+        name: "error.exe",
+        icon: errorPopupAppIcon,
+        maximized: true,
+      })
+    );
+  };
+
+  const errorPopupShortcut = {
+    icon: errorPopupAppIcon,
+    name: "error.exe",
+    onPress: () => {
+      console.log("error popup pressed");
+      launchErrorPopup();
     },
   };
 
@@ -409,6 +436,7 @@ export default function HomeScreen() {
       newTask({
         name: "game_custom.exe",
         icon: gameIcon,
+        fullscreened: true,
       })
     );
   };
@@ -432,6 +460,7 @@ export default function HomeScreen() {
       newTask({
         name: "game_long.exe",
         icon: reonaIcon,
+        fullscreened: true,
       })
     );
   };
@@ -455,6 +484,7 @@ export default function HomeScreen() {
       newTask({
         name: "game_short.exe",
         icon: bookIcon,
+        fullscreened: true,
       })
     );
   };
@@ -478,6 +508,7 @@ export default function HomeScreen() {
       newTask({
         name: "game_naruto.exe",
         icon: narutoIcon,
+        fullscreened: true,
       })
     );
   };
@@ -501,6 +532,7 @@ export default function HomeScreen() {
       newTask({
         name: "game_potter.exe",
         icon: potterIcon,
+        fullscreened: true,
       })
     );
   };
@@ -524,6 +556,7 @@ export default function HomeScreen() {
       newTask({
         name: "game_zelda.exe",
         icon: zeldaIcon,
+        fullscreened: true,
       })
     );
   };
@@ -578,6 +611,7 @@ export default function HomeScreen() {
             // newTaskShortcut,
             localServerOnShortcut,
             localServerOffShortcut,
+            errorPopupShortcut,
           ]
         : []
     ),
@@ -659,6 +693,10 @@ export default function HomeScreen() {
     );
   };
 
+  const ErrorApp = () => {
+    return <ErrorPopup />;
+  };
+
   const SystemSettingsApp = () => {
     return (
       <SystemSettings
@@ -725,6 +763,8 @@ export default function HomeScreen() {
       <ProxySettings
         useProxy={currentSystemSettings.useProxy}
         proxyKey={currentSystemSettings.proxyKey}
+        testProxyKey={(config) => dispatch(testProxyKey(config))}
+        testProxyKeyResponse={currentProxy.testProxyKeyResponse}
         configureProxy={(config: { useProxy: boolean; proxyKey: string }) => {
           dispatch(configureProxy(config));
           dispatch(saveConfigProxy(config));
@@ -850,6 +890,8 @@ export default function HomeScreen() {
     const getChildren = () => {
       if (task.name == "welcome_wizard.exe") {
         return WelcomeWizardApp();
+      } else if (task.name == "error.exe") {
+        return ErrorApp();
       } else if (task.name == "system_settings.exe") {
         return SystemSettingsApp();
       } else if (task.name == "ai_settings.exe") {
@@ -955,6 +997,12 @@ export default function HomeScreen() {
             icon: gameMakerAppIcon,
           })
         );
+        // check proxy key is valid
+        dispatch(testProxyKey(config)).then((response) => {
+          if (response.meta.requestStatus != "fulfilled") {
+            launchErrorPopup();
+          }
+        });
       }
 
       // example: http://localhost:19000/?gameUuid=xyz

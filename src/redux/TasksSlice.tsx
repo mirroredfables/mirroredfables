@@ -94,6 +94,9 @@ export const tasksSlice = createSlice({
       state.currentActiveTaskId = action.payload.id ?? state.nextId;
       state.nextId++;
       state.nextDepth++;
+      if (action.payload.fullscreened) {
+        state.taskbarHidden = true;
+      }
       return state;
     },
     closeTask: (state, action: PayloadAction<{ id: number }>) => {

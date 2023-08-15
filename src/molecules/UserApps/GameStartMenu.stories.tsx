@@ -5,6 +5,7 @@ import { defaultGameBackground } from "../../atoms/UserApps/GameBackground.stori
 
 export const defaultGameStartMenu: GameStartMenuProps = {
   background: defaultGameBackground,
+  title: "test game",
   onStartPressed: () => {
     console.log("start pressed");
   },

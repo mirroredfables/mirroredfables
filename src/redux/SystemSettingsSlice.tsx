@@ -146,7 +146,7 @@ const initialState: SystemSettingsState = {
     visible: false,
   },
   openAiKey: "",
-  openAiGptModel: GptModel.GPT4,
+  openAiGptModel: GptModel.GPT3_16k,
   elevenKey: "",
   imageGenerator: ImageGeneratorProvider.stability,
   stabilityKey: "",

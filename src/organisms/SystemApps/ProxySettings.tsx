@@ -2,7 +2,14 @@
 
 import * as React from "react";
 import { View, StyleSheet, Platform } from "react-native";
-import { ScrollView, Fieldset, Checkbox, Button } from "react95-native";
+import {
+  ScrollView,
+  Fieldset,
+  Checkbox,
+  Button,
+  Text,
+  Divider,
+} from "react95-native";
 import * as Linking from "expo-linking";
 import TextInput from "../../atoms/TextInput";
 import TextLink from "../../atoms/SystemApps/TextLink";
@@ -10,6 +17,8 @@ import TextLink from "../../atoms/SystemApps/TextLink";
 interface ProxySettingsProps {
   useProxy: boolean;
   proxyKey: string;
+  testProxyKey: (config: { proxyKey: string }) => void;
+  testProxyKeyResponse: string;
   configureProxy: (config: { useProxy: boolean; proxyKey: string }) => void;
 }
 
@@ -31,6 +40,15 @@ export default function ProxySettings(props: ProxySettingsProps) {
     showSecretButton: {
       marginLeft: 4,
     },
+    submitButton: {
+      margin: 4,
+    },
+    testResultText: {
+      margin: 8,
+    },
+    divider: {
+      marginVertical: 8,
+    },
     applyChangesButton: {
       margin: 4,
     },
@@ -40,6 +58,7 @@ export default function ProxySettings(props: ProxySettingsProps) {
   const [showSecretProxyKey, setShowSecretProxyKey] = React.useState(false);
   const [proxyKey, setProxyKey] = React.useState(props.proxyKey || "");
   const [applyChange, setApplyChange] = React.useState(false);
+  const [runProxyTest, setRunProxyTest] = React.useState(false);
 
   React.useEffect(() => {
     if (applyChange) {
@@ -59,6 +78,15 @@ export default function ProxySettings(props: ProxySettingsProps) {
     }
   };
 
+  React.useEffect(() => {
+    if (runProxyTest) {
+      setRunProxyTest(false);
+      props.testProxyKey({
+        proxyKey: proxyKey,
+      });
+    }
+  }, [runProxyTest]);
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.insideContainer}>
@@ -75,28 +103,40 @@ export default function ProxySettings(props: ProxySettingsProps) {
           text={"get the key from our discord"}
         />
         {useProxy ? (
-          <Fieldset label="proxy api key:">
-            <View style={styles.horizontalContainer}>
-              <TextInput
-                secureTextEntry={!showSecretProxyKey}
-                autoCapitalize={"none"}
-                placeholder={"..."}
-                value={proxyKey}
-                onChangeText={(newValue) => {
-                  setProxyKey(newValue);
-                }}
-              />
-              <Button
-                style={styles.showSecretButton}
-                onPress={() => {
-                  setShowSecretProxyKey(!showSecretProxyKey);
-                }}
-                active={showSecretProxyKey}
-              >
-                👀
-              </Button>
-            </View>
-          </Fieldset>
+          <View>
+            <Fieldset label="proxy api key:">
+              <View style={styles.horizontalContainer}>
+                <TextInput
+                  secureTextEntry={!showSecretProxyKey}
+                  autoCapitalize={"none"}
+                  placeholder={"..."}
+                  value={proxyKey}
+                  onChangeText={(newValue) => {
+                    setProxyKey(newValue);
+                  }}
+                />
+                <Button
+                  style={styles.showSecretButton}
+                  onPress={() => {
+                    setShowSecretProxyKey(!showSecretProxyKey);
+                  }}
+                  active={showSecretProxyKey}
+                >
+                  👀
+                </Button>
+              </View>
+            </Fieldset>
+            <Button
+              onPress={() => setRunProxyTest(true)}
+              style={styles.submitButton}
+            >
+              test proxy api key
+            </Button>
+            <Text style={styles.testResultText}>
+              {props.testProxyKeyResponse}
+            </Text>
+            <Divider style={styles.divider} />
+          </View>
         ) : (
           <></>
         )}
