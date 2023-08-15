@@ -1,6 +1,7 @@
 import createSagaMiddleware from "redux-saga";
 import { configureStore } from "@reduxjs/toolkit";
 import systemSettingsReducer from "./SystemSettingsSlice";
+import proxyReducer from "./ProxySlice";
 import tasksReducer from "./TasksSlice";
 import chatgptReducer from "./ChatgptSlice";
 import imagesReducer from "./ImagesSlice";
@@ -13,6 +14,7 @@ const sagaMiddleware = createSagaMiddleware();
 const store = configureStore({
   reducer: {
     systemSettings: systemSettingsReducer,
+    proxy: proxyReducer,
     tasks: tasksReducer,
     chatgpt: chatgptReducer,
     images: imagesReducer,

@@ -98,11 +98,13 @@ import { generateImage } from "../redux/ImagesSlice";
 import VisualNovelGameMakerFull from "./VisualNovelGameMakerFull";
 import VisualNovelGameLauncher from "../organisms/UserApps/VisualNovelGameLauncher";
 import ProxySettings from "../organisms/SystemApps/ProxySettings";
+import { testProxyKey } from "../redux/ProxySlice";
 
 export default function HomeScreen() {
   const dispatch = useAppDispatch();
 
   const currentSystemSettings = useAppSelector((state) => state.systemSettings);
+  const currentProxy = useAppSelector((state) => state.proxy);
   const debugStatus = currentSystemSettings.debug;
 
   React.useEffect(() => {
@@ -761,6 +763,8 @@ export default function HomeScreen() {
       <ProxySettings
         useProxy={currentSystemSettings.useProxy}
         proxyKey={currentSystemSettings.proxyKey}
+        testProxyKey={(config) => dispatch(testProxyKey(config))}
+        testProxyKeyResponse={currentProxy.testProxyKeyResponse}
         configureProxy={(config: { useProxy: boolean; proxyKey: string }) => {
           dispatch(configureProxy(config));
           dispatch(saveConfigProxy(config));
@@ -993,6 +997,12 @@ export default function HomeScreen() {
             icon: gameMakerAppIcon,
           })
         );
+        // check proxy key is valid
+        dispatch(testProxyKey(config)).then((response) => {
+          if (response.meta.requestStatus != "fulfilled") {
+            launchErrorPopup();
+          }
+        });
       }
 
       // example: http://localhost:19000/?gameUuid=xyz
