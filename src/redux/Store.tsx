@@ -6,6 +6,7 @@ import tasksReducer from "./TasksSlice";
 import chatgptReducer from "./ChatgptSlice";
 import imagesReducer from "./ImagesSlice";
 import gameReducer from "./GameSlice";
+import bookReducer from "./BookSlice";
 import { elevenApi } from "./ElevenLabsSlice";
 import rootSaga from "./Sagas";
 
@@ -19,6 +20,7 @@ const store = configureStore({
     chatgpt: chatgptReducer,
     images: imagesReducer,
     game: gameReducer,
+    book: bookReducer,
     [elevenApi.reducerPath]: elevenApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
