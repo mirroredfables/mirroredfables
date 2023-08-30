@@ -299,6 +299,38 @@ const exampleScriptsGenOutput = {
   },
 };
 
+const exampleScriptsGenOutputWithChoice = {
+  scene: {
+    id: 3,
+    name: "Reona hears a rumor that the dorm is haunted",
+    script: `[Narrator] The excitement of orientation night fills the air as Reona and Yumi join the throng of students on campus.
+[Reona] I can't believe we're finally here, Yumi! NYU, new friends, and a whole new adventure!
+[Yumi] I know, right? I'm so glad we found each other, Reona. This is going to be amazing!
+[Narrator] As they navigate through the crowd, Reona spots a familiar face, one she's only ever seen in pixels.
+[Reona] (gasps) Chen?! Is that really you?
+[Chen] Reona! It's finally nice to meet you in person!
+[Narrator] They embrace, their online bond transcending into the real world.
+[Yumi] So, you two have been friends for a while? That's awesome!
+[Chen] Yeah, we've been mutuals for years. I couldn't pass up the chance to attend NYU with Reona.
+[Narrator] The trio continues to explore the party, enjoying the music, food, drinks, and the company.
+[Reona] (laughs) I never thought I'd see you dance, Chen! You're actually pretty good!
+[Chen] (blushing) Well, I've been practicing just for this moment.
+[Narrator] As the night wears on, Yumi overhears a tantalizing rumor from a group of students.
+[Yumi] Hey, Reona, Chen! I just heard something really interesting. Apparently, our dorm is haunted!
+[Reona] (intrigued) Really? By what kind of spirit?
+[Yumi] They say it's a lovelorn ghost, tied to the building by the memory of a tragic romance.`,
+    playerChoices: [
+      `[Reona] Well, we should definitely investigate. Who knows, maybe it's connected to that love letter we found!`,
+      `[Reona] I have a feeling that it might be connected to that locket Wiktor carries around!`,
+      `[Reona] That's so scary! I don't want to get involved with ghosts.`,
+    ],
+    location: "party room, NYU dorm",
+    musicRecommendation: "Caribou - You and I (Instrumental)",
+    summary:
+      "Reona and Yumi goes to an orientation party at the dorm, they meet Chen, Reona's online friend, and they hear a rumor that the dorm is haunted",
+  },
+};
+
 // GPT for script update
 export const generateGameScriptsUpdatePromptTemplate = (input: {
   request?: string;

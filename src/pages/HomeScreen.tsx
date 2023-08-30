@@ -63,6 +63,7 @@ import {
 } from "../molecules/Taskbar/NotificationButton.stories";
 import { defaultStartMenu } from "../molecules/Taskbar/StartMenu.stories";
 import Chat from "../organisms/SystemApps/Chat";
+import Book from "../organisms/UserApps/Book";
 import AiSettings from "../organisms/SystemApps/AiSettings";
 import WelcomeWizard from "../organisms/SystemApps/WelcomeWizard";
 import ErrorPopup from "../organisms/SystemApps/ErrorPopup";
@@ -74,6 +75,13 @@ import {
   testConfigChatgpt,
   setTestElevenConfigResponse,
 } from "../redux/ChatgptSlice";
+import {
+  addBookHumanMessage,
+  askBookForFollowup,
+  askBookForQuote,
+  resetAllMessages,
+  selectAllBookMessages,
+} from "../redux/BookSlice";
 import VisualNovelGameFull from "./VisualNovelGameFull";
 import VisualNovelLongStory from "../../public/scripts/VisualNovelLongStory";
 import VisualNovelShortStory from "../../public/scripts/VisualNovelShortStory";
@@ -361,6 +369,25 @@ export default function HomeScreen() {
     },
   };
 
+  const bookAppIcon =
+    Platform.OS === "web"
+      ? "icons/chat.png"
+      : Image.resolveAssetSource(ChatIcon).uri;
+
+  const bookShortcut = {
+    icon: bookAppIcon,
+    name: "book.exe",
+    onPress: () => {
+      console.log("book.exe pressed");
+      dispatch(
+        newTask({
+          name: "book.exe",
+          icon: bookAppIcon,
+        })
+      );
+    },
+  };
+
   const textToImageAppIcon =
     Platform.OS === "web"
       ? "icons/chat.png"
@@ -594,6 +621,7 @@ export default function HomeScreen() {
       proxySettingsShortcut,
       browserShortcut,
       chatShortcut,
+      bookShortcut,
       textToImageShortcut,
       gameMakerShortcut,
       gameLauncherShortcut,
@@ -840,6 +868,29 @@ export default function HomeScreen() {
     );
   };
 
+  const bookMessage = useAppSelector((state) => selectAllBookMessages(state));
+
+  const BookApp = () => {
+    return (
+      <Book
+        messages={bookMessage.map((message) => {
+          return `[${message.role}] ${message.content}`;
+        })}
+        sendMessage={(message) => {
+          if (bookMessage.length == 0) {
+            dispatch(askBookForQuote({ inputString: message }));
+          } else {
+            dispatch(askBookForFollowup({ inputString: message }));
+          }
+          dispatch(addBookHumanMessage({ input: message }));
+        }}
+        reset={() => {
+          dispatch(resetAllMessages({}));
+        }}
+      />
+    );
+  };
+
   const currentImage = useAppSelector((state) => state.images.currentImage);
 
   const TextToImageApp = () => {
@@ -904,6 +955,8 @@ export default function HomeScreen() {
         return YoutubePlayerApp({ task: task });
       } else if (task.name == "chat.exe") {
         return ChatApp();
+      } else if (task.name == "book.exe") {
+        return BookApp();
       } else if (task.name == "text_to_image.exe") {
         return TextToImageApp();
       } else if (task.name == "gamemaker.exe") {
@@ -1003,6 +1056,16 @@ export default function HomeScreen() {
             launchErrorPopup();
           }
         });
+      }
+
+      const book = urlParams.get("book");
+      if (book == "true") {
+        dispatch(
+          newTask({
+            name: "book.exe",
+            icon: bookAppIcon,
+          })
+        );
       }
 
       // example: http://localhost:19000/?gameUuid=xyz
