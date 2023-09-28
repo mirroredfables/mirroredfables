@@ -37,6 +37,7 @@ import { usePostTextToSpeechMutation } from "../redux/ElevenLabsSlice";
 import { VisualNovelGameMusic } from "../redux/VisualNovelGameTypes";
 import { saveGameToServer } from "../redux/GameGenerator";
 import GameEditMenu from "../molecules/UserApps/GameEditMenu";
+import { useAzurePostTextToSpeechMutation } from "../redux/AzureVoiceSlice";
 
 export interface VisualNovelGameFullProps {
   task: Task;
@@ -306,6 +307,22 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
     const response = await postTextToSpeech({
       voiceId: "ErXwobaYiN019PkySvjV",
       text: "Some text",
+    });
+
+    const { sound } = await Audio.Sound.createAsync({
+      uri: response.data,
+    });
+    await sound.playAsync();
+  };
+
+  // azure text to speech
+  const [azurePostTextToSpeech] = useAzurePostTextToSpeechMutation();
+
+  const testAzureSpeech = async () => {
+    // Call the API with the required arguments
+    const response = await azurePostTextToSpeech({
+      voiceId: "en-US-ChristopherNeural",
+      text: "Some azure text",
     });
 
     const { sound } = await Audio.Sound.createAsync({
@@ -753,6 +770,10 @@ export default function VisualNovelGameFull(props: VisualNovelGameFullProps) {
       {
         name: "Test elevenlabs text to speech",
         onPress: playTextToSpeech,
+      },
+      {
+        name: "Test azure text to speech",
+        onPress: testAzureSpeech,
       },
       {
         name: "Voice Test Menu",

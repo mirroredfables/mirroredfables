@@ -21,6 +21,7 @@ export const restoreConfig = createAsyncThunk(
     const openAiKey = await AsyncStorage.getItem("openAiKey");
     const openAiGptModel = await AsyncStorage.getItem("openAiGptModel");
     const elevenKey = await AsyncStorage.getItem("elevenKey");
+    const azureVoiceKey = await AsyncStorage.getItem("azureVoiceKey");
     const imageGenerator = await AsyncStorage.getItem("imageGenerator");
     const stabilityKey = await AsyncStorage.getItem("stabilityKey");
     const debug = await AsyncStorage.getItem("debug");
@@ -33,6 +34,7 @@ export const restoreConfig = createAsyncThunk(
       openAiKey: openAiKey,
       openAiGptModel: openAiGptModel,
       elevenKey: elevenKey,
+      azureVoiceKey: azureVoiceKey,
       imageGenerator: imageGenerator,
       stabilityKey: stabilityKey,
       debug: debug,
@@ -88,6 +90,18 @@ export const saveConfigElevenLabs = createAsyncThunk(
   }
 );
 
+interface ConfigureAzureVoiceForm {
+  azureVoiceKey: string;
+}
+
+export const saveConfigAzureVoice = createAsyncThunk(
+  "systemSettings/saveConfigAzureVoice",
+  async (payload: ConfigureAzureVoiceForm) => {
+    await AsyncStorage.setItem("azureVoiceKey", payload.azureVoiceKey);
+    return payload;
+  }
+);
+
 interface ConfigureImageGeneratorForm {
   imageGenerator: ImageGeneratorProvider;
   stabilityKey: string;
@@ -126,6 +140,9 @@ interface SystemSettingsState {
   // eleven voice
   elevenKey: string;
 
+  // azureVoice
+  azureVoiceKey: string;
+
   // stability ai imagegen
   imageGenerator: ImageGeneratorProvider;
   stabilityKey: string;
@@ -148,6 +165,7 @@ const initialState: SystemSettingsState = {
   openAiKey: "",
   openAiGptModel: GptModel.GPT3_16k,
   elevenKey: "",
+  azureVoiceKey: "",
   imageGenerator: ImageGeneratorProvider.stability,
   stabilityKey: "",
   useProxy: false,
@@ -200,6 +218,13 @@ export const systemSettingsSlice = createSlice({
       state.elevenKey = action.payload.elevenKey;
       return state;
     },
+    confgireAzureVoice: (
+      state,
+      action: PayloadAction<ConfigureAzureVoiceForm>
+    ) => {
+      state.azureVoiceKey = action.payload.azureVoiceKey;
+      return state;
+    },
     configureImageGenerator: (
       state,
       action: PayloadAction<ConfigureImageGeneratorForm>
@@ -235,6 +260,9 @@ export const systemSettingsSlice = createSlice({
       }
       if (action.payload.elevenKey) {
         state.elevenKey = action.payload.elevenKey;
+      }
+      if (action.payload.azureVoiceKey) {
+        state.azureVoiceKey = action.payload.azureVoiceKey;
       }
       if (action.payload.imageGenerator) {
         state.imageGenerator = action.payload
