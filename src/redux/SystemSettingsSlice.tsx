@@ -12,6 +12,7 @@ import { ConfigureGptForm, GptModel } from "./ChatgptSlice";
 
 import type { RootState } from "./Store";
 import { ImageGeneratorProvider } from "./ImagesSlice";
+import { VoiceProvider } from "./ElevenLabsSlice";
 
 export const restoreConfig = createAsyncThunk(
   "systemSettings/restoreConfig",
@@ -20,6 +21,7 @@ export const restoreConfig = createAsyncThunk(
     const desktopBackground = await AsyncStorage.getItem("desktopBackground");
     const openAiKey = await AsyncStorage.getItem("openAiKey");
     const openAiGptModel = await AsyncStorage.getItem("openAiGptModel");
+    const voiceProvider = await AsyncStorage.getItem("voiceProvider");
     const elevenKey = await AsyncStorage.getItem("elevenKey");
     const azureVoiceKey = await AsyncStorage.getItem("azureVoiceKey");
     const imageGenerator = await AsyncStorage.getItem("imageGenerator");
@@ -33,6 +35,7 @@ export const restoreConfig = createAsyncThunk(
       desktopBackground: desktopBackground,
       openAiKey: openAiKey,
       openAiGptModel: openAiGptModel,
+      voiceProvider: voiceProvider,
       elevenKey: elevenKey,
       azureVoiceKey: azureVoiceKey,
       imageGenerator: imageGenerator,
@@ -74,6 +77,22 @@ export const saveConfigChatgpt = createAsyncThunk(
   async (payload: ConfigureGptForm) => {
     await AsyncStorage.setItem("openAiKey", payload.key);
     await AsyncStorage.setItem("openAiGptModel", payload.model);
+    return payload;
+  }
+);
+
+interface ConfigureVoiceForm {
+  voiceProvider: VoiceProvider;
+  elevenKey: string;
+  azureVoiceKey: string;
+}
+
+export const saveConfigVoiceProvider = createAsyncThunk(
+  "systemSettings/saveConfigVoiceProvider",
+  async (payload: ConfigureVoiceForm) => {
+    await AsyncStorage.setItem("voiceProvider", payload.voiceProvider);
+    await AsyncStorage.setItem("elevenKey", payload.elevenKey);
+    await AsyncStorage.setItem("azureVoiceKey", payload.azureVoiceKey);
     return payload;
   }
 );
@@ -137,6 +156,8 @@ interface SystemSettingsState {
   openAiKey: string;
   openAiGptModel: GptModel;
 
+  voiceProvider: VoiceProvider;
+
   // eleven voice
   elevenKey: string;
 
@@ -164,6 +185,7 @@ const initialState: SystemSettingsState = {
   },
   openAiKey: "",
   openAiGptModel: GptModel.GPT3_16k,
+  voiceProvider: VoiceProvider.eleven,
   elevenKey: "",
   azureVoiceKey: "",
   imageGenerator: ImageGeneratorProvider.stability,
@@ -211,6 +233,15 @@ export const systemSettingsSlice = createSlice({
       state.openAiGptModel = action.payload.model;
       return state;
     },
+    configureVoiceProvider: (
+      state,
+      action: PayloadAction<ConfigureVoiceForm>
+    ) => {
+      state.voiceProvider = action.payload.voiceProvider;
+      state.elevenKey = action.payload.elevenKey;
+      state.azureVoiceKey = action.payload.azureVoiceKey;
+      return state;
+    },
     configureElevenLabs: (
       state,
       action: PayloadAction<ConfigureElevenForm>
@@ -218,7 +249,7 @@ export const systemSettingsSlice = createSlice({
       state.elevenKey = action.payload.elevenKey;
       return state;
     },
-    confgireAzureVoice: (
+    configureAzureVoice: (
       state,
       action: PayloadAction<ConfigureAzureVoiceForm>
     ) => {
@@ -257,6 +288,9 @@ export const systemSettingsSlice = createSlice({
       }
       if (action.payload.openAiGptModel) {
         state.openAiGptModel = action.payload.openAiGptModel as GptModel;
+      }
+      if (action.payload.voiceProvider) {
+        state.voiceProvider = action.payload.voiceProvider as VoiceProvider;
       }
       if (action.payload.elevenKey) {
         state.elevenKey = action.payload.elevenKey;
@@ -297,6 +331,8 @@ export const {
   dismissSnackbar,
   configureChatgpt,
   configureElevenLabs,
+  configureAzureVoice,
+  configureVoiceProvider,
   configureImageGenerator,
   configureProxy,
 } = systemSettingsSlice.actions;
