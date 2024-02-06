@@ -188,7 +188,7 @@ const initialState: SystemSettingsState = {
   voiceProvider: VoiceProvider.eleven,
   elevenKey: "",
   azureVoiceKey: "",
-  imageGenerator: ImageGeneratorProvider.stability,
+  imageGenerator: ImageGeneratorProvider.openai,
   stabilityKey: "",
   useProxy: false,
   proxyKey: "",

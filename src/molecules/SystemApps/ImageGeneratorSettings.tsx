@@ -74,7 +74,7 @@ export default function ImageGeneratorSettings(
   const [showSecretStabilityKey, setShowSecretStabilityKey] =
     React.useState(false);
   const [selectedImageGenerator, setSelectedImageGenerator] = React.useState(
-    props.imageGenerator || ImageGeneratorProvider.stability
+    props.imageGenerator || ImageGeneratorProvider.openai
   );
 
   const imageGenerators = Object.values(ImageGeneratorProvider);

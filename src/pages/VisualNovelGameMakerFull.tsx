@@ -126,7 +126,7 @@ export default function VisualNovelGameMakerFull(
     dispatch({
       type: "GENERATE_IMAGE",
       payload: {
-        generator: "stability",
+        generator: "openai",
         object: "modern house",
         type: "interior, background",
         style: "architecture digest",
