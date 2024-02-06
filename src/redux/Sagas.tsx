@@ -796,6 +796,7 @@ function* subSagaGenerateOriginalImage(action: {
     }).prompt;
     yield put(
       generateImage({
+        model: "dall-e-3",
         prompt: prompt,
         n: 1,
         size: "1024x1024",
@@ -877,6 +878,7 @@ function* sagaRepairDallEGenerateImage(action: {
     const newPrompt = rewriteResponse.payload.choices[0].message.content;
     yield put(
       generateImage({
+        model: "dall-e-3",
         prompt: newPrompt,
         n: 1,
         size: "1024x1024",

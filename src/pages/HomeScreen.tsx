@@ -47,6 +47,8 @@ import {
   saveConfigProxy,
   configureImageGenerator,
   saveConfigImageGenerator,
+  configureVoiceProvider,
+  saveConfigVoiceProvider,
 } from "../redux/SystemSettingsSlice";
 
 import FullApp from "../templates/FullApp";
@@ -749,6 +751,8 @@ export default function HomeScreen() {
       <AiSettings
         openAiKey={currentSystemSettings.openAiKey}
         openAiGptModel={currentSystemSettings.openAiGptModel}
+        voiceProvider={currentSystemSettings.voiceProvider}
+        azureVoiceKey={currentSystemSettings.azureVoiceKey}
         elevenKey={currentSystemSettings.elevenKey}
         testOpenAiKey={(config) => dispatch(testConfigChatgpt(config))}
         testOpenAiResponse={chatgptStateVars.testConfigResponse}
@@ -766,13 +770,25 @@ export default function HomeScreen() {
         testElevenResponse={chatgptStateVars.testElevenConfigResponse}
         imageGenerator={currentSystemSettings.imageGenerator}
         stabilityKey={currentSystemSettings.stabilityKey}
-        configureAi={(config) => {
+        // configureAi={(config) => {
+        //   dispatch(configureChatgpt(config));
+        //   dispatch(saveConfigChatgpt(config));
+        //   dispatch(configureVoiceProvider(config));
+        //   dispatch(saveConfigVoiceProvider(config));
+        //   dispatch(configureImageGenerator(config));
+        //   dispatch(saveConfigImageGenerator(config));
+        // }}
+        configureLLMProvider={(config) => {
           dispatch(configureChatgpt(config));
           dispatch(saveConfigChatgpt(config));
-          dispatch(configureElevenLabs(config));
-          dispatch(saveConfigElevenLabs(config));
+        }}
+        configureImageProvider={(config) => {
           dispatch(configureImageGenerator(config));
           dispatch(saveConfigImageGenerator(config));
+        }}
+        configureVoiceProvider={(config) => {
+          dispatch(configureVoiceProvider(config));
+          dispatch(saveConfigVoiceProvider(config));
         }}
         lauchGameMaker={() => {
           dispatch(

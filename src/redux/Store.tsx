@@ -8,6 +8,7 @@ import imagesReducer from "./ImagesSlice";
 import gameReducer from "./GameSlice";
 import bookReducer from "./BookSlice";
 import { elevenApi } from "./ElevenLabsSlice";
+import { azureVoiceApi } from "./AzureVoiceSlice";
 import rootSaga from "./Sagas";
 
 const sagaMiddleware = createSagaMiddleware();
@@ -22,9 +23,14 @@ const store = configureStore({
     game: gameReducer,
     book: bookReducer,
     [elevenApi.reducerPath]: elevenApi.reducer,
+    [azureVoiceApi.reducerPath]: azureVoiceApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(elevenApi.middleware, sagaMiddleware),
+    getDefaultMiddleware().concat(
+      elevenApi.middleware,
+      azureVoiceApi.middleware,
+      sagaMiddleware
+    ),
 });
 
 sagaMiddleware.run(rootSaga);

@@ -17,6 +17,7 @@ export enum ImageGeneratorProvider {
 
 export interface GenerateImageForm {
   // using DALL-E's API
+  model: "dall-e-3" | "dall-e-2";
   prompt: string;
   n: 1;
   size: "1024x1024" | "512x512" | "256x256";

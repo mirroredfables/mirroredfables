@@ -9,6 +9,12 @@ import {
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./Store";
 
+// TODO: technically this doesn't belong here
+export enum VoiceProvider {
+  eleven = "eleven",
+  azure = "azure",
+}
+
 export const publicElevenVoices = {
   // https://api.elevenlabs.io/v1/voices
   // As of 2023-04-14
