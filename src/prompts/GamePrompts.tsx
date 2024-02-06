@@ -375,7 +375,9 @@ export const generateGameImageGenPortraitPromptTemplate = (input: {
   object: string;
   style: string;
 }) => {
-  return { prompt: `${input.object}, portrait, ${input.style}` };
+  return {
+    prompt: `${input.object}, portrait, no frame, no text, ${input.style}`,
+  };
 };
 
 export const generateGameImageGenBackgroundPromptTemplate = (input: {
